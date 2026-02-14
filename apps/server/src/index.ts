@@ -1,0 +1,32 @@
+import "dotenv/config";
+import express from "express";
+import cors from "cors";
+import { createServer } from "http";
+import { initRoutes } from "./routes/init.js";
+import { meetingRoutes } from "./routes/meeting.js";
+import { reportRoutes } from "./routes/report.js";
+import { setupWebSocket } from "./ws/handler.js";
+
+const app = express();
+const port = process.env.PORT || 4000;
+
+app.use(cors({ origin: process.env.CORS_ORIGIN || "http://localhost:3000" }));
+app.use(express.json({ limit: "1mb" }));
+
+// Health check
+app.get("/health", (_req, res) => {
+  res.json({ status: "ok" });
+});
+
+// REST Routes
+app.use("/api/init", initRoutes);
+app.use("/api/meetings", meetingRoutes);
+app.use("/api/reports", reportRoutes);
+
+// HTTP + WebSocket 서버
+const server = createServer(app);
+setupWebSocket(server);
+
+server.listen(port, () => {
+  console.log(`[AdMeet] Server running on port ${port}`);
+});

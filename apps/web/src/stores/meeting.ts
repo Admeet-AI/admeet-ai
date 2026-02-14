@@ -1,12 +1,5 @@
 import { create } from "zustand";
-import type { MeetingState, TriggerType } from "../../../../packages/shared/types";
-
-interface AIIntervention {
-  id: string;
-  trigger: TriggerType;
-  message: string;
-  timestamp: number;
-}
+import type { MeetingState, MarketerThought, MarketerSolution } from "../../../../packages/shared/types";
 
 interface TranscriptEntry {
   text: string;
@@ -35,9 +28,23 @@ interface MeetingStore {
   summaries: string[];
   addSummary: (text: string) => void;
 
-  // AI 개입
-  interventions: AIIntervention[];
-  addIntervention: (trigger: TriggerType, message: string) => void;
+  // 마케터 생각 & 솔루션
+  thoughts: MarketerThought[];
+  solutions: MarketerSolution[];
+  isAnalyzing: boolean;
+  lastRefreshAt: number;
+  analysisInterval: number;
+  addThought: (thought: MarketerThought) => void;
+  addSolution: (solution: MarketerSolution) => void;
+  setAnalyzing: (v: boolean) => void;
+  resetTimer: () => void;
+  setAnalysisInterval: (v: number) => void;
+
+  // TTS
+  ttsEnabled: boolean;
+  isAISpeaking: boolean;
+  setTtsEnabled: (v: boolean) => void;
+  setAISpeaking: (v: boolean) => void;
 
   // 회의 상태 (마케팅 관점)
   meetingState: Partial<MeetingState>;
@@ -71,19 +78,30 @@ export const useMeetingStore = create<MeetingStore>((set) => ({
   addSummary: (text) =>
     set((s) => ({ summaries: [...s.summaries, text] })),
 
-  interventions: [],
-  addIntervention: (trigger, message) =>
+  thoughts: [],
+  solutions: [],
+  isAnalyzing: false,
+  lastRefreshAt: Date.now(),
+  analysisInterval: 30,
+  addThought: (thought) =>
     set((s) => ({
-      interventions: [
-        ...s.interventions,
-        {
-          id: crypto.randomUUID(),
-          trigger,
-          message,
-          timestamp: Date.now(),
-        },
-      ],
+      thoughts: [...s.thoughts, thought],
+      isAnalyzing: false,
+      lastRefreshAt: Date.now(),
     })),
+  addSolution: (solution) =>
+    set((s) => ({
+      solutions: [...s.solutions, solution],
+      isAnalyzing: false,
+    })),
+  setAnalyzing: (v) => set({ isAnalyzing: v }),
+  resetTimer: () => set({ lastRefreshAt: Date.now() }),
+  setAnalysisInterval: (v) => set({ analysisInterval: v }),
+
+  ttsEnabled: true,
+  isAISpeaking: false,
+  setTtsEnabled: (v) => set({ ttsEnabled: v }),
+  setAISpeaking: (v) => set({ isAISpeaking: v }),
 
   meetingState: {},
   updateMeetingState: (update) =>
@@ -99,7 +117,13 @@ export const useMeetingStore = create<MeetingStore>((set) => ({
       transcripts: [],
       interimTranscript: "",
       summaries: [],
-      interventions: [],
+      thoughts: [],
+      solutions: [],
+      isAnalyzing: false,
+      lastRefreshAt: Date.now(),
+      analysisInterval: 30,
+      ttsEnabled: true,
+      isAISpeaking: false,
       meetingState: {},
     }),
 }));

@@ -83,30 +83,48 @@ export interface MeetingState {
   openQuestions: string[];
 }
 
+// --- Marketer AI ---
+
+export type ThoughtCategory = "observation" | "concern" | "opportunity" | "insight";
+
+export interface MarketerThought {
+  id: string;
+  content: string;
+  category: ThoughtCategory;
+  timestamp: number;
+}
+
+export interface MarketerSolution {
+  id: string;
+  question: string;
+  solution: string;
+  context: string;
+  timestamp: number;
+}
+
 // --- WebSocket Events ---
 
 export type WSClientEvent =
   | { type: "transcript"; data: { text: string; isFinal: boolean } }
   | { type: "meeting:start"; data: { meetingId: string } }
-  | { type: "meeting:end"; data: { meetingId: string } };
+  | { type: "meeting:end"; data: { meetingId: string } }
+  | { type: "meeting:config"; data: { analysisInterval: number } };
 
 export type WSServerEvent =
   | { type: "summary"; data: { text: string } }
-  | { type: "ai:intervention"; data: { trigger: TriggerType; message: string } }
+  | { type: "marketer:thought"; data: MarketerThought }
+  | { type: "marketer:solution"; data: MarketerSolution }
+  | { type: "marketer:analyzing"; data: Record<string, never> }
   | { type: "state:update"; data: Partial<MeetingState> }
   | { type: "error"; data: { message: string } };
-
-export type TriggerType =
-  | "target_vague"
-  | "message_abstract"
-  | "experiment_missing";
 
 // --- Meeting Event Log ---
 
 export type MeetingEventType =
   | "transcript"
   | "ai_summary"
-  | "ai_intervention"
+  | "ai_thought"
+  | "ai_solution"
   | "decision"
   | "action_item";
 

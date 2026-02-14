@@ -2,9 +2,11 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import { createServer } from "http";
+import { join } from "path";
 import { initRoutes } from "./routes/init.js";
 import { meetingRoutes } from "./routes/meeting.js";
 import { reportRoutes } from "./routes/report.js";
+import { logRoutes } from "./routes/logs.js";
 import { setupWebSocket } from "./ws/handler.js";
 
 const app = express();
@@ -22,6 +24,10 @@ app.get("/health", (_req, res) => {
 app.use("/api/init", initRoutes);
 app.use("/api/meetings", meetingRoutes);
 app.use("/api/reports", reportRoutes);
+app.use("/api/logs", logRoutes);
+
+// Static files (log viewer)
+app.use(express.static(join(process.cwd(), "public")));
 
 // HTTP + WebSocket 서버
 const server = createServer(app);

@@ -1,11 +1,12 @@
 import { Server as HttpServer } from "http";
 import { WebSocketServer, WebSocket } from "ws";
-import { triggerService } from "../services/trigger.js";
+import { randomUUID } from "crypto";
+import { marketerService } from "../services/marketer.js";
 import { supabase } from "../lib/supabase.js";
-import type { MeetingState, WSClientEvent, WSServerEvent } from "@admeet/shared";
+import { meetingLogger } from "../lib/logger.js";
+import type { MeetingState, WSClientEvent, WSServerEvent, MarketerThought, MarketerSolution } from "@admeet/shared";
 
-const COOLDOWN_MS = 30_000; // 30초 쿨다운
-const SUMMARY_INTERVAL_MS = 45_000; // 45초마다 요약
+const DEFAULT_INTERVAL_MS = 30_000; // 30초 기본값
 
 interface MeetingSession {
   meetingId: string;
@@ -13,9 +14,10 @@ interface MeetingSession {
   contextCard: Record<string, unknown>;
   state: MeetingState;
   recentTranscript: string[];
-  lastInterventionAt: number;
-  interventionCount: number;
+  thoughts: MarketerThought[];
+  solutions: MarketerSolution[];
   summaryTimer: ReturnType<typeof setInterval> | null;
+  analysisIntervalMs: number;
 }
 
 const sessions = new Map<WebSocket, MeetingSession>();
@@ -78,7 +80,6 @@ async function handleEvent(ws: WebSocket, event: WSClientEvent) {
     case "meeting:start": {
       const { meetingId } = event.data;
 
-      // 회의 + 프로젝트 정보 로드
       const { data: meeting } = await supabase
         .from("meetings")
         .select("*, projects(id, context_card)")
@@ -96,20 +97,20 @@ async function handleEvent(ws: WebSocket, event: WSClientEvent) {
         contextCard: meeting.projects?.context_card || {},
         state: createInitialState(meeting.title, meeting.type),
         recentTranscript: [],
-        lastInterventionAt: 0,
-        interventionCount: 0,
+        thoughts: [],
+        solutions: [],
         summaryTimer: null,
+        analysisIntervalMs: DEFAULT_INTERVAL_MS,
       };
 
-      // 주기적 요약 타이머
       session.summaryTimer = setInterval(
-        () => processSummary(ws, session),
-        SUMMARY_INTERVAL_MS
+        () => processSummaryAndThought(ws, session),
+        session.analysisIntervalMs
       );
 
       sessions.set(ws, session);
+      meetingLogger.start(meetingId, meeting.title);
 
-      // 회의 상태 활성화
       await supabase
         .from("meetings")
         .update({ status: "active" })
@@ -126,22 +127,37 @@ async function handleEvent(ws: WebSocket, event: WSClientEvent) {
 
       if (isFinal && text.trim()) {
         session.recentTranscript.push(text);
+        meetingLogger.transcript(session.meetingId, text);
 
-        // 최근 2분치만 유지 (대략 10~15 문장)
         if (session.recentTranscript.length > 15) {
           session.recentTranscript.shift();
         }
 
-        // 이벤트 로그 저장
         await supabase.from("meeting_events").insert({
           meeting_id: session.meetingId,
           type: "transcript",
           payload: { text },
         });
 
-        // 트리거 체크
-        await checkTrigger(ws, session);
+        await checkSignal(ws, session, text);
       }
+      break;
+    }
+
+    case "meeting:config": {
+      const session = sessions.get(ws);
+      if (!session) return;
+
+      const { analysisInterval } = event.data;
+      const intervalMs = Math.max(10_000, Math.min(120_000, analysisInterval * 1000));
+      session.analysisIntervalMs = intervalMs;
+
+      // 타이머 재시작
+      if (session.summaryTimer) clearInterval(session.summaryTimer);
+      session.summaryTimer = setInterval(
+        () => processSummaryAndThought(ws, session),
+        intervalMs
+      );
       break;
     }
 
@@ -150,8 +166,8 @@ async function handleEvent(ws: WebSocket, event: WSClientEvent) {
       if (!session) return;
 
       if (session.summaryTimer) clearInterval(session.summaryTimer);
+      meetingLogger.end(session.meetingId);
 
-      // 최종 상태 스냅샷 저장
       await supabase.from("meeting_states").insert({
         meeting_id: session.meetingId,
         state: session.state,
@@ -168,77 +184,123 @@ async function handleEvent(ws: WebSocket, event: WSClientEvent) {
   }
 }
 
-async function checkTrigger(ws: WebSocket, session: MeetingSession) {
-  const now = Date.now();
-
-  // 쿨다운 체크
-  if (now - session.lastInterventionAt < COOLDOWN_MS) return;
+async function checkSignal(ws: WebSocket, session: MeetingSession, latestText: string) {
+  // 정규식 pre-filter: 키워드가 없으면 AI 호출하지 않음
+  if (!marketerService.hasSignalKeyword(latestText)) return;
 
   const recentText = session.recentTranscript.slice(-5).join("\n");
-  if (!recentText.trim()) return;
 
-  const result = await triggerService.detectTrigger(
+  const { result, meta } = await marketerService.detectSignal(recentText);
+  meetingLogger.aiCall(session.meetingId, meta);
+
+  if (!result.hasSignal || !result.question) return;
+
+  // 시그널 감지됨 → 솔루션 생성
+  send(ws, { type: "marketer:analyzing", data: {} });
+
+  const { result: solutionResult, meta: solutionMeta } = await marketerService.generateSolution(
+    result.question,
     recentText,
     session.state,
     session.contextCard
   );
+  meetingLogger.aiCall(session.meetingId, solutionMeta);
 
-  // 요약 업데이트
-  if (result.summary) {
-    session.state.summary.push(result.summary);
-    send(ws, { type: "summary", data: { text: result.summary } });
-  }
+  const solution: MarketerSolution = {
+    id: randomUUID(),
+    question: solutionResult.question,
+    solution: solutionResult.solution,
+    context: solutionResult.context,
+    timestamp: Date.now(),
+  };
 
-  // State 업데이트
-  if (result.stateUpdate) {
-    Object.assign(session.state, result.stateUpdate);
-    send(ws, { type: "state:update", data: result.stateUpdate });
-  }
+  session.solutions.push(solution);
+  send(ws, { type: "marketer:solution", data: solution });
+  meetingLogger.intervention(session.meetingId, "solution", solution.solution);
 
-  // 트리거 발동 → 개입
-  if (result.hasTrigger && result.triggerType) {
-    const intervention = await triggerService.generateIntervention(
-      result.triggerType,
-      recentText,
-      session.state,
-      session.contextCard
-    );
-
-    session.lastInterventionAt = now;
-    session.interventionCount++;
-
-    send(ws, {
-      type: "ai:intervention",
-      data: { trigger: intervention.trigger, message: intervention.message },
-    });
-
-    // 이벤트 로그
-    await supabase.from("meeting_events").insert({
-      meeting_id: session.meetingId,
-      type: "ai_intervention",
-      payload: intervention,
-    });
-  }
+  await supabase.from("meeting_events").insert({
+    meeting_id: session.meetingId,
+    type: "ai_solution",
+    payload: solution,
+  });
 }
 
-async function processSummary(ws: WebSocket, session: MeetingSession) {
+// summary 중복 방지: 간단한 유사도 체크
+function stringSimilarity(a: string, b: string): number {
+  if (a === b) return 1;
+  const setA = new Set(a.split(""));
+  const setB = new Set(b.split(""));
+  const intersection = [...setA].filter(c => setB.has(c)).length;
+  const union = new Set([...setA, ...setB]).size;
+  return union === 0 ? 0 : intersection / union;
+}
+
+function addSummaryIfNew(session: MeetingSession, summary: string): boolean {
+  if (!summary) return false;
+  if (session.state.summary.includes(summary)) return false;
+  const lastSummary = session.state.summary[session.state.summary.length - 1];
+  if (lastSummary && stringSimilarity(lastSummary, summary) > 0.8) return false;
+  session.state.summary.push(summary);
+  return true;
+}
+
+async function processSummaryAndThought(ws: WebSocket, session: MeetingSession) {
   const recentText = session.recentTranscript.slice(-5).join("\n");
   if (!recentText.trim()) return;
 
-  const result = await triggerService.detectTrigger(
-    recentText,
-    session.state,
-    session.contextCard
-  );
+  // 분석 중 알림
+  send(ws, { type: "marketer:analyzing", data: {} });
 
-  if (result.summary) {
-    session.state.summary.push(result.summary);
-    send(ws, { type: "summary", data: { text: result.summary } });
+  // 1) 전사 기반 요약 생성
+  const { result: summaryResult, meta: summaryMeta } = await marketerService.generateSummary(
+    recentText,
+    session.state.summary,
+    session.state
+  );
+  meetingLogger.aiCall(session.meetingId, summaryMeta);
+
+  if (summaryResult.summary && addSummaryIfNew(session, summaryResult.summary)) {
+    send(ws, { type: "summary", data: { text: summaryResult.summary } });
+    meetingLogger.summary(session.meetingId, summaryResult.summary);
 
     await supabase.from("meeting_events").insert({
       meeting_id: session.meetingId,
       type: "ai_summary",
-      payload: { text: result.summary },
+      payload: { text: summaryResult.summary },
+    });
+  }
+
+  if (summaryResult.stateUpdate) {
+    Object.assign(session.state, summaryResult.stateUpdate);
+    send(ws, { type: "state:update", data: summaryResult.stateUpdate });
+  }
+
+  // 2) 마케터 생각 생성 (요약과 별개)
+  const summaryText = session.state.summary.slice(-2).join(" ");
+  const thoughtResult = await marketerService.generateThought(
+    summaryText,
+    recentText,
+    session.state,
+    session.contextCard
+  );
+
+  if (thoughtResult) {
+    meetingLogger.aiCall(session.meetingId, thoughtResult.meta);
+
+    const thought: MarketerThought = {
+      id: randomUUID(),
+      content: thoughtResult.result.content,
+      category: thoughtResult.result.category,
+      timestamp: Date.now(),
+    };
+
+    session.thoughts.push(thought);
+    send(ws, { type: "marketer:thought", data: thought });
+
+    await supabase.from("meeting_events").insert({
+      meeting_id: session.meetingId,
+      type: "ai_thought",
+      payload: thought,
     });
   }
 }

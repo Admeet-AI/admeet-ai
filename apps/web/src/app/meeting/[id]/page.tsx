@@ -1,32 +1,43 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { useMeetingStore } from "@/stores/meeting";
 import { useWebSocket } from "@/hooks/use-websocket";
 import { useSpeechRecognition } from "@/hooks/use-speech-recognition";
+import { useTTS } from "@/hooks/use-tts";
 import { TranscriptPanel } from "@/components/meeting/transcript-panel";
 import { SummaryPanel } from "@/components/meeting/summary-panel";
-import { InterventionPanel } from "@/components/meeting/intervention-panel";
+import { MarketerPanel } from "@/components/meeting/marketer-panel";
+import { SettingsModal } from "@/components/meeting/settings-modal";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
 
 export default function MeetingPage() {
   const params = useParams();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const projectId = params.id as string;
 
   const store = useMeetingStore();
   const { connect, disconnect, send } = useWebSocket();
-  const [meetingTitle, setMeetingTitle] = useState("");
+  const [meetingTitle, setMeetingTitle] = useState(searchParams.get("title") || "");
   const [meetingStarted, setMeetingStarted] = useState(false);
   const [textInput, setTextInput] = useState("");
 
+  const { speak, stop: stopTTS } = useTTS({
+    onStart: () => store.setAISpeaking(true),
+    onEnd: () => store.setAISpeaking(false),
+  });
+
   const { isListening, start: startSTT, stop: stopSTT } = useSpeechRecognition({
     onResult: (text, isFinal) => {
+      // TTS 발화 중이면 마이크 입력 무시 (에코 방지)
+      if (useMeetingStore.getState().isAISpeaking) return;
+
       if (isFinal) {
         store.addTranscript(text);
         store.setInterimTranscript("");
@@ -37,6 +48,13 @@ export default function MeetingPage() {
     },
     onError: (err) => console.error("STT Error:", err),
   });
+
+  // 새 solution 도착 시 TTS (생각은 읽지 않음 — 솔루션만)
+  useEffect(() => {
+    if (!store.ttsEnabled || store.solutions.length === 0) return;
+    const last = store.solutions[store.solutions.length - 1];
+    speak(last.solution);
+  }, [store.solutions.length]);
 
   const handleStartMeeting = async () => {
     if (!meetingTitle.trim()) return;
@@ -67,6 +85,7 @@ export default function MeetingPage() {
 
   const handleEndMeeting = async () => {
     stopSTT();
+    stopTTS();
     send({ type: "meeting:end", data: { meetingId: store.meetingId } });
     disconnect();
     if (store.meetingId) {
@@ -116,6 +135,12 @@ export default function MeetingPage() {
           </Badge>
         </div>
         <div className="flex items-center gap-2">
+          <SettingsModal
+            onIntervalChange={(seconds) => {
+              send({ type: "meeting:config", data: { analysisInterval: seconds } });
+              store.resetTimer();
+            }}
+          />
           <Button
             variant={isListening ? "destructive" : "default"}
             size="sm"
@@ -143,8 +168,8 @@ export default function MeetingPage() {
             <Button size="sm" onClick={handleTextSubmit}>전송</Button>
           </div>
         </div>
-        <div className="col-span-1"><SummaryPanel /></div>
-        <div className="col-span-1"><InterventionPanel /></div>
+        <div className="col-span-1 h-full overflow-hidden"><SummaryPanel /></div>
+        <div className="col-span-1 h-full overflow-hidden"><MarketerPanel /></div>
       </div>
     </main>
   );

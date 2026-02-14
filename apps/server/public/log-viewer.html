@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AdMeet AI - 회의 로그 뷰어</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f172a; color: #e2e8f0; }
+
+  .header { background: #1e293b; border-bottom: 1px solid #334155; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; }
+  .header h1 { font-size: 18px; font-weight: 700; }
+  .header h1 span { color: #60a5fa; }
+  .header .refresh { background: #334155; border: none; color: #e2e8f0; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+  .header .refresh:hover { background: #475569; }
+
+  .container { display: flex; height: calc(100vh - 57px); }
+
+  /* 사이드바 */
+  .sidebar { width: 320px; background: #1e293b; border-right: 1px solid #334155; overflow-y: auto; flex-shrink: 0; }
+  .sidebar-title { padding: 12px 16px; font-size: 12px; font-weight: 600; text-transform: uppercase; color: #94a3b8; letter-spacing: 0.05em; }
+  .meeting-item { padding: 12px 16px; border-bottom: 1px solid #334155; cursor: pointer; transition: background 0.15s; }
+  .meeting-item:hover { background: #334155; }
+  .meeting-item.active { background: #1e3a5f; border-left: 3px solid #60a5fa; }
+  .meeting-item .title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .meeting-item .meta { font-size: 11px; color: #94a3b8; display: flex; gap: 12px; }
+  .meeting-item .tokens { color: #fbbf24; font-weight: 600; }
+
+  /* 메인 */
+  .main { flex: 1; overflow-y: auto; padding: 24px; }
+  .empty-state { display: flex; align-items: center; justify-content: center; height: 100%; color: #64748b; font-size: 15px; }
+
+  /* 토큰 요약 */
+  .token-summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+  .token-card { background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 16px; }
+  .token-card .label { font-size: 11px; color: #94a3b8; text-transform: uppercase; margin-bottom: 4px; }
+  .token-card .value { font-size: 24px; font-weight: 700; }
+  .token-card .value.prompt { color: #60a5fa; }
+  .token-card .value.completion { color: #34d399; }
+  .token-card .value.total { color: #fbbf24; }
+  .token-card .value.calls { color: #c084fc; }
+
+  /* 필터 */
+  .filters { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  .filter-btn { padding: 6px 14px; border-radius: 20px; border: 1px solid #475569; background: transparent; color: #94a3b8; font-size: 12px; cursor: pointer; transition: all 0.15s; }
+  .filter-btn:hover { border-color: #60a5fa; color: #60a5fa; }
+  .filter-btn.active { background: #60a5fa; border-color: #60a5fa; color: #fff; }
+
+  /* 타임라인 */
+  .timeline { position: relative; padding-left: 24px; }
+  .timeline::before { content: ''; position: absolute; left: 7px; top: 0; bottom: 0; width: 2px; background: #334155; }
+
+  .entry { position: relative; margin-bottom: 16px; }
+  .entry::before { content: ''; position: absolute; left: -20px; top: 8px; width: 10px; height: 10px; border-radius: 50%; }
+  .entry.transcript::before { background: #64748b; }
+  .entry.summary::before { background: #60a5fa; }
+  .entry.intervention::before { background: #f97316; }
+  .entry.ai_call::before { background: #c084fc; }
+  .entry.meeting_start::before, .entry.meeting_end::before { background: #34d399; }
+
+  .entry-time { font-size: 11px; color: #64748b; margin-bottom: 2px; }
+  .entry-badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 4px; margin-bottom: 6px; text-transform: uppercase; }
+  .badge-transcript { background: #334155; color: #94a3b8; }
+  .badge-summary { background: #1e3a5f; color: #60a5fa; }
+  .badge-intervention { background: #431407; color: #fb923c; }
+  .badge-ai_call { background: #2e1065; color: #c084fc; }
+  .badge-meeting_start, .badge-meeting_end { background: #064e3b; color: #34d399; }
+
+  .entry-content { background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 12px; font-size: 13px; line-height: 1.6; }
+
+  .trigger-badge { display: inline-block; font-size: 10px; padding: 2px 6px; border-radius: 3px; margin-left: 6px; }
+  .trigger-target_vague { background: #431407; color: #fb923c; }
+  .trigger-message_abstract { background: #2e1065; color: #c084fc; }
+  .trigger-experiment_missing { background: #1e3a5f; color: #60a5fa; }
+
+  /* AI Call 상세 */
+  .ai-detail { margin-top: 8px; }
+  .ai-detail summary { cursor: pointer; font-size: 12px; color: #94a3b8; padding: 4px 0; }
+  .ai-detail summary:hover { color: #e2e8f0; }
+  .ai-tokens { display: flex; gap: 12px; margin: 8px 0; font-size: 11px; }
+  .ai-tokens span { padding: 2px 8px; border-radius: 4px; background: #0f172a; }
+  .prompt-box { background: #0f172a; border: 1px solid #334155; border-radius: 6px; padding: 10px; margin-top: 8px; font-size: 12px; line-height: 1.5; white-space: pre-wrap; word-break: break-all; max-height: 300px; overflow-y: auto; color: #94a3b8; }
+  .prompt-label { font-size: 11px; font-weight: 600; color: #64748b; margin-top: 8px; margin-bottom: 4px; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1><span>AdMeet AI</span> &mdash; 회의 로그 뷰어</h1>
+  <button class="refresh" onclick="loadList()">새로고침</button>
+</div>
+
+<div class="container">
+  <div class="sidebar">
+    <div class="sidebar-title">회의 목록</div>
+    <div id="meeting-list"></div>
+  </div>
+  <div class="main" id="main">
+    <div class="empty-state">왼쪽에서 회의를 선택하세요</div>
+  </div>
+</div>
+
+<script>
+const API = window.location.origin;
+let currentFilter = 'all';
+
+async function loadList() {
+  const res = await fetch(`${API}/api/logs`);
+  const logs = await res.json();
+  const el = document.getElementById('meeting-list');
+  el.innerHTML = logs.map(l => `
+    <div class="meeting-item" onclick="loadLog('${l.meetingId}', this)">
+      <div class="title">${esc(l.title)}</div>
+      <div class="meta">
+        <span>${formatDate(l.startedAt)}</span>
+        <span class="tokens">${l.tokenUsage.totalTokens.toLocaleString()} tokens</span>
+        <span>${l.tokenUsage.calls} calls</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+async function loadLog(meetingId, itemEl) {
+  document.querySelectorAll('.meeting-item').forEach(e => e.classList.remove('active'));
+  if (itemEl) itemEl.classList.add('active');
+
+  const res = await fetch(`${API}/api/logs/${meetingId}`);
+  const log = await res.json();
+  renderLog(log);
+}
+
+function renderLog(log) {
+  const main = document.getElementById('main');
+  const types = ['all', 'transcript', 'summary', 'intervention', 'ai_call'];
+
+  main.innerHTML = `
+    <div class="token-summary">
+      <div class="token-card">
+        <div class="label">Prompt Tokens</div>
+        <div class="value prompt">${log.tokenUsage.totalPromptTokens.toLocaleString()}</div>
+      </div>
+      <div class="token-card">
+        <div class="label">Completion Tokens</div>
+        <div class="value completion">${log.tokenUsage.totalCompletionTokens.toLocaleString()}</div>
+      </div>
+      <div class="token-card">
+        <div class="label">Total Tokens</div>
+        <div class="value total">${log.tokenUsage.totalTokens.toLocaleString()}</div>
+      </div>
+      <div class="token-card">
+        <div class="label">API Calls</div>
+        <div class="value calls">${log.tokenUsage.calls}</div>
+      </div>
+    </div>
+
+    <div class="filters" id="filters">
+      ${types.map(t => `<button class="filter-btn ${t === currentFilter ? 'active' : ''}" onclick="setFilter('${t}')">${filterLabel(t)}</button>`).join('')}
+    </div>
+
+    <div class="timeline" id="timeline">
+      ${log.entries.filter(e => currentFilter === 'all' || e.type === currentFilter).map(e => renderEntry(e)).join('')}
+    </div>
+  `;
+
+  window._currentLog = log;
+}
+
+function setFilter(type) {
+  currentFilter = type;
+  if (window._currentLog) renderLog(window._currentLog);
+}
+
+function filterLabel(type) {
+  const labels = { all: '전체', transcript: '전사', summary: '요약', intervention: '개입', ai_call: 'AI 호출' };
+  return labels[type] || type;
+}
+
+function renderEntry(e) {
+  const time = formatTime(e.timestamp);
+  let content = '';
+
+  switch (e.type) {
+    case 'transcript':
+      content = esc(e.data.text);
+      break;
+    case 'summary':
+      content = esc(e.data.text);
+      break;
+    case 'intervention':
+      content = `<span class="trigger-badge trigger-${e.data.trigger}">${triggerLabel(e.data.trigger)}</span><br/>${esc(e.data.message)}`;
+      break;
+    case 'ai_call':
+      content = renderAiCall(e.data);
+      break;
+    case 'meeting_start':
+      content = `회의 시작: ${esc(e.data.title || '')}`;
+      break;
+    case 'meeting_end':
+      content = '회의 종료';
+      break;
+  }
+
+  return `
+    <div class="entry ${e.type}">
+      <div class="entry-time">${time}</div>
+      <span class="entry-badge badge-${e.type}">${filterLabel(e.type)}</span>
+      <div class="entry-content">${content}</div>
+    </div>
+  `;
+}
+
+function renderAiCall(d) {
+  const purposeLabel = d.purpose === 'trigger_detect' ? '트리거 감지' : '개입 생성';
+  return `
+    <strong>${purposeLabel}</strong> &mdash; <code>${esc(d.model)}</code>
+    <div class="ai-tokens">
+      <span style="color:#60a5fa">prompt: ${d.promptTokens.toLocaleString()}</span>
+      <span style="color:#34d399">completion: ${d.completionTokens.toLocaleString()}</span>
+      <span style="color:#fbbf24">total: ${d.totalTokens.toLocaleString()}</span>
+    </div>
+    <details class="ai-detail">
+      <summary>System Prompt 보기</summary>
+      <div class="prompt-box">${esc(d.systemPrompt)}</div>
+    </details>
+    <details class="ai-detail">
+      <summary>User Prompt 보기</summary>
+      <div class="prompt-box">${esc(d.userPrompt)}</div>
+    </details>
+    <details class="ai-detail">
+      <summary>Response 보기</summary>
+      <div class="prompt-box">${esc(d.response)}</div>
+    </details>
+  `;
+}
+
+function triggerLabel(t) {
+  const labels = { target_vague: '타겟 모호', message_abstract: '메시지 추상', experiment_missing: '실험 부재' };
+  return labels[t] || t;
+}
+
+function esc(s) { const d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+function formatDate(s) { return new Date(s).toLocaleString('ko-KR', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }); }
+function formatTime(s) { return new Date(s).toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit', second: '2-digit' }); }
+
+loadList();
+</script>
+</body>
+</html>

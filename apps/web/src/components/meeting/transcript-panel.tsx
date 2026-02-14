@@ -10,7 +10,7 @@ export function TranscriptPanel() {
   return (
     <div className="flex flex-col h-full">
       <h3 className="font-semibold text-sm mb-2 px-1">실시간 전사</h3>
-      <ScrollArea className="flex-1 border rounded-lg p-3 bg-white">
+      <ScrollArea className="flex-1 overflow-hidden border rounded-lg p-3 bg-white">
         <div className="space-y-2">
           {transcripts.map((t, i) => (
             <p key={i} className="text-sm leading-relaxed">{t.text}</p>

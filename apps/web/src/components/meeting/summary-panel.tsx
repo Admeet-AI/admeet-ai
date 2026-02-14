@@ -10,7 +10,7 @@ export function SummaryPanel() {
   return (
     <div className="flex flex-col h-full">
       <h3 className="font-semibold text-sm mb-2 px-1">실시간 요약</h3>
-      <ScrollArea className="flex-1">
+      <ScrollArea className="flex-1 overflow-hidden">
         <div className="space-y-2">
           {summaries.map((s, i) => (
             <Card key={i}>

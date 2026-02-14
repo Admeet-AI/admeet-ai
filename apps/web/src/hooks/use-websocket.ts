@@ -25,9 +25,16 @@ export function useWebSocket() {
       switch (data.type) {
         case "summary":
           store.addSummary(data.data.text);
+          store.resetTimer();
           break;
-        case "ai:intervention":
-          store.addIntervention(data.data.trigger, data.data.message);
+        case "marketer:thought":
+          store.addThought(data.data);
+          break;
+        case "marketer:solution":
+          store.addSolution(data.data);
+          break;
+        case "marketer:analyzing":
+          store.setAnalyzing(true);
           break;
         case "state:update":
           store.updateMeetingState(data.data);

@@ -1,0 +1,600 @@
+{
+  "meetingId": "9f7ad366-eef8-44e5-b426-72df114fc973",
+  "title": "마케팅 채널 확대 계획",
+  "startedAt": "2026-02-14T16:35:12.220Z",
+  "endedAt": null,
+  "entries": [
+    {
+      "timestamp": "2026-02-14T16:35:12.220Z",
+      "type": "meeting_start",
+      "data": {
+        "title": "마케팅 채널 확대 계획"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:35:22.596Z",
+      "type": "transcript",
+      "data": {
+        "text": "20대 여성 견주를 위한 마케팅 채널을 확대하려하는데 좋은 의견 있을까요"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:35:24.450Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 3종 (우선순위 동일, 가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n\n중요한 판단 기준:\n- 이전 개입 이력(previousInterventions)을 확인하고, 같은 triggerType을 연속 2회 이상 반복하지 마세요.\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"월 매출\":\"1,200만원\",\"재구매율\":\"50%\",\"인스타그램 팔로워\":\"5,000명\"},\"coreValue\":\"지속 가능성과 건강을 중시하는 반려견 사료\",\"constraints\":[\"마케팅 예산 제한\",\"경쟁이 치열한 시장\"],\"productSummary\":\"친환경 원료로 만든 프리미엄 반려견 사료 브랜드\",\"targetPersonas\":[\"20~30대 여성, 1인 가구 반려인\",\"친환경 제품을 선호하는 반려동물 주인\"],\"differentiators\":[\"100% 유기농 원료 사용\",\"친환경 포장재 사용\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"마케팅 채널 확대 계획\",\"meetingType\":\"other\",\"summary\":[],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n20대 여성 견주를 위한 마케팅 채널을 확대하려하는데 좋은 의견 있을까요",
+        "response": "{\n  \"hasTrigger\": false,\n  \"triggerType\": null,\n  \"summary\": \"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 698,
+        "completionTokens": 47,
+        "totalTokens": 745
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:35:24.452Z",
+      "type": "summary",
+      "data": {
+        "text": "20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:35:59.250Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 3종 (우선순위 동일, 가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n\n중요한 판단 기준:\n- 이전 개입 이력(previousInterventions)을 확인하고, 같은 triggerType을 연속 2회 이상 반복하지 마세요.\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"월 매출\":\"1,200만원\",\"재구매율\":\"50%\",\"인스타그램 팔로워\":\"5,000명\"},\"coreValue\":\"지속 가능성과 건강을 중시하는 반려견 사료\",\"constraints\":[\"마케팅 예산 제한\",\"경쟁이 치열한 시장\"],\"productSummary\":\"친환경 원료로 만든 프리미엄 반려견 사료 브랜드\",\"targetPersonas\":[\"20~30대 여성, 1인 가구 반려인\",\"친환경 제품을 선호하는 반려동물 주인\"],\"differentiators\":[\"100% 유기농 원료 사용\",\"친환경 포장재 사용\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"마케팅 채널 확대 계획\",\"meetingType\":\"other\",\"summary\":[\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n20대 여성 견주를 위한 마케팅 채널을 확대하려하는데 좋은 의견 있을까요",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"target_vague\",\n  \"summary\": \"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\n  \"stateUpdate\": {\n    \"targetSegment\": [\"20대 여성 견주\"]\n  }\n}",
+        "promptTokens": 717,
+        "completionTokens": 63,
+        "totalTokens": 780
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:35:59.251Z",
+      "type": "summary",
+      "data": {
+        "text": "20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:36:17.406Z",
+      "type": "transcript",
+      "data": {
+        "text": "마케터 대답하세요"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:36:19.752Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 3종 (우선순위 동일, 가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n\n중요한 판단 기준:\n- 이전 개입 이력(previousInterventions)을 확인하고, 같은 triggerType을 연속 2회 이상 반복하지 마세요.\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"월 매출\":\"1,200만원\",\"재구매율\":\"50%\",\"인스타그램 팔로워\":\"5,000명\"},\"coreValue\":\"지속 가능성과 건강을 중시하는 반려견 사료\",\"constraints\":[\"마케팅 예산 제한\",\"경쟁이 치열한 시장\"],\"productSummary\":\"친환경 원료로 만든 프리미엄 반려견 사료 브랜드\",\"targetPersonas\":[\"20~30대 여성, 1인 가구 반려인\",\"친환경 제품을 선호하는 반려동물 주인\"],\"differentiators\":[\"100% 유기농 원료 사용\",\"친환경 포장재 사용\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"마케팅 채널 확대 계획\",\"meetingType\":\"other\",\"summary\":[\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n20대 여성 견주를 위한 마케팅 채널을 확대하려하는데 좋은 의견 있을까요\n마케터 대답하세요",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"experiment_missing\",\n  \"summary\": \"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청하고 있습니다. 그러나 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\n  \"stateUpdate\": {\n    \"targetSegment\": [\"20대 여성 견주\"],\n    \"hypotheses\": [],\n    \"experiments\": []\n  }\n}",
+        "promptTokens": 743,
+        "completionTokens": 93,
+        "totalTokens": 836
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:36:19.754Z",
+      "type": "summary",
+      "data": {
+        "text": "20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청하고 있습니다. 그러나 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:36:22.300Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "intervention_generate",
+        "model": "gpt-4o",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 팀원처럼 자연스럽게 마케팅 관점에서 질문하세요.\n\n규칙:\n- 1~2문장 + 질문 1개로 짧게\n- 단정하지 말고 질문/옵션으로 제시\n- 한국어로 자연스럽게\n- 팀원이 옆에서 \"잠깐, 그거 마케팅 관점에서 보면...\" 하는 톤\n\n트리거별 질문 방향:\n- target_vague: 타겟 세분화 (직군/상황/문제 기반)\n- message_abstract: 메시지 구체화 (비교대상/수치/사례)\n- experiment_missing: 실험 설계 (가설/지표/기간/성공기준)",
+        "userPrompt": "트리거: experiment_missing\n\n[컨텍스트]\n{\"kpiGoals\":{\"월 매출\":\"1,200만원\",\"재구매율\":\"50%\",\"인스타그램 팔로워\":\"5,000명\"},\"coreValue\":\"지속 가능성과 건강을 중시하는 반려견 사료\",\"constraints\":[\"마케팅 예산 제한\",\"경쟁이 치열한 시장\"],\"productSummary\":\"친환경 원료로 만든 프리미엄 반려견 사료 브랜드\",\"targetPersonas\":[\"20~30대 여성, 1인 가구 반려인\",\"친환경 제품을 선호하는 반려동물 주인\"],\"differentiators\":[\"100% 유기농 원료 사용\",\"친환경 포장재 사용\"]}\n\n[회의 상태]\n{\"meetingTitle\":\"마케팅 채널 확대 계획\",\"meetingType\":\"other\",\"summary\":[\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청하고 있습니다. 그러나 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\"],\"targetSegment\":[\"20대 여성 견주\"],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n20대 여성 견주를 위한 마케팅 채널을 확대하려하는데 좋은 의견 있을까요\n마케터 대답하세요\n\n마케팅 관점에서 자연스럽게 개입하세요.",
+        "response": "잠깐, 그거 마케팅 관점에서 보면... 우리가 20대 여성 견주를 대상으로 어떤 채널에서 어떤 메시지를 실험해볼지 가설을 세워보면 좋을 것 같아요. 예를 들어, 인스타그램 광고를 통해 팔로워와 재구매율 간의 상관관계를 측정해보는 게 어떨까요? 그리고 성공 기준은 어떻게 설정하면 좋을까요?",
+        "promptTokens": 535,
+        "completionTokens": 92,
+        "totalTokens": 627
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:36:22.302Z",
+      "type": "intervention",
+      "data": {
+        "trigger": "experiment_missing",
+        "message": "잠깐, 그거 마케팅 관점에서 보면... 우리가 20대 여성 견주를 대상으로 어떤 채널에서 어떤 메시지를 실험해볼지 가설을 세워보면 좋을 것 같아요. 예를 들어, 인스타그램 광고를 통해 팔로워와 재구매율 간의 상관관계를 측정해보는 게 어떨까요? 그리고 성공 기준은 어떻게 설정하면 좋을까요?"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:36:43.551Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 3종 (우선순위 동일, 가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n\n중요한 판단 기준:\n- 이전 개입 이력(previousInterventions)을 확인하고, 같은 triggerType을 연속 2회 이상 반복하지 마세요.\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"월 매출\":\"1,200만원\",\"재구매율\":\"50%\",\"인스타그램 팔로워\":\"5,000명\"},\"coreValue\":\"지속 가능성과 건강을 중시하는 반려견 사료\",\"constraints\":[\"마케팅 예산 제한\",\"경쟁이 치열한 시장\"],\"productSummary\":\"친환경 원료로 만든 프리미엄 반려견 사료 브랜드\",\"targetPersonas\":[\"20~30대 여성, 1인 가구 반려인\",\"친환경 제품을 선호하는 반려동물 주인\"],\"differentiators\":[\"100% 유기농 원료 사용\",\"친환경 포장재 사용\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"마케팅 채널 확대 계획\",\"meetingType\":\"other\",\"summary\":[\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청하고 있습니다. 그러나 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\"],\"targetSegment\":[\"20대 여성 견주\"],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n20대 여성 견주를 위한 마케팅 채널을 확대하려하는데 좋은 의견 있을까요\n마케터 대답하세요\n\n[이전 개입 이력 (최근 1건)]\n1. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면... 우리가 20대 여성 견주를 대상으로 어떤 채널에서 어떤 메시지를 실험해볼지 가설을 세워보면 좋을 것 같아",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"experiment_missing\",\n  \"summary\": \"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 852,
+        "completionTokens": 60,
+        "totalTokens": 912
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:36:43.552Z",
+      "type": "summary",
+      "data": {
+        "text": "마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:36:46.689Z",
+      "type": "transcript",
+      "data": {
+        "text": "인스타그램 광고를 통해 노출수를 높이려면 어떻게 해야할까요"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:37:03.950Z",
+      "type": "transcript",
+      "data": {
+        "text": "마케터 대답하세요"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:37:05.831Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 3종 (우선순위 동일, 가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n\n중요한 판단 기준:\n- 이전 개입 이력(previousInterventions)을 확인하고, 같은 triggerType을 연속 2회 이상 반복하지 마세요.\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"월 매출\":\"1,200만원\",\"재구매율\":\"50%\",\"인스타그램 팔로워\":\"5,000명\"},\"coreValue\":\"지속 가능성과 건강을 중시하는 반려견 사료\",\"constraints\":[\"마케팅 예산 제한\",\"경쟁이 치열한 시장\"],\"productSummary\":\"친환경 원료로 만든 프리미엄 반려견 사료 브랜드\",\"targetPersonas\":[\"20~30대 여성, 1인 가구 반려인\",\"친환경 제품을 선호하는 반려동물 주인\"],\"differentiators\":[\"100% 유기농 원료 사용\",\"친환경 포장재 사용\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"마케팅 채널 확대 계획\",\"meetingType\":\"other\",\"summary\":[\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청하고 있습니다. 그러나 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\"],\"targetSegment\":[\"20대 여성 견주\"],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n20대 여성 견주를 위한 마케팅 채널을 확대하려하는데 좋은 의견 있을까요\n마케터 대답하세요\n인스타그램 광고를 통해 노출수를 높이려면 어떻게 해야할까요\n마케터 대답하세요\n\n[이전 개입 이력 (최근 1건)]\n1. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면... 우리가 20대 여성 견주를 대상으로 어떤 채널에서 어떤 메시지를 실험해볼지 가설을 세워보면 좋을 것 같아",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"experiment_missing\",\n  \"summary\": \"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 907,
+        "completionTokens": 60,
+        "totalTokens": 967
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:37:05.833Z",
+      "type": "summary",
+      "data": {
+        "text": "마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:37:08.671Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "intervention_generate",
+        "model": "gpt-4o",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 팀원처럼 자연스럽게 마케팅 관점에서 질문하세요.\n\n규칙:\n- 1~2문장 + 질문 1개로 짧게\n- 단정하지 말고 질문/옵션으로 제시\n- 한국어로 자연스럽게\n- 팀원이 옆에서 \"잠깐, 그거 마케팅 관점에서 보면...\" 하는 톤\n\n트리거별 질문 방향:\n- target_vague: 타겟 세분화 (직군/상황/문제 기반)\n- message_abstract: 메시지 구체화 (비교대상/수치/사례)\n- experiment_missing: 실험 설계 (가설/지표/기간/성공기준)",
+        "userPrompt": "트리거: experiment_missing\n\n[컨텍스트]\n{\"kpiGoals\":{\"월 매출\":\"1,200만원\",\"재구매율\":\"50%\",\"인스타그램 팔로워\":\"5,000명\"},\"coreValue\":\"지속 가능성과 건강을 중시하는 반려견 사료\",\"constraints\":[\"마케팅 예산 제한\",\"경쟁이 치열한 시장\"],\"productSummary\":\"친환경 원료로 만든 프리미엄 반려견 사료 브랜드\",\"targetPersonas\":[\"20~30대 여성, 1인 가구 반려인\",\"친환경 제품을 선호하는 반려동물 주인\"],\"differentiators\":[\"100% 유기농 원료 사용\",\"친환경 포장재 사용\"]}\n\n[회의 상태]\n{\"meetingTitle\":\"마케팅 채널 확대 계획\",\"meetingType\":\"other\",\"summary\":[\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청하고 있습니다. 그러나 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\"],\"targetSegment\":[\"20대 여성 견주\"],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n20대 여성 견주를 위한 마케팅 채널을 확대하려하는데 좋은 의견 있을까요\n마케터 대답하세요\n인스타그램 광고를 통해 노출수를 높이려면 어떻게 해야할까요\n마케터 대답하세요\n\n마케팅 관점에서 자연스럽게 개입하세요.",
+        "response": "잠깐, 그거 마케팅 관점에서 보면, 인스타그램 광고 효과를 높이기 위해 먼저 어떤 가설을 세우고 그에 따른 성공 기준을 정하는 것이 어떨까요? 예를 들어, 광고의 A/B 테스트를 통해 어떤 메시지가 더 반응이 좋은지 알아보는 것도 방법일 것 같은데, 이에 대해 더 구체적인 실험 설계를 해보는 게 좋지 않을까요? 어떤 지표를 통해 성공을 측정할 계획인가요?",
+        "promptTokens": 620,
+        "completionTokens": 107,
+        "totalTokens": 727
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:37:08.672Z",
+      "type": "intervention",
+      "data": {
+        "trigger": "experiment_missing",
+        "message": "잠깐, 그거 마케팅 관점에서 보면, 인스타그램 광고 효과를 높이기 위해 먼저 어떤 가설을 세우고 그에 따른 성공 기준을 정하는 것이 어떨까요? 예를 들어, 광고의 A/B 테스트를 통해 어떤 메시지가 더 반응이 좋은지 알아보는 것도 방법일 것 같은데, 이에 대해 더 구체적인 실험 설계를 해보는 게 좋지 않을까요? 어떤 지표를 통해 성공을 측정할 계획인가요?"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:37:28.791Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 3종 (우선순위 동일, 가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n\n중요한 판단 기준:\n- 이전 개입 이력(previousInterventions)을 확인하고, 같은 triggerType을 연속 2회 이상 반복하지 마세요.\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"월 매출\":\"1,200만원\",\"재구매율\":\"50%\",\"인스타그램 팔로워\":\"5,000명\"},\"coreValue\":\"지속 가능성과 건강을 중시하는 반려견 사료\",\"constraints\":[\"마케팅 예산 제한\",\"경쟁이 치열한 시장\"],\"productSummary\":\"친환경 원료로 만든 프리미엄 반려견 사료 브랜드\",\"targetPersonas\":[\"20~30대 여성, 1인 가구 반려인\",\"친환경 제품을 선호하는 반려동물 주인\"],\"differentiators\":[\"100% 유기농 원료 사용\",\"친환경 포장재 사용\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"마케팅 채널 확대 계획\",\"meetingType\":\"other\",\"summary\":[\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청하고 있습니다. 그러나 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\"],\"targetSegment\":[\"20대 여성 견주\"],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n20대 여성 견주를 위한 마케팅 채널을 확대하려하는데 좋은 의견 있을까요\n마케터 대답하세요\n인스타그램 광고를 통해 노출수를 높이려면 어떻게 해야할까요\n마케터 대답하세요\n\n[이전 개입 이력 (최근 2건)]\n1. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면... 우리가 20대 여성 견주를 대상으로 어떤 채널에서 어떤 메시지를 실험해볼지 가설을 세워보면 좋을 것 같아\n2. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면, 인스타그램 광고 효과를 높이기 위해 먼저 어떤 가설을 세우고 그에 따른 성공 기준을 정하는 것이 어떨까요? ",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"experiment_missing\",\n  \"summary\": \"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 989,
+        "completionTokens": 60,
+        "totalTokens": 1049
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:37:28.793Z",
+      "type": "summary",
+      "data": {
+        "text": "마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:38:13.781Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 3종 (우선순위 동일, 가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n\n중요한 판단 기준:\n- 이전 개입 이력(previousInterventions)을 확인하고, 같은 triggerType을 연속 2회 이상 반복하지 마세요.\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"월 매출\":\"1,200만원\",\"재구매율\":\"50%\",\"인스타그램 팔로워\":\"5,000명\"},\"coreValue\":\"지속 가능성과 건강을 중시하는 반려견 사료\",\"constraints\":[\"마케팅 예산 제한\",\"경쟁이 치열한 시장\"],\"productSummary\":\"친환경 원료로 만든 프리미엄 반려견 사료 브랜드\",\"targetPersonas\":[\"20~30대 여성, 1인 가구 반려인\",\"친환경 제품을 선호하는 반려동물 주인\"],\"differentiators\":[\"100% 유기농 원료 사용\",\"친환경 포장재 사용\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"마케팅 채널 확대 계획\",\"meetingType\":\"other\",\"summary\":[\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청하고 있습니다. 그러나 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\"],\"targetSegment\":[\"20대 여성 견주\"],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n20대 여성 견주를 위한 마케팅 채널을 확대하려하는데 좋은 의견 있을까요\n마케터 대답하세요\n인스타그램 광고를 통해 노출수를 높이려면 어떻게 해야할까요\n마케터 대답하세요\n\n[이전 개입 이력 (최근 2건)]\n1. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면... 우리가 20대 여성 견주를 대상으로 어떤 채널에서 어떤 메시지를 실험해볼지 가설을 세워보면 좋을 것 같아\n2. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면, 인스타그램 광고 효과를 높이기 위해 먼저 어떤 가설을 세우고 그에 따른 성공 기준을 정하는 것이 어떨까요? ",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"experiment_missing\",\n  \"summary\": \"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1019,
+        "completionTokens": 65,
+        "totalTokens": 1084
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:38:13.783Z",
+      "type": "summary",
+      "data": {
+        "text": "마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:38:43.180Z",
+      "type": "transcript",
+      "data": {
+        "text": "네이버 검색광고와 인스타그램 마케팅을 통해 A/B 테스트로 금액 대비 매출을 비교해볼 생각입니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:38:45.072Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 3종 (우선순위 동일, 가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n\n중요한 판단 기준:\n- 이전 개입 이력(previousInterventions)을 확인하고, 같은 triggerType을 연속 2회 이상 반복하지 마세요.\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"월 매출\":\"1,200만원\",\"재구매율\":\"50%\",\"인스타그램 팔로워\":\"5,000명\"},\"coreValue\":\"지속 가능성과 건강을 중시하는 반려견 사료\",\"constraints\":[\"마케팅 예산 제한\",\"경쟁이 치열한 시장\"],\"productSummary\":\"친환경 원료로 만든 프리미엄 반려견 사료 브랜드\",\"targetPersonas\":[\"20~30대 여성, 1인 가구 반려인\",\"친환경 제품을 선호하는 반려동물 주인\"],\"differentiators\":[\"100% 유기농 원료 사용\",\"친환경 포장재 사용\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"마케팅 채널 확대 계획\",\"meetingType\":\"other\",\"summary\":[\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청하고 있습니다. 그러나 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\"],\"targetSegment\":[\"20대 여성 견주\"],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n20대 여성 견주를 위한 마케팅 채널을 확대하려하는데 좋은 의견 있을까요\n마케터 대답하세요\n인스타그램 광고를 통해 노출수를 높이려면 어떻게 해야할까요\n마케터 대답하세요\n네이버 검색광고와 인스타그램 마케팅을 통해 A/B 테스트로 금액 대비 매출을 비교해볼 생각입니다.\n\n[이전 개입 이력 (최근 2건)]\n1. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면... 우리가 20대 여성 견주를 대상으로 어떤 채널에서 어떤 메시지를 실험해볼지 가설을 세워보면 좋을 것 같아\n2. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면, 인스타그램 광고 효과를 높이기 위해 먼저 어떤 가설을 세우고 그에 따른 성공 기준을 정하는 것이 어떨까요? ",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"experiment_missing\",\n  \"summary\": \"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1083,
+        "completionTokens": 65,
+        "totalTokens": 1148
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:38:45.075Z",
+      "type": "summary",
+      "data": {
+        "text": "마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:38:47.147Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "intervention_generate",
+        "model": "gpt-4o",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 팀원처럼 자연스럽게 마케팅 관점에서 질문하세요.\n\n규칙:\n- 1~2문장 + 질문 1개로 짧게\n- 단정하지 말고 질문/옵션으로 제시\n- 한국어로 자연스럽게\n- 팀원이 옆에서 \"잠깐, 그거 마케팅 관점에서 보면...\" 하는 톤\n\n트리거별 질문 방향:\n- target_vague: 타겟 세분화 (직군/상황/문제 기반)\n- message_abstract: 메시지 구체화 (비교대상/수치/사례)\n- experiment_missing: 실험 설계 (가설/지표/기간/성공기준)",
+        "userPrompt": "트리거: experiment_missing\n\n[컨텍스트]\n{\"kpiGoals\":{\"월 매출\":\"1,200만원\",\"재구매율\":\"50%\",\"인스타그램 팔로워\":\"5,000명\"},\"coreValue\":\"지속 가능성과 건강을 중시하는 반려견 사료\",\"constraints\":[\"마케팅 예산 제한\",\"경쟁이 치열한 시장\"],\"productSummary\":\"친환경 원료로 만든 프리미엄 반려견 사료 브랜드\",\"targetPersonas\":[\"20~30대 여성, 1인 가구 반려인\",\"친환경 제품을 선호하는 반려동물 주인\"],\"differentiators\":[\"100% 유기농 원료 사용\",\"친환경 포장재 사용\"]}\n\n[회의 상태]\n{\"meetingTitle\":\"마케팅 채널 확대 계획\",\"meetingType\":\"other\",\"summary\":[\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청하고 있습니다. 그러나 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\"],\"targetSegment\":[\"20대 여성 견주\"],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n20대 여성 견주를 위한 마케팅 채널을 확대하려하는데 좋은 의견 있을까요\n마케터 대답하세요\n인스타그램 광고를 통해 노출수를 높이려면 어떻게 해야할까요\n마케터 대답하세요\n네이버 검색광고와 인스타그램 마케팅을 통해 A/B 테스트로 금액 대비 매출을 비교해볼 생각입니다.\n\n마케팅 관점에서 자연스럽게 개입하세요.",
+        "response": "잠깐, 그거 마케팅 관점에서 보면, A/B 테스트를 진행할 때 어떤 가설을 세울지 정하는 게 중요할 것 같은데요. 예를 들어, 네이버 검색광고와 인스타그램 마케팅 중 어느 쪽이 20대 여성 견주에게 더 효과적인지에 대한 가설을 세울 수 있겠죠. 성공 기준이나 지표는 어떻게 설정할까요? 예산 대비 매출 증가율이나 팔로워 증가 같은 지표가 될까요?",
+        "promptTokens": 749,
+        "completionTokens": 110,
+        "totalTokens": 859
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:38:47.150Z",
+      "type": "intervention",
+      "data": {
+        "trigger": "experiment_missing",
+        "message": "잠깐, 그거 마케팅 관점에서 보면, A/B 테스트를 진행할 때 어떤 가설을 세울지 정하는 게 중요할 것 같은데요. 예를 들어, 네이버 검색광고와 인스타그램 마케팅 중 어느 쪽이 20대 여성 견주에게 더 효과적인지에 대한 가설을 세울 수 있겠죠. 성공 기준이나 지표는 어떻게 설정할까요? 예산 대비 매출 증가율이나 팔로워 증가 같은 지표가 될까요?"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:38:59.383Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 3종 (우선순위 동일, 가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n\n중요한 판단 기준:\n- 이전 개입 이력(previousInterventions)을 확인하고, 같은 triggerType을 연속 2회 이상 반복하지 마세요.\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"월 매출\":\"1,200만원\",\"재구매율\":\"50%\",\"인스타그램 팔로워\":\"5,000명\"},\"coreValue\":\"지속 가능성과 건강을 중시하는 반려견 사료\",\"constraints\":[\"마케팅 예산 제한\",\"경쟁이 치열한 시장\"],\"productSummary\":\"친환경 원료로 만든 프리미엄 반려견 사료 브랜드\",\"targetPersonas\":[\"20~30대 여성, 1인 가구 반려인\",\"친환경 제품을 선호하는 반려동물 주인\"],\"differentiators\":[\"100% 유기농 원료 사용\",\"친환경 포장재 사용\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"마케팅 채널 확대 계획\",\"meetingType\":\"other\",\"summary\":[\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청하고 있습니다. 그러나 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\"],\"targetSegment\":[\"20대 여성 견주\"],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n20대 여성 견주를 위한 마케팅 채널을 확대하려하는데 좋은 의견 있을까요\n마케터 대답하세요\n인스타그램 광고를 통해 노출수를 높이려면 어떻게 해야할까요\n마케터 대답하세요\n네이버 검색광고와 인스타그램 마케팅을 통해 A/B 테스트로 금액 대비 매출을 비교해볼 생각입니다.\n\n[이전 개입 이력 (최근 3건)]\n1. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면... 우리가 20대 여성 견주를 대상으로 어떤 채널에서 어떤 메시지를 실험해볼지 가설을 세워보면 좋을 것 같아\n2. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면, 인스타그램 광고 효과를 높이기 위해 먼저 어떤 가설을 세우고 그에 따른 성공 기준을 정하는 것이 어떨까요? \n3. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면, A/B 테스트를 진행할 때 어떤 가설을 세울지 정하는 게 중요할 것 같은데요. 예를 들어, 네이버 검색광고와",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"experiment_missing\",\n  \"summary\": \"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1171,
+        "completionTokens": 65,
+        "totalTokens": 1236
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:38:59.385Z",
+      "type": "summary",
+      "data": {
+        "text": "마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:39:38.254Z",
+      "type": "transcript",
+      "data": {
+        "text": "여기서 개발자가 개발해야하거나 GA 나 GTM 을 연동을 어떻게 해야할까?"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:39:41.512Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 3종 (우선순위 동일, 가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n\n중요한 판단 기준:\n- 이전 개입 이력(previousInterventions)을 확인하고, 같은 triggerType을 연속 2회 이상 반복하지 마세요.\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"월 매출\":\"1,200만원\",\"재구매율\":\"50%\",\"인스타그램 팔로워\":\"5,000명\"},\"coreValue\":\"지속 가능성과 건강을 중시하는 반려견 사료\",\"constraints\":[\"마케팅 예산 제한\",\"경쟁이 치열한 시장\"],\"productSummary\":\"친환경 원료로 만든 프리미엄 반려견 사료 브랜드\",\"targetPersonas\":[\"20~30대 여성, 1인 가구 반려인\",\"친환경 제품을 선호하는 반려동물 주인\"],\"differentiators\":[\"100% 유기농 원료 사용\",\"친환경 포장재 사용\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"마케팅 채널 확대 계획\",\"meetingType\":\"other\",\"summary\":[\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청하고 있습니다. 그러나 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\"],\"targetSegment\":[\"20대 여성 견주\"],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n마케터 대답하세요\n인스타그램 광고를 통해 노출수를 높이려면 어떻게 해야할까요\n마케터 대답하세요\n네이버 검색광고와 인스타그램 마케팅을 통해 A/B 테스트로 금액 대비 매출을 비교해볼 생각입니다.\n여기서 개발자가 개발해야하거나 GA 나 GTM 을 연동을 어떻게 해야할까?\n\n[이전 개입 이력 (최근 3건)]\n1. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면... 우리가 20대 여성 견주를 대상으로 어떤 채널에서 어떤 메시지를 실험해볼지 가설을 세워보면 좋을 것 같아\n2. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면, 인스타그램 광고 효과를 높이기 위해 먼저 어떤 가설을 세우고 그에 따른 성공 기준을 정하는 것이 어떨까요? \n3. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면, A/B 테스트를 진행할 때 어떤 가설을 세울지 정하는 게 중요할 것 같은데요. 예를 들어, 네이버 검색광고와",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"experiment_missing\",\n  \"summary\": \"인스타그램 광고와 네이버 검색광고를 A/B 테스트로 비교하려는 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1206,
+        "completionTokens": 71,
+        "totalTokens": 1277
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:39:41.514Z",
+      "type": "summary",
+      "data": {
+        "text": "인스타그램 광고와 네이버 검색광고를 A/B 테스트로 비교하려는 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:39:44.781Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "intervention_generate",
+        "model": "gpt-4o",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 팀원처럼 자연스럽게 마케팅 관점에서 질문하세요.\n\n규칙:\n- 1~2문장 + 질문 1개로 짧게\n- 단정하지 말고 질문/옵션으로 제시\n- 한국어로 자연스럽게\n- 팀원이 옆에서 \"잠깐, 그거 마케팅 관점에서 보면...\" 하는 톤\n\n트리거별 질문 방향:\n- target_vague: 타겟 세분화 (직군/상황/문제 기반)\n- message_abstract: 메시지 구체화 (비교대상/수치/사례)\n- experiment_missing: 실험 설계 (가설/지표/기간/성공기준)",
+        "userPrompt": "트리거: experiment_missing\n\n[컨텍스트]\n{\"kpiGoals\":{\"월 매출\":\"1,200만원\",\"재구매율\":\"50%\",\"인스타그램 팔로워\":\"5,000명\"},\"coreValue\":\"지속 가능성과 건강을 중시하는 반려견 사료\",\"constraints\":[\"마케팅 예산 제한\",\"경쟁이 치열한 시장\"],\"productSummary\":\"친환경 원료로 만든 프리미엄 반려견 사료 브랜드\",\"targetPersonas\":[\"20~30대 여성, 1인 가구 반려인\",\"친환경 제품을 선호하는 반려동물 주인\"],\"differentiators\":[\"100% 유기농 원료 사용\",\"친환경 포장재 사용\"]}\n\n[회의 상태]\n{\"meetingTitle\":\"마케팅 채널 확대 계획\",\"meetingType\":\"other\",\"summary\":[\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청하고 있습니다. 그러나 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고를 A/B 테스트로 비교하려는 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\"],\"targetSegment\":[\"20대 여성 견주\"],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n마케터 대답하세요\n인스타그램 광고를 통해 노출수를 높이려면 어떻게 해야할까요\n마케터 대답하세요\n네이버 검색광고와 인스타그램 마케팅을 통해 A/B 테스트로 금액 대비 매출을 비교해볼 생각입니다.\n여기서 개발자가 개발해야하거나 GA 나 GTM 을 연동을 어떻게 해야할까?\n\n마케팅 관점에서 자연스럽게 개입하세요.",
+        "response": "잠깐, 그거 마케팅 관점에서 보면 인스타그램 광고와 네이버 검색광고의 A/B 테스트를 설계할 때 명확한 가설이 필요하지 않을까요? 예를 들어, \"인스타그램 광고가 20대 여성 견주에게 더 많은 클릭을 유도할 것이다\" 같은 가설과 함께 성공 기준을 어떻게 설정할지 고민해보면 좋을 것 같아요. 두 채널의 성과를 비교할 때 어떤 지표를 중점적으로 볼까요?",
+        "promptTokens": 825,
+        "completionTokens": 110,
+        "totalTokens": 935
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:39:44.784Z",
+      "type": "intervention",
+      "data": {
+        "trigger": "experiment_missing",
+        "message": "잠깐, 그거 마케팅 관점에서 보면 인스타그램 광고와 네이버 검색광고의 A/B 테스트를 설계할 때 명확한 가설이 필요하지 않을까요? 예를 들어, \"인스타그램 광고가 20대 여성 견주에게 더 많은 클릭을 유도할 것이다\" 같은 가설과 함께 성공 기준을 어떻게 설정할지 고민해보면 좋을 것 같아요. 두 채널의 성과를 비교할 때 어떤 지표를 중점적으로 볼까요?"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:39:45.192Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 3종 (우선순위 동일, 가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n\n중요한 판단 기준:\n- 이전 개입 이력(previousInterventions)을 확인하고, 같은 triggerType을 연속 2회 이상 반복하지 마세요.\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"월 매출\":\"1,200만원\",\"재구매율\":\"50%\",\"인스타그램 팔로워\":\"5,000명\"},\"coreValue\":\"지속 가능성과 건강을 중시하는 반려견 사료\",\"constraints\":[\"마케팅 예산 제한\",\"경쟁이 치열한 시장\"],\"productSummary\":\"친환경 원료로 만든 프리미엄 반려견 사료 브랜드\",\"targetPersonas\":[\"20~30대 여성, 1인 가구 반려인\",\"친환경 제품을 선호하는 반려동물 주인\"],\"differentiators\":[\"100% 유기농 원료 사용\",\"친환경 포장재 사용\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"마케팅 채널 확대 계획\",\"meetingType\":\"other\",\"summary\":[\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청하고 있습니다. 그러나 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고를 A/B 테스트로 비교하려는 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\"],\"targetSegment\":[\"20대 여성 견주\"],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n마케터 대답하세요\n인스타그램 광고를 통해 노출수를 높이려면 어떻게 해야할까요\n마케터 대답하세요\n네이버 검색광고와 인스타그램 마케팅을 통해 A/B 테스트로 금액 대비 매출을 비교해볼 생각입니다.\n여기서 개발자가 개발해야하거나 GA 나 GTM 을 연동을 어떻게 해야할까?\n\n[이전 개입 이력 (최근 3건)]\n1. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면... 우리가 20대 여성 견주를 대상으로 어떤 채널에서 어떤 메시지를 실험해볼지 가설을 세워보면 좋을 것 같아\n2. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면, 인스타그램 광고 효과를 높이기 위해 먼저 어떤 가설을 세우고 그에 따른 성공 기준을 정하는 것이 어떨까요? \n3. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면, A/B 테스트를 진행할 때 어떤 가설을 세울지 정하는 게 중요할 것 같은데요. 예를 들어, 네이버 검색광고와",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"experiment_missing\",\n  \"summary\": \"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1247,
+        "completionTokens": 66,
+        "totalTokens": 1313
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:39:45.195Z",
+      "type": "summary",
+      "data": {
+        "text": "인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:40:16.966Z",
+      "type": "transcript",
+      "data": {
+        "text": "마케터 대답하세요 "
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:40:20.703Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 3종 (우선순위 동일, 가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n\n중요한 판단 기준:\n- 이전 개입 이력(previousInterventions)을 확인하고, 같은 triggerType을 연속 2회 이상 반복하지 마세요.\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"월 매출\":\"1,200만원\",\"재구매율\":\"50%\",\"인스타그램 팔로워\":\"5,000명\"},\"coreValue\":\"지속 가능성과 건강을 중시하는 반려견 사료\",\"constraints\":[\"마케팅 예산 제한\",\"경쟁이 치열한 시장\"],\"productSummary\":\"친환경 원료로 만든 프리미엄 반려견 사료 브랜드\",\"targetPersonas\":[\"20~30대 여성, 1인 가구 반려인\",\"친환경 제품을 선호하는 반려동물 주인\"],\"differentiators\":[\"100% 유기농 원료 사용\",\"친환경 포장재 사용\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"마케팅 채널 확대 계획\",\"meetingType\":\"other\",\"summary\":[\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청하고 있습니다. 그러나 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고를 A/B 테스트로 비교하려는 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\"],\"targetSegment\":[\"20대 여성 견주\"],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n인스타그램 광고를 통해 노출수를 높이려면 어떻게 해야할까요\n마케터 대답하세요\n네이버 검색광고와 인스타그램 마케팅을 통해 A/B 테스트로 금액 대비 매출을 비교해볼 생각입니다.\n여기서 개발자가 개발해야하거나 GA 나 GTM 을 연동을 어떻게 해야할까?\n마케터 대답하세요 \n\n[이전 개입 이력 (최근 4건)]\n1. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면... 우리가 20대 여성 견주를 대상으로 어떤 채널에서 어떤 메시지를 실험해볼지 가설을 세워보면 좋을 것 같아\n2. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면, 인스타그램 광고 효과를 높이기 위해 먼저 어떤 가설을 세우고 그에 따른 성공 기준을 정하는 것이 어떨까요? \n3. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면, A/B 테스트를 진행할 때 어떤 가설을 세울지 정하는 게 중요할 것 같은데요. 예를 들어, 네이버 검색광고와\n4. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면 인스타그램 광고와 네이버 검색광고의 A/B 테스트를 설계할 때 명확한 가설이 필요하지 않을까요? 예를 들어, ",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"experiment_missing\",\n  \"summary\": \"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1337,
+        "completionTokens": 66,
+        "totalTokens": 1403
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:40:20.706Z",
+      "type": "summary",
+      "data": {
+        "text": "인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:40:22.822Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "intervention_generate",
+        "model": "gpt-4o",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 팀원처럼 자연스럽게 마케팅 관점에서 질문하세요.\n\n규칙:\n- 1~2문장 + 질문 1개로 짧게\n- 단정하지 말고 질문/옵션으로 제시\n- 한국어로 자연스럽게\n- 팀원이 옆에서 \"잠깐, 그거 마케팅 관점에서 보면...\" 하는 톤\n\n트리거별 질문 방향:\n- target_vague: 타겟 세분화 (직군/상황/문제 기반)\n- message_abstract: 메시지 구체화 (비교대상/수치/사례)\n- experiment_missing: 실험 설계 (가설/지표/기간/성공기준)",
+        "userPrompt": "트리거: experiment_missing\n\n[컨텍스트]\n{\"kpiGoals\":{\"월 매출\":\"1,200만원\",\"재구매율\":\"50%\",\"인스타그램 팔로워\":\"5,000명\"},\"coreValue\":\"지속 가능성과 건강을 중시하는 반려견 사료\",\"constraints\":[\"마케팅 예산 제한\",\"경쟁이 치열한 시장\"],\"productSummary\":\"친환경 원료로 만든 프리미엄 반려견 사료 브랜드\",\"targetPersonas\":[\"20~30대 여성, 1인 가구 반려인\",\"친환경 제품을 선호하는 반려동물 주인\"],\"differentiators\":[\"100% 유기농 원료 사용\",\"친환경 포장재 사용\"]}\n\n[회의 상태]\n{\"meetingTitle\":\"마케팅 채널 확대 계획\",\"meetingType\":\"other\",\"summary\":[\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청하고 있습니다. 그러나 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고를 A/B 테스트로 비교하려는 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\"],\"targetSegment\":[\"20대 여성 견주\"],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n인스타그램 광고를 통해 노출수를 높이려면 어떻게 해야할까요\n마케터 대답하세요\n네이버 검색광고와 인스타그램 마케팅을 통해 A/B 테스트로 금액 대비 매출을 비교해볼 생각입니다.\n여기서 개발자가 개발해야하거나 GA 나 GTM 을 연동을 어떻게 해야할까?\n마케터 대답하세요 \n\n마케팅 관점에서 자연스럽게 개입하세요.",
+        "response": "잠깐, 그거 마케팅 관점에서 보면요, 인스타그램 광고와 네이버 검색광고의 A/B 테스트를 진행할 때, 어떤 가설을 세우고 어떤 지표로 성공을 측정할지 설정해보는 게 어떨까요? 예를 들어, 각 채널이 어느 정도 매출 증대에 기여하는지를 4주 동안의 데이터를 통해 분석해보는 가설은 어떨까요?",
+        "promptTokens": 897,
+        "completionTokens": 96,
+        "totalTokens": 993
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:40:22.825Z",
+      "type": "intervention",
+      "data": {
+        "trigger": "experiment_missing",
+        "message": "잠깐, 그거 마케팅 관점에서 보면요, 인스타그램 광고와 네이버 검색광고의 A/B 테스트를 진행할 때, 어떤 가설을 세우고 어떤 지표로 성공을 측정할지 설정해보는 게 어떨까요? 예를 들어, 각 채널이 어느 정도 매출 증대에 기여하는지를 4주 동안의 데이터를 통해 분석해보는 가설은 어떨까요?"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:40:28.983Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 3종 (우선순위 동일, 가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n\n중요한 판단 기준:\n- 이전 개입 이력(previousInterventions)을 확인하고, 같은 triggerType을 연속 2회 이상 반복하지 마세요.\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"월 매출\":\"1,200만원\",\"재구매율\":\"50%\",\"인스타그램 팔로워\":\"5,000명\"},\"coreValue\":\"지속 가능성과 건강을 중시하는 반려견 사료\",\"constraints\":[\"마케팅 예산 제한\",\"경쟁이 치열한 시장\"],\"productSummary\":\"친환경 원료로 만든 프리미엄 반려견 사료 브랜드\",\"targetPersonas\":[\"20~30대 여성, 1인 가구 반려인\",\"친환경 제품을 선호하는 반려동물 주인\"],\"differentiators\":[\"100% 유기농 원료 사용\",\"친환경 포장재 사용\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"마케팅 채널 확대 계획\",\"meetingType\":\"other\",\"summary\":[\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청하고 있습니다. 그러나 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고를 A/B 테스트로 비교하려는 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\"],\"targetSegment\":[\"20대 여성 견주\"],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n인스타그램 광고를 통해 노출수를 높이려면 어떻게 해야할까요\n마케터 대답하세요\n네이버 검색광고와 인스타그램 마케팅을 통해 A/B 테스트로 금액 대비 매출을 비교해볼 생각입니다.\n여기서 개발자가 개발해야하거나 GA 나 GTM 을 연동을 어떻게 해야할까?\n마케터 대답하세요 \n\n[이전 개입 이력 (최근 5건)]\n1. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면... 우리가 20대 여성 견주를 대상으로 어떤 채널에서 어떤 메시지를 실험해볼지 가설을 세워보면 좋을 것 같아\n2. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면, 인스타그램 광고 효과를 높이기 위해 먼저 어떤 가설을 세우고 그에 따른 성공 기준을 정하는 것이 어떨까요? \n3. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면, A/B 테스트를 진행할 때 어떤 가설을 세울지 정하는 게 중요할 것 같은데요. 예를 들어, 네이버 검색광고와\n4. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면 인스타그램 광고와 네이버 검색광고의 A/B 테스트를 설계할 때 명확한 가설이 필요하지 않을까요? 예를 들어, \n5. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면요, 인스타그램 광고와 네이버 검색광고의 A/B 테스트를 진행할 때, 어떤 가설을 세우고 어떤 지표로 성공을 측",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"experiment_missing\",\n  \"summary\": \"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1426,
+        "completionTokens": 66,
+        "totalTokens": 1492
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:40:28.986Z",
+      "type": "summary",
+      "data": {
+        "text": "인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:41:13.901Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 3종 (우선순위 동일, 가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n\n중요한 판단 기준:\n- 이전 개입 이력(previousInterventions)을 확인하고, 같은 triggerType을 연속 2회 이상 반복하지 마세요.\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"월 매출\":\"1,200만원\",\"재구매율\":\"50%\",\"인스타그램 팔로워\":\"5,000명\"},\"coreValue\":\"지속 가능성과 건강을 중시하는 반려견 사료\",\"constraints\":[\"마케팅 예산 제한\",\"경쟁이 치열한 시장\"],\"productSummary\":\"친환경 원료로 만든 프리미엄 반려견 사료 브랜드\",\"targetPersonas\":[\"20~30대 여성, 1인 가구 반려인\",\"친환경 제품을 선호하는 반려동물 주인\"],\"differentiators\":[\"100% 유기농 원료 사용\",\"친환경 포장재 사용\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"마케팅 채널 확대 계획\",\"meetingType\":\"other\",\"summary\":[\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청하고 있습니다. 그러나 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고를 A/B 테스트로 비교하려는 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\"],\"targetSegment\":[\"20대 여성 견주\"],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n인스타그램 광고를 통해 노출수를 높이려면 어떻게 해야할까요\n마케터 대답하세요\n네이버 검색광고와 인스타그램 마케팅을 통해 A/B 테스트로 금액 대비 매출을 비교해볼 생각입니다.\n여기서 개발자가 개발해야하거나 GA 나 GTM 을 연동을 어떻게 해야할까?\n마케터 대답하세요 \n\n[이전 개입 이력 (최근 5건)]\n1. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면... 우리가 20대 여성 견주를 대상으로 어떤 채널에서 어떤 메시지를 실험해볼지 가설을 세워보면 좋을 것 같아\n2. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면, 인스타그램 광고 효과를 높이기 위해 먼저 어떤 가설을 세우고 그에 따른 성공 기준을 정하는 것이 어떨까요? \n3. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면, A/B 테스트를 진행할 때 어떤 가설을 세울지 정하는 게 중요할 것 같은데요. 예를 들어, 네이버 검색광고와\n4. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면 인스타그램 광고와 네이버 검색광고의 A/B 테스트를 설계할 때 명확한 가설이 필요하지 않을까요? 예를 들어, \n5. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면요, 인스타그램 광고와 네이버 검색광고의 A/B 테스트를 진행할 때, 어떤 가설을 세우고 어떤 지표로 성공을 측",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"experiment_missing\",\n  \"summary\": \"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1462,
+        "completionTokens": 66,
+        "totalTokens": 1528
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:41:13.905Z",
+      "type": "summary",
+      "data": {
+        "text": "인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:41:58.743Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 3종 (우선순위 동일, 가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n\n중요한 판단 기준:\n- 이전 개입 이력(previousInterventions)을 확인하고, 같은 triggerType을 연속 2회 이상 반복하지 마세요.\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"월 매출\":\"1,200만원\",\"재구매율\":\"50%\",\"인스타그램 팔로워\":\"5,000명\"},\"coreValue\":\"지속 가능성과 건강을 중시하는 반려견 사료\",\"constraints\":[\"마케팅 예산 제한\",\"경쟁이 치열한 시장\"],\"productSummary\":\"친환경 원료로 만든 프리미엄 반려견 사료 브랜드\",\"targetPersonas\":[\"20~30대 여성, 1인 가구 반려인\",\"친환경 제품을 선호하는 반려동물 주인\"],\"differentiators\":[\"100% 유기농 원료 사용\",\"친환경 포장재 사용\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"마케팅 채널 확대 계획\",\"meetingType\":\"other\",\"summary\":[\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청하고 있습니다. 그러나 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고를 A/B 테스트로 비교하려는 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\"],\"targetSegment\":[\"20대 여성 견주\"],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n인스타그램 광고를 통해 노출수를 높이려면 어떻게 해야할까요\n마케터 대답하세요\n네이버 검색광고와 인스타그램 마케팅을 통해 A/B 테스트로 금액 대비 매출을 비교해볼 생각입니다.\n여기서 개발자가 개발해야하거나 GA 나 GTM 을 연동을 어떻게 해야할까?\n마케터 대답하세요 \n\n[이전 개입 이력 (최근 5건)]\n1. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면... 우리가 20대 여성 견주를 대상으로 어떤 채널에서 어떤 메시지를 실험해볼지 가설을 세워보면 좋을 것 같아\n2. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면, 인스타그램 광고 효과를 높이기 위해 먼저 어떤 가설을 세우고 그에 따른 성공 기준을 정하는 것이 어떨까요? \n3. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면, A/B 테스트를 진행할 때 어떤 가설을 세울지 정하는 게 중요할 것 같은데요. 예를 들어, 네이버 검색광고와\n4. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면 인스타그램 광고와 네이버 검색광고의 A/B 테스트를 설계할 때 명확한 가설이 필요하지 않을까요? 예를 들어, \n5. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면요, 인스타그램 광고와 네이버 검색광고의 A/B 테스트를 진행할 때, 어떤 가설을 세우고 어떤 지표로 성공을 측",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"experiment_missing\",\n  \"summary\": \"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1498,
+        "completionTokens": 66,
+        "totalTokens": 1564
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:41:58.746Z",
+      "type": "summary",
+      "data": {
+        "text": "인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:42:43.883Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 3종 (우선순위 동일, 가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n\n중요한 판단 기준:\n- 이전 개입 이력(previousInterventions)을 확인하고, 같은 triggerType을 연속 2회 이상 반복하지 마세요.\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"월 매출\":\"1,200만원\",\"재구매율\":\"50%\",\"인스타그램 팔로워\":\"5,000명\"},\"coreValue\":\"지속 가능성과 건강을 중시하는 반려견 사료\",\"constraints\":[\"마케팅 예산 제한\",\"경쟁이 치열한 시장\"],\"productSummary\":\"친환경 원료로 만든 프리미엄 반려견 사료 브랜드\",\"targetPersonas\":[\"20~30대 여성, 1인 가구 반려인\",\"친환경 제품을 선호하는 반려동물 주인\"],\"differentiators\":[\"100% 유기농 원료 사용\",\"친환경 포장재 사용\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"마케팅 채널 확대 계획\",\"meetingType\":\"other\",\"summary\":[\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청하고 있습니다. 그러나 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고를 A/B 테스트로 비교하려는 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\"],\"targetSegment\":[\"20대 여성 견주\"],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n인스타그램 광고를 통해 노출수를 높이려면 어떻게 해야할까요\n마케터 대답하세요\n네이버 검색광고와 인스타그램 마케팅을 통해 A/B 테스트로 금액 대비 매출을 비교해볼 생각입니다.\n여기서 개발자가 개발해야하거나 GA 나 GTM 을 연동을 어떻게 해야할까?\n마케터 대답하세요 \n\n[이전 개입 이력 (최근 5건)]\n1. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면... 우리가 20대 여성 견주를 대상으로 어떤 채널에서 어떤 메시지를 실험해볼지 가설을 세워보면 좋을 것 같아\n2. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면, 인스타그램 광고 효과를 높이기 위해 먼저 어떤 가설을 세우고 그에 따른 성공 기준을 정하는 것이 어떨까요? \n3. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면, A/B 테스트를 진행할 때 어떤 가설을 세울지 정하는 게 중요할 것 같은데요. 예를 들어, 네이버 검색광고와\n4. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면 인스타그램 광고와 네이버 검색광고의 A/B 테스트를 설계할 때 명확한 가설이 필요하지 않을까요? 예를 들어, \n5. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면요, 인스타그램 광고와 네이버 검색광고의 A/B 테스트를 진행할 때, 어떤 가설을 세우고 어떤 지표로 성공을 측",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"experiment_missing\",\n  \"summary\": \"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1534,
+        "completionTokens": 66,
+        "totalTokens": 1600
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:42:43.886Z",
+      "type": "summary",
+      "data": {
+        "text": "인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:43:29.334Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 3종 (우선순위 동일, 가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n\n중요한 판단 기준:\n- 이전 개입 이력(previousInterventions)을 확인하고, 같은 triggerType을 연속 2회 이상 반복하지 마세요.\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"월 매출\":\"1,200만원\",\"재구매율\":\"50%\",\"인스타그램 팔로워\":\"5,000명\"},\"coreValue\":\"지속 가능성과 건강을 중시하는 반려견 사료\",\"constraints\":[\"마케팅 예산 제한\",\"경쟁이 치열한 시장\"],\"productSummary\":\"친환경 원료로 만든 프리미엄 반려견 사료 브랜드\",\"targetPersonas\":[\"20~30대 여성, 1인 가구 반려인\",\"친환경 제품을 선호하는 반려동물 주인\"],\"differentiators\":[\"100% 유기농 원료 사용\",\"친환경 포장재 사용\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"마케팅 채널 확대 계획\",\"meetingType\":\"other\",\"summary\":[\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청하고 있습니다. 그러나 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고를 A/B 테스트로 비교하려는 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\"],\"targetSegment\":[\"20대 여성 견주\"],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n인스타그램 광고를 통해 노출수를 높이려면 어떻게 해야할까요\n마케터 대답하세요\n네이버 검색광고와 인스타그램 마케팅을 통해 A/B 테스트로 금액 대비 매출을 비교해볼 생각입니다.\n여기서 개발자가 개발해야하거나 GA 나 GTM 을 연동을 어떻게 해야할까?\n마케터 대답하세요 \n\n[이전 개입 이력 (최근 5건)]\n1. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면... 우리가 20대 여성 견주를 대상으로 어떤 채널에서 어떤 메시지를 실험해볼지 가설을 세워보면 좋을 것 같아\n2. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면, 인스타그램 광고 효과를 높이기 위해 먼저 어떤 가설을 세우고 그에 따른 성공 기준을 정하는 것이 어떨까요? \n3. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면, A/B 테스트를 진행할 때 어떤 가설을 세울지 정하는 게 중요할 것 같은데요. 예를 들어, 네이버 검색광고와\n4. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면 인스타그램 광고와 네이버 검색광고의 A/B 테스트를 설계할 때 명확한 가설이 필요하지 않을까요? 예를 들어, \n5. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면요, 인스타그램 광고와 네이버 검색광고의 A/B 테스트를 진행할 때, 어떤 가설을 세우고 어떤 지표로 성공을 측",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"experiment_missing\",\n  \"summary\": \"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1570,
+        "completionTokens": 66,
+        "totalTokens": 1636
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:43:29.337Z",
+      "type": "summary",
+      "data": {
+        "text": "인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:44:13.864Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 3종 (우선순위 동일, 가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n\n중요한 판단 기준:\n- 이전 개입 이력(previousInterventions)을 확인하고, 같은 triggerType을 연속 2회 이상 반복하지 마세요.\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"월 매출\":\"1,200만원\",\"재구매율\":\"50%\",\"인스타그램 팔로워\":\"5,000명\"},\"coreValue\":\"지속 가능성과 건강을 중시하는 반려견 사료\",\"constraints\":[\"마케팅 예산 제한\",\"경쟁이 치열한 시장\"],\"productSummary\":\"친환경 원료로 만든 프리미엄 반려견 사료 브랜드\",\"targetPersonas\":[\"20~30대 여성, 1인 가구 반려인\",\"친환경 제품을 선호하는 반려동물 주인\"],\"differentiators\":[\"100% 유기농 원료 사용\",\"친환경 포장재 사용\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"마케팅 채널 확대 계획\",\"meetingType\":\"other\",\"summary\":[\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청하고 있습니다. 그러나 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고를 A/B 테스트로 비교하려는 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\"],\"targetSegment\":[\"20대 여성 견주\"],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n인스타그램 광고를 통해 노출수를 높이려면 어떻게 해야할까요\n마케터 대답하세요\n네이버 검색광고와 인스타그램 마케팅을 통해 A/B 테스트로 금액 대비 매출을 비교해볼 생각입니다.\n여기서 개발자가 개발해야하거나 GA 나 GTM 을 연동을 어떻게 해야할까?\n마케터 대답하세요 \n\n[이전 개입 이력 (최근 5건)]\n1. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면... 우리가 20대 여성 견주를 대상으로 어떤 채널에서 어떤 메시지를 실험해볼지 가설을 세워보면 좋을 것 같아\n2. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면, 인스타그램 광고 효과를 높이기 위해 먼저 어떤 가설을 세우고 그에 따른 성공 기준을 정하는 것이 어떨까요? \n3. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면, A/B 테스트를 진행할 때 어떤 가설을 세울지 정하는 게 중요할 것 같은데요. 예를 들어, 네이버 검색광고와\n4. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면 인스타그램 광고와 네이버 검색광고의 A/B 테스트를 설계할 때 명확한 가설이 필요하지 않을까요? 예를 들어, \n5. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면요, 인스타그램 광고와 네이버 검색광고의 A/B 테스트를 진행할 때, 어떤 가설을 세우고 어떤 지표로 성공을 측",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"experiment_missing\",\n  \"summary\": \"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1606,
+        "completionTokens": 66,
+        "totalTokens": 1672
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:44:13.867Z",
+      "type": "summary",
+      "data": {
+        "text": "인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:44:59.084Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 3종 (우선순위 동일, 가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n\n중요한 판단 기준:\n- 이전 개입 이력(previousInterventions)을 확인하고, 같은 triggerType을 연속 2회 이상 반복하지 마세요.\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"월 매출\":\"1,200만원\",\"재구매율\":\"50%\",\"인스타그램 팔로워\":\"5,000명\"},\"coreValue\":\"지속 가능성과 건강을 중시하는 반려견 사료\",\"constraints\":[\"마케팅 예산 제한\",\"경쟁이 치열한 시장\"],\"productSummary\":\"친환경 원료로 만든 프리미엄 반려견 사료 브랜드\",\"targetPersonas\":[\"20~30대 여성, 1인 가구 반려인\",\"친환경 제품을 선호하는 반려동물 주인\"],\"differentiators\":[\"100% 유기농 원료 사용\",\"친환경 포장재 사용\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"마케팅 채널 확대 계획\",\"meetingType\":\"other\",\"summary\":[\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청하고 있습니다. 그러나 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고를 A/B 테스트로 비교하려는 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\"],\"targetSegment\":[\"20대 여성 견주\"],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n인스타그램 광고를 통해 노출수를 높이려면 어떻게 해야할까요\n마케터 대답하세요\n네이버 검색광고와 인스타그램 마케팅을 통해 A/B 테스트로 금액 대비 매출을 비교해볼 생각입니다.\n여기서 개발자가 개발해야하거나 GA 나 GTM 을 연동을 어떻게 해야할까?\n마케터 대답하세요 \n\n[이전 개입 이력 (최근 5건)]\n1. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면... 우리가 20대 여성 견주를 대상으로 어떤 채널에서 어떤 메시지를 실험해볼지 가설을 세워보면 좋을 것 같아\n2. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면, 인스타그램 광고 효과를 높이기 위해 먼저 어떤 가설을 세우고 그에 따른 성공 기준을 정하는 것이 어떨까요? \n3. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면, A/B 테스트를 진행할 때 어떤 가설을 세울지 정하는 게 중요할 것 같은데요. 예를 들어, 네이버 검색광고와\n4. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면 인스타그램 광고와 네이버 검색광고의 A/B 테스트를 설계할 때 명확한 가설이 필요하지 않을까요? 예를 들어, \n5. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면요, 인스타그램 광고와 네이버 검색광고의 A/B 테스트를 진행할 때, 어떤 가설을 세우고 어떤 지표로 성공을 측",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"experiment_missing\",\n  \"summary\": \"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1642,
+        "completionTokens": 66,
+        "totalTokens": 1708
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:44:59.087Z",
+      "type": "summary",
+      "data": {
+        "text": "인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:45:43.994Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 3종 (우선순위 동일, 가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n\n중요한 판단 기준:\n- 이전 개입 이력(previousInterventions)을 확인하고, 같은 triggerType을 연속 2회 이상 반복하지 마세요.\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"월 매출\":\"1,200만원\",\"재구매율\":\"50%\",\"인스타그램 팔로워\":\"5,000명\"},\"coreValue\":\"지속 가능성과 건강을 중시하는 반려견 사료\",\"constraints\":[\"마케팅 예산 제한\",\"경쟁이 치열한 시장\"],\"productSummary\":\"친환경 원료로 만든 프리미엄 반려견 사료 브랜드\",\"targetPersonas\":[\"20~30대 여성, 1인 가구 반려인\",\"친환경 제품을 선호하는 반려동물 주인\"],\"differentiators\":[\"100% 유기농 원료 사용\",\"친환경 포장재 사용\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"마케팅 채널 확대 계획\",\"meetingType\":\"other\",\"summary\":[\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청했습니다.\",\"20대 여성 견주를 위한 마케팅 채널 확대에 대한 의견을 요청하고 있습니다. 그러나 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"마케팅 채널 확대와 인스타그램 광고에 대한 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고를 A/B 테스트로 비교하려는 논의가 진행되고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\"],\"targetSegment\":[\"20대 여성 견주\"],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n인스타그램 광고를 통해 노출수를 높이려면 어떻게 해야할까요\n마케터 대답하세요\n네이버 검색광고와 인스타그램 마케팅을 통해 A/B 테스트로 금액 대비 매출을 비교해볼 생각입니다.\n여기서 개발자가 개발해야하거나 GA 나 GTM 을 연동을 어떻게 해야할까?\n마케터 대답하세요 \n\n[이전 개입 이력 (최근 5건)]\n1. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면... 우리가 20대 여성 견주를 대상으로 어떤 채널에서 어떤 메시지를 실험해볼지 가설을 세워보면 좋을 것 같아\n2. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면, 인스타그램 광고 효과를 높이기 위해 먼저 어떤 가설을 세우고 그에 따른 성공 기준을 정하는 것이 어떨까요? \n3. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면, A/B 테스트를 진행할 때 어떤 가설을 세울지 정하는 게 중요할 것 같은데요. 예를 들어, 네이버 검색광고와\n4. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면 인스타그램 광고와 네이버 검색광고의 A/B 테스트를 설계할 때 명확한 가설이 필요하지 않을까요? 예를 들어, \n5. [experiment_missing] 잠깐, 그거 마케팅 관점에서 보면요, 인스타그램 광고와 네이버 검색광고의 A/B 테스트를 진행할 때, 어떤 가설을 세우고 어떤 지표로 성공을 측",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"experiment_missing\",\n  \"summary\": \"인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1678,
+        "completionTokens": 66,
+        "totalTokens": 1744
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:45:43.997Z",
+      "type": "summary",
+      "data": {
+        "text": "인스타그램 광고와 네이버 검색광고의 A/B 테스트를 논의하고 있지만, 구체적인 가설이나 성공 기준 없이 실행을 논의하고 있습니다."
+      }
+    }
+  ],
+  "tokenUsage": {
+    "totalPromptTokens": 28011,
+    "totalCompletionTokens": 1824,
+    "totalTokens": 29835,
+    "calls": 25
+  }
+}

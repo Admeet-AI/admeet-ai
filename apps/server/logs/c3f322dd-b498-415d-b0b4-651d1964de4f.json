@@ -1,0 +1,162 @@
+{
+  "meetingId": "c3f322dd-b498-415d-b0b4-651d1964de4f",
+  "title": "Q1 마케팅 전략 회의",
+  "startedAt": "2026-02-14T17:33:54.134Z",
+  "endedAt": null,
+  "entries": [
+    {
+      "timestamp": "2026-02-14T17:33:54.134Z",
+      "type": "meeting_start",
+      "data": {
+        "title": "Q1 마케팅 전략 회의"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:34:16.150Z",
+      "type": "transcript",
+      "data": {
+        "text": "회의를 시작합니다. 혹시 마케팅 해보신 분 있나요?"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:34:19.453Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "summary_generate",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의 내용을 실시간 요약하는 AI 어시스턴트입니다.\n\n최근 전사(transcript) 내용을 읽고, 이전 요약에 이어 새로운 내용을 간결하게 요약하세요.\n\n규칙:\n- 1~2문장으로 핵심만 요약\n- 이전 요약과 중복되지 않는 새로운 내용만\n- 사실 기반 — 발언된 내용만 요약 (추론/의견 X)\n- 한국어로 자연스럽게\n- 회의에서 논의된 구체적인 내용(타겟, 채널, 가격, 기능 등)이 있으면 stateUpdate에 반영\n\nstateUpdate 가능 필드:\n- targetSegment: string[] (타겟 고객층)\n- problemStatement: string (문제 정의)\n- valueProposition: string (가치 제안)\n- keyMessages: string[] (핵심 메시지)\n- channels: string[] (마케팅 채널)\n- kpi: Record<string, string> (KPI)\n- hypotheses: string[] (가설)\n- decisions: { content: string, timestamp: string }[] (결정사항)\n- actions: { content: string, assignee: string, deadline: string }[] (액션아이템)\n\n반드시 JSON으로 응답:\n{\n  \"summary\": \"요약 내용\",\n  \"stateUpdate\": { 변경된 필드 } | null\n}",
+        "userPrompt": "[이전 요약]\n(없음)\n\n[현재 회의 상태]\n{\"meetingTitle\":\"Q1 마케팅 전략 회의\",\"meetingType\":\"other\",\"summary\":[],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 전사 내용]\n회의를 시작합니다. 혹시 마케팅 해보신 분 있나요?",
+        "response": "{\n  \"summary\": \"회의가 시작되었으며, 참석자들에게 마케팅 경험에 대한 질문이 있었습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 411,
+        "completionTokens": 34,
+        "totalTokens": 445
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:34:19.455Z",
+      "type": "summary",
+      "data": {
+        "text": "회의가 시작되었으며, 참석자들에게 마케팅 경험에 대한 질문이 있었습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:34:21.174Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "thought_generate",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 시니어 마케터입니다. 회의 내용을 관찰하며 마케팅 관점의 인사이트를 제공합니다.\n\n회의 요약과 최근 발언을 보고, 마케팅 관점에서 떠오르는 \"생각\" 하나를 짧게 표현하세요.\n\n카테고리 4종 (가장 적합한 1개 선택):\n- \"observation\": 흥미로운 관찰 포인트 (예: \"타겟층이 점점 좁혀지고 있네요\")\n- \"concern\": 우려 사항 (예: \"경쟁사 대비 차별점이 아직 불명확합니다\")\n- \"opportunity\": 기회 발견 (예: \"이 기능은 바이럴 포인트가 될 수 있겠어요\")\n- \"insight\": 마케팅 인사이트 (예: \"이 가격대면 프리미엄 포지셔닝이 적합합니다\")\n\n규칙:\n- 1~2문장으로 짧고 자연스럽게\n- 한국어로 작성\n- 회의 맥락에 맞는 구체적인 내용\n- 매번 다른 관점에서 작성\n\n반드시 JSON으로 응답:\n{\n  \"content\": \"생각 내용\",\n  \"category\": \"observation\" | \"concern\" | \"opportunity\" | \"insight\"\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"유료 전환율\":\"10% 이상\"},\"coreValue\":\"효율적인 팀 협업과 AI 기반의 업무 우선순위 추천\",\"constraints\":[\"무료 사용자에서 유료 사용자로의 전환율 증가 필요\"],\"productSummary\":\"스타트업을 위한 올인원 프로젝트 관리 도구\",\"targetPersonas\":[\"5~20인 규모의 스타트업 팀 리더\",\"프로젝트 매니저\"],\"differentiators\":[\"AI 기반 업무 우선순위 추천\",\"Slack/Notion과의 원활한 연동\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"Q1 마케팅 전략 회의\",\"meetingType\":\"other\",\"summary\":[\"회의가 시작되었으며, 참석자들에게 마케팅 경험에 대한 질문이 있었습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 요약]\n회의가 시작되었으며, 참석자들에게 마케팅 경험에 대한 질문이 있었습니다.\n\n[최근 발언]\n회의를 시작합니다. 혹시 마케팅 해보신 분 있나요?",
+        "response": "{\n  \"content\": \"타겟 페르소나인 스타트업 팀 리더와 프로젝트 매니저에 대한 심층적인 이해가 필요할 것 같습니다.\",\n  \"category\": \"observation\"\n}",
+        "promptTokens": 561,
+        "completionTokens": 46,
+        "totalTokens": 607
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:34:34.483Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "summary_generate",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의 내용을 실시간 요약하는 AI 어시스턴트입니다.\n\n최근 전사(transcript) 내용을 읽고, 이전 요약에 이어 새로운 내용을 간결하게 요약하세요.\n\n규칙:\n- 1~2문장으로 핵심만 요약\n- 이전 요약과 중복되지 않는 새로운 내용만\n- 사실 기반 — 발언된 내용만 요약 (추론/의견 X)\n- 한국어로 자연스럽게\n- 회의에서 논의된 구체적인 내용(타겟, 채널, 가격, 기능 등)이 있으면 stateUpdate에 반영\n\nstateUpdate 가능 필드:\n- targetSegment: string[] (타겟 고객층)\n- problemStatement: string (문제 정의)\n- valueProposition: string (가치 제안)\n- keyMessages: string[] (핵심 메시지)\n- channels: string[] (마케팅 채널)\n- kpi: Record<string, string> (KPI)\n- hypotheses: string[] (가설)\n- decisions: { content: string, timestamp: string }[] (결정사항)\n- actions: { content: string, assignee: string, deadline: string }[] (액션아이템)\n\n반드시 JSON으로 응답:\n{\n  \"summary\": \"요약 내용\",\n  \"stateUpdate\": { 변경된 필드 } | null\n}",
+        "userPrompt": "[이전 요약]\n회의가 시작되었으며, 참석자들에게 마케팅 경험에 대한 질문이 있었습니다.\n\n[현재 회의 상태]\n{\"meetingTitle\":\"Q1 마케팅 전략 회의\",\"meetingType\":\"other\",\"summary\":[\"회의가 시작되었으며, 참석자들에게 마케팅 경험에 대한 질문이 있었습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 전사 내용]\n회의를 시작합니다. 혹시 마케팅 해보신 분 있나요?",
+        "response": "{\n  \"summary\": \"회의가 시작되었으며, 참석자들에게 마케팅 경험에 대한 질문이 있었습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 447,
+        "completionTokens": 34,
+        "totalTokens": 481
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:34:36.343Z",
+      "type": "transcript",
+      "data": {
+        "text": "애드밋아 뭐부터 정행햐ㅏㄹ까?"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:34:37.838Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "signal_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의 발언에서 AI 마케터 호출 시그널을 감지합니다.\n\n\"애드밋아\", \"애드밋\", \"마케터\" 등의 호출어 뒤에 오는 질문이나 요청을 감지하세요.\n\n규칙:\n- 호출어가 있고 그 뒤에 질문/요청이 있으면 hasSignal: true\n- 호출어만 있고 질문이 없으면 hasSignal: false\n- 호출어가 없으면 hasSignal: false\n\n반드시 JSON으로 응답:\n{\n  \"hasSignal\": boolean,\n  \"question\": \"감지된 질문/요청\" | null\n}",
+        "userPrompt": "[최근 발언]\n회의를 시작합니다. 혹시 마케팅 해보신 분 있나요?\n애드밋아 뭐부터 정행햐ㅏㄹ까?",
+        "response": "{\n  \"hasSignal\": true,\n  \"question\": \"뭐부터 정행햐ㅏㄹ까?\"\n}",
+        "promptTokens": 182,
+        "completionTokens": 27,
+        "totalTokens": 209
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:34:40.583Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "solution_generate",
+        "model": "gpt-4o",
+        "systemPrompt": "당신은 10년차 시니어 퍼포먼스 마케터입니다. 회의 참여자가 당신을 호출하여 질문했습니다.\n\n프로젝트 컨텍스트와 현재 회의 상태를 바탕으로, 구체적이고 실행 가능한 솔루션을 제공하세요.\n\n규칙:\n- 핵심 답변 2~4문장\n- 구체적 수치, 벤치마크, 실행 방안 포함\n- \"~를 추천합니다\", \"~가 효과적입니다\" 등 확신 있는 톤\n- 프로젝트 맥락(타겟, KPI, 제약사항)을 반영한 맞춤 답변\n- 한국어로 자연스럽게\n\n반드시 JSON으로 응답:\n{\n  \"question\": \"원래 질문 요약\",\n  \"solution\": \"솔루션 내용\",\n  \"context\": \"이 솔루션을 제안하는 근거 (1문장)\"\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"유료 전환율\":\"10% 이상\"},\"coreValue\":\"효율적인 팀 협업과 AI 기반의 업무 우선순위 추천\",\"constraints\":[\"무료 사용자에서 유료 사용자로의 전환율 증가 필요\"],\"productSummary\":\"스타트업을 위한 올인원 프로젝트 관리 도구\",\"targetPersonas\":[\"5~20인 규모의 스타트업 팀 리더\",\"프로젝트 매니저\"],\"differentiators\":[\"AI 기반 업무 우선순위 추천\",\"Slack/Notion과의 원활한 연동\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"Q1 마케팅 전략 회의\",\"meetingType\":\"other\",\"summary\":[\"회의가 시작되었으며, 참석자들에게 마케팅 경험에 대한 질문이 있었습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n회의를 시작합니다. 혹시 마케팅 해보신 분 있나요?\n애드밋아 뭐부터 정행햐ㅏㄹ까?\n\n[질문]\n뭐부터 정행햐ㅏㄹ까?",
+        "response": "{\n  \"question\": \"마케팅 전략을 어디서부터 시작해야 할까?\",\n  \"solution\": \"타겟 페르소나인 스타트업 팀 리더와 프로젝트 매니저를 대상으로 한 소셜 미디어 캠페인을 추천합니다. AI 기반 업무 우선순위 추천 기능과 Slack/Notion과의 연동을 강조하여 전환율 10% 이상을 목표로 합니다. 초기 캠페인 예산의 20%를 A/B 테스트에 할당하여 메시지와 이미지의 효과를 검증하세요.\",\n  \"context\": \"스타트업 팀 리더와 프로젝트 매니저는 소셜 미디어에서 정보를 자주 얻으며, AI와 협업 관련 기능이 그들에게 매력적일 가능성이 높습니다.\"\n}",
+        "promptTokens": 480,
+        "completionTokens": 164,
+        "totalTokens": 644
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:34:40.586Z",
+      "type": "intervention",
+      "data": {
+        "trigger": "solution",
+        "message": "타겟 페르소나인 스타트업 팀 리더와 프로젝트 매니저를 대상으로 한 소셜 미디어 캠페인을 추천합니다. AI 기반 업무 우선순위 추천 기능과 Slack/Notion과의 연동을 강조하여 전환율 10% 이상을 목표로 합니다. 초기 캠페인 예산의 20%를 A/B 테스트에 할당하여 메시지와 이미지의 효과를 검증하세요."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:34:49.613Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "summary_generate",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의 내용을 실시간 요약하는 AI 어시스턴트입니다.\n\n최근 전사(transcript) 내용을 읽고, 이전 요약에 이어 새로운 내용을 간결하게 요약하세요.\n\n규칙:\n- 1~2문장으로 핵심만 요약\n- 이전 요약과 중복되지 않는 새로운 내용만\n- 사실 기반 — 발언된 내용만 요약 (추론/의견 X)\n- 한국어로 자연스럽게\n- 회의에서 논의된 구체적인 내용(타겟, 채널, 가격, 기능 등)이 있으면 stateUpdate에 반영\n\nstateUpdate 가능 필드:\n- targetSegment: string[] (타겟 고객층)\n- problemStatement: string (문제 정의)\n- valueProposition: string (가치 제안)\n- keyMessages: string[] (핵심 메시지)\n- channels: string[] (마케팅 채널)\n- kpi: Record<string, string> (KPI)\n- hypotheses: string[] (가설)\n- decisions: { content: string, timestamp: string }[] (결정사항)\n- actions: { content: string, assignee: string, deadline: string }[] (액션아이템)\n\n반드시 JSON으로 응답:\n{\n  \"summary\": \"요약 내용\",\n  \"stateUpdate\": { 변경된 필드 } | null\n}",
+        "userPrompt": "[이전 요약]\n회의가 시작되었으며, 참석자들에게 마케팅 경험에 대한 질문이 있었습니다.\n\n[현재 회의 상태]\n{\"meetingTitle\":\"Q1 마케팅 전략 회의\",\"meetingType\":\"other\",\"summary\":[\"회의가 시작되었으며, 참석자들에게 마케팅 경험에 대한 질문이 있었습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 전사 내용]\n회의를 시작합니다. 혹시 마케팅 해보신 분 있나요?\n애드밋아 뭐부터 정행햐ㅏㄹ까?",
+        "response": "{\n  \"summary\": \"회의가 시작되었으며, 참석자들에게 마케팅 경험에 대한 질문이 있었습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 464,
+        "completionTokens": 34,
+        "totalTokens": 498
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:34:50.704Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "thought_generate",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 시니어 마케터입니다. 회의 내용을 관찰하며 마케팅 관점의 인사이트를 제공합니다.\n\n회의 요약과 최근 발언을 보고, 마케팅 관점에서 떠오르는 \"생각\" 하나를 짧게 표현하세요.\n\n카테고리 4종 (가장 적합한 1개 선택):\n- \"observation\": 흥미로운 관찰 포인트 (예: \"타겟층이 점점 좁혀지고 있네요\")\n- \"concern\": 우려 사항 (예: \"경쟁사 대비 차별점이 아직 불명확합니다\")\n- \"opportunity\": 기회 발견 (예: \"이 기능은 바이럴 포인트가 될 수 있겠어요\")\n- \"insight\": 마케팅 인사이트 (예: \"이 가격대면 프리미엄 포지셔닝이 적합합니다\")\n\n규칙:\n- 1~2문장으로 짧고 자연스럽게\n- 한국어로 작성\n- 회의 맥락에 맞는 구체적인 내용\n- 매번 다른 관점에서 작성\n\n반드시 JSON으로 응답:\n{\n  \"content\": \"생각 내용\",\n  \"category\": \"observation\" | \"concern\" | \"opportunity\" | \"insight\"\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"유료 전환율\":\"10% 이상\"},\"coreValue\":\"효율적인 팀 협업과 AI 기반의 업무 우선순위 추천\",\"constraints\":[\"무료 사용자에서 유료 사용자로의 전환율 증가 필요\"],\"productSummary\":\"스타트업을 위한 올인원 프로젝트 관리 도구\",\"targetPersonas\":[\"5~20인 규모의 스타트업 팀 리더\",\"프로젝트 매니저\"],\"differentiators\":[\"AI 기반 업무 우선순위 추천\",\"Slack/Notion과의 원활한 연동\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"Q1 마케팅 전략 회의\",\"meetingType\":\"other\",\"summary\":[\"회의가 시작되었으며, 참석자들에게 마케팅 경험에 대한 질문이 있었습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 요약]\n회의가 시작되었으며, 참석자들에게 마케팅 경험에 대한 질문이 있었습니다.\n\n[최근 발언]\n회의를 시작합니다. 혹시 마케팅 해보신 분 있나요?\n애드밋아 뭐부터 정행햐ㅏㄹ까?",
+        "response": "{\n  \"content\": \"스타트업 팀 리더와 프로젝트 매니저의 니즈를 반영한 맞춤형 마케팅 전략이 필요해 보입니다.\",\n  \"category\": \"insight\"\n}",
+        "promptTokens": 578,
+        "completionTokens": 45,
+        "totalTokens": 623
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:35:04.384Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "summary_generate",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의 내용을 실시간 요약하는 AI 어시스턴트입니다.\n\n최근 전사(transcript) 내용을 읽고, 이전 요약에 이어 새로운 내용을 간결하게 요약하세요.\n\n규칙:\n- 1~2문장으로 핵심만 요약\n- 이전 요약과 중복되지 않는 새로운 내용만\n- 사실 기반 — 발언된 내용만 요약 (추론/의견 X)\n- 한국어로 자연스럽게\n- 회의에서 논의된 구체적인 내용(타겟, 채널, 가격, 기능 등)이 있으면 stateUpdate에 반영\n\nstateUpdate 가능 필드:\n- targetSegment: string[] (타겟 고객층)\n- problemStatement: string (문제 정의)\n- valueProposition: string (가치 제안)\n- keyMessages: string[] (핵심 메시지)\n- channels: string[] (마케팅 채널)\n- kpi: Record<string, string> (KPI)\n- hypotheses: string[] (가설)\n- decisions: { content: string, timestamp: string }[] (결정사항)\n- actions: { content: string, assignee: string, deadline: string }[] (액션아이템)\n\n반드시 JSON으로 응답:\n{\n  \"summary\": \"요약 내용\",\n  \"stateUpdate\": { 변경된 필드 } | null\n}",
+        "userPrompt": "[이전 요약]\n회의가 시작되었으며, 참석자들에게 마케팅 경험에 대한 질문이 있었습니다.\n\n[현재 회의 상태]\n{\"meetingTitle\":\"Q1 마케팅 전략 회의\",\"meetingType\":\"other\",\"summary\":[\"회의가 시작되었으며, 참석자들에게 마케팅 경험에 대한 질문이 있었습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 전사 내용]\n회의를 시작합니다. 혹시 마케팅 해보신 분 있나요?\n애드밋아 뭐부터 정행햐ㅏㄹ까?",
+        "response": "{\n  \"summary\": \"회의가 시작되었고, 참석자들에게 마케팅 경험에 대한 질문이 이어졌습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 464,
+        "completionTokens": 35,
+        "totalTokens": 499
+      }
+    }
+  ],
+  "tokenUsage": {
+    "totalPromptTokens": 3587,
+    "totalCompletionTokens": 419,
+    "totalTokens": 4006,
+    "calls": 8
+  }
+}

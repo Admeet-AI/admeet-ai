@@ -1,0 +1,726 @@
+{
+  "meetingId": "f6c4fe16-8a3d-4b70-b265-2044ad60fc34",
+  "title": "온라인 채널 성장 전략",
+  "startedAt": "2026-02-14T16:53:07.504Z",
+  "endedAt": null,
+  "entries": [
+    {
+      "timestamp": "2026-02-14T16:53:07.504Z",
+      "type": "meeting_start",
+      "data": {
+        "title": "온라인 채널 성장 전략"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:53:14.896Z",
+      "type": "transcript",
+      "data": {
+        "text": "인스타나 메타광고를 하고 싶은데 어떻게 해야할지 모르겠어"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:53:17.147Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n인스타나 메타광고를 하고 싶은데 어떻게 해야할지 모르겠어",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 진행하고 싶지만 방법을 모르겠다고 질문했습니다.\",\n  \"stateUpdate\": {\n    \"openQuestions\": [\"인스타나 메타광고를 어떻게 해야 할까요?\"]\n  }\n}",
+        "promptTokens": 954,
+        "completionTokens": 73,
+        "totalTokens": 1027
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:53:17.150Z",
+      "type": "summary",
+      "data": {
+        "text": "사용자가 인스타그램과 메타 광고를 진행하고 싶지만 방법을 모르겠다고 질문했습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:53:20.104Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "intervention_generate",
+        "model": "gpt-4o",
+        "systemPrompt": "당신은 10년차 퍼포먼스 마케터입니다.\n팀원의 질문에 구체적이고 실행 가능한 답변을 제공하세요.\n\n규칙:\n- 핵심 답변 2~3문장 + 구체적 실행 방안 1~2개\n- 가능하면 수치/벤치마크 포함\n- \"~하면 좋을 것 같아요\" 보다 \"~를 추천합니다\" 톤\n- 프로젝트 컨텍스트(예산, KPI, 타겟)를 반영한 맞춤 답변\n- 매번 다른 방식으로 시작하세요.\n- 한국어로 자연스럽게",
+        "userPrompt": "트리거: direct_question\n\n[컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 진행하고 싶지만 방법을 모르겠다고 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[\"인스타나 메타광고를 어떻게 해야 할까요?\"]}\n\n[최근 발언]\n인스타나 메타광고를 하고 싶은데 어떻게 해야할지 모르겠어\n\n질문에 대해 구체적으로 답변하세요.",
+        "response": "인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주자를 대상으로, 관심사 및 행동 데이터를 기반으로 한 세부적인 타겟팅을 추천합니다. \n\n1. **광고 캠페인 세팅**: 인스타그램 및 메타 광고 관리자에서 '싱글 오리진 원두', '스페셜티 커피', '로스팅', '구독 서비스'에 관심을 보일 가능성이 높은 사용자를 타겟으로 설정하세요. 인구 통계학적으로는 25-40세 사이의 도시 거주자를 목표로 하시고, 예산은 월 200만원 내외로 시작해 성과를 보면서 조정하세요.\n\n2. **브랜드 스토리 강조**: 광고 콘텐츠에서는 고품질 원두와 전문 로스팅 기술을 강조하며 브랜드 스토리를 전달하세요. 스토리를 담은 비디오나 이미지 광고를 통해 감성적인 연결을 유도하고, 특히 서울 성수동이라는 지역적 특성을 부각하여 지역 기반 커뮤니티와의 연결성을 강화하는 것을 추천합니다.",
+        "promptTokens": 436,
+        "completionTokens": 261,
+        "totalTokens": 697
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:53:20.106Z",
+      "type": "intervention",
+      "data": {
+        "trigger": "direct_question",
+        "message": "인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주자를 대상으로, 관심사 및 행동 데이터를 기반으로 한 세부적인 타겟팅을 추천합니다. \n\n1. **광고 캠페인 세팅**: 인스타그램 및 메타 광고 관리자에서 '싱글 오리진 원두', '스페셜티 커피', '로스팅', '구독 서비스'에 관심을 보일 가능성이 높은 사용자를 타겟으로 설정하세요. 인구 통계학적으로는 25-40세 사이의 도시 거주자를 목표로 하시고, 예산은 월 200만원 내외로 시작해 성과를 보면서 조정하세요.\n\n2. **브랜드 스토리 강조**: 광고 콘텐츠에서는 고품질 원두와 전문 로스팅 기술을 강조하며 브랜드 스토리를 전달하세요. 스토리를 담은 비디오나 이미지 광고를 통해 감성적인 연결을 유도하고, 특히 서울 성수동이라는 지역적 특성을 부각하여 지역 기반 커뮤니티와의 연결성을 강화하는 것을 추천합니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:53:54.187Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 진행하고 싶지만 방법을 모르겠다고 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[\"인스타나 메타광고를 어떻게 해야 할까요?\"]}\n\n[최근 발언]\n인스타나 메타광고를 하고 싶은데 어떻게 해야할지 모르겠어\n\n[이전 개입 이력 (최근 1건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\n  \"stateUpdate\": {\n    \"openQuestions\": []\n  }\n}",
+        "promptTokens": 1054,
+        "completionTokens": 57,
+        "totalTokens": 1111
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:53:54.188Z",
+      "type": "summary",
+      "data": {
+        "text": "사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:54:10.752Z",
+      "type": "transcript",
+      "data": {
+        "text": "시작하려면 뭐부터 시작해야할까요"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:54:12.635Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 진행하고 싶지만 방법을 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n인스타나 메타광고를 하고 싶은데 어떻게 해야할지 모르겠어\n시작하려면 뭐부터 시작해야할까요\n\n[이전 개입 이력 (최근 1건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 어떻게 시작해야 할지 모르겠다고 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1071,
+        "completionTokens": 51,
+        "totalTokens": 1122
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:54:12.636Z",
+      "type": "summary",
+      "data": {
+        "text": "사용자가 인스타그램과 메타 광고를 어떻게 시작해야 할지 모르겠다고 질문했습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:54:16.145Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "intervention_generate",
+        "model": "gpt-4o",
+        "systemPrompt": "당신은 10년차 퍼포먼스 마케터입니다.\n팀원의 질문에 구체적이고 실행 가능한 답변을 제공하세요.\n\n규칙:\n- 핵심 답변 2~3문장 + 구체적 실행 방안 1~2개\n- 가능하면 수치/벤치마크 포함\n- \"~하면 좋을 것 같아요\" 보다 \"~를 추천합니다\" 톤\n- 프로젝트 컨텍스트(예산, KPI, 타겟)를 반영한 맞춤 답변\n- 매번 다른 방식으로 시작하세요.\n- 한국어로 자연스럽게",
+        "userPrompt": "트리거: direct_question\n\n[컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 진행하고 싶지만 방법을 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n인스타나 메타광고를 하고 싶은데 어떻게 해야할지 모르겠어\n시작하려면 뭐부터 시작해야할까요\n\n[이전 개입 메시지 (중복 방지용)]\n- 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와\n\n질문에 대해 구체적으로 답변하세요.",
+        "response": "인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주자를 대상으로 하여, 고품질의 싱글 오리진 원두와 특별한 커피 경험을 전달할 수 있는 시각적이고 스토리텔링이 있는 광고를 추천합니다.\n\n실행 방안으로는:\n1. **타겟팅 세그먼트 설정**: 인스타그램과 메타 광고 플랫폼에서 연령, 위치(도심지), 관심사(커피, 스페셜티 카페 등)를 기반으로 커피 애호가와 도시 거주자를 타겟팅하세요.\n2. **콘텐츠 제작**: 고품질의 사진과 동영상 콘텐츠를 활용하여 원두의 전문성과 브랜드 스토리를 시각적으로 표현하세요. 예를 들어, 로스팅 과정이나 서울 성수동 카페의 분위기를 보여주는 콘텐츠를 제작하세요.",
+        "promptTokens": 502,
+        "completionTokens": 219,
+        "totalTokens": 721
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:54:16.147Z",
+      "type": "intervention",
+      "data": {
+        "trigger": "direct_question",
+        "message": "인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주자를 대상으로 하여, 고품질의 싱글 오리진 원두와 특별한 커피 경험을 전달할 수 있는 시각적이고 스토리텔링이 있는 광고를 추천합니다.\n\n실행 방안으로는:\n1. **타겟팅 세그먼트 설정**: 인스타그램과 메타 광고 플랫폼에서 연령, 위치(도심지), 관심사(커피, 스페셜티 카페 등)를 기반으로 커피 애호가와 도시 거주자를 타겟팅하세요.\n2. **콘텐츠 제작**: 고품질의 사진과 동영상 콘텐츠를 활용하여 원두의 전문성과 브랜드 스토리를 시각적으로 표현하세요. 예를 들어, 로스팅 과정이나 서울 성수동 카페의 분위기를 보여주는 콘텐츠를 제작하세요."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:54:39.245Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 진행하고 싶지만 방법을 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n인스타나 메타광고를 하고 싶은데 어떻게 해야할지 모르겠어\n시작하려면 뭐부터 시작해야할까요\n\n[이전 개입 이력 (최근 2건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1122,
+        "completionTokens": 48,
+        "totalTokens": 1170
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:54:39.246Z",
+      "type": "summary",
+      "data": {
+        "text": "사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:54:42.443Z",
+      "type": "transcript",
+      "data": {
+        "text": "요약 해주세요"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:54:43.934Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 진행하고 싶지만 방법을 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n인스타나 메타광고를 하고 싶은데 어떻게 해야할지 모르겠어\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n\n[이전 개입 이력 (최근 2건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1145,
+        "completionTokens": 48,
+        "totalTokens": 1193
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:54:43.936Z",
+      "type": "summary",
+      "data": {
+        "text": "사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:54:47.325Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "intervention_generate",
+        "model": "gpt-4o",
+        "systemPrompt": "당신은 10년차 퍼포먼스 마케터입니다.\n팀원의 질문에 구체적이고 실행 가능한 답변을 제공하세요.\n\n규칙:\n- 핵심 답변 2~3문장 + 구체적 실행 방안 1~2개\n- 가능하면 수치/벤치마크 포함\n- \"~하면 좋을 것 같아요\" 보다 \"~를 추천합니다\" 톤\n- 프로젝트 컨텍스트(예산, KPI, 타겟)를 반영한 맞춤 답변\n- 매번 다른 방식으로 시작하세요.\n- 한국어로 자연스럽게",
+        "userPrompt": "트리거: direct_question\n\n[컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 진행하고 싶지만 방법을 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n인스타나 메타광고를 하고 싶은데 어떻게 해야할지 모르겠어\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n\n[이전 개입 메시지 (중복 방지용)]\n- 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와\n- 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 \n\n질문에 대해 구체적으로 답변하세요.",
+        "response": "인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주자를 타겟팅하여, 브랜드 스토리와 고품질 원두의 차별점을 강조하는 광고 콘텐츠를 제작하세요.\n\n1. **타겟팅 설정**: 인스타그램과 페이스북 광고 관리자에서 인구통계학적 정보, 관심사, 행동 등을 기반으로 커피 애호가와 도시에 거주하는 소비자를 타겟팅하세요. 예를 들어, 25-40세의 도시 거주자 중 커피 관련 페이지를 팔로우하는 사용자를 설정할 수 있습니다.\n\n2. **광고 콘텐츠 제작**: 고품질의 이미지나 영상을 활용하여 브랜드 스토리를 전달하세요. 자체 로스팅 과정이나 싱글 오리진 원두의 특별함을 강조하는 콘텐츠를 제작하고, 원두 구독 서비스의 편리함을 함께 홍보하세요. 이런 콘텐츠는 고객의 관심을 끌고, 구매로 이어질 수 있습니다.",
+        "promptTokens": 559,
+        "completionTokens": 242,
+        "totalTokens": 801
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:54:47.327Z",
+      "type": "intervention",
+      "data": {
+        "trigger": "direct_question",
+        "message": "인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주자를 타겟팅하여, 브랜드 스토리와 고품질 원두의 차별점을 강조하는 광고 콘텐츠를 제작하세요.\n\n1. **타겟팅 설정**: 인스타그램과 페이스북 광고 관리자에서 인구통계학적 정보, 관심사, 행동 등을 기반으로 커피 애호가와 도시에 거주하는 소비자를 타겟팅하세요. 예를 들어, 25-40세의 도시 거주자 중 커피 관련 페이지를 팔로우하는 사용자를 설정할 수 있습니다.\n\n2. **광고 콘텐츠 제작**: 고품질의 이미지나 영상을 활용하여 브랜드 스토리를 전달하세요. 자체 로스팅 과정이나 싱글 오리진 원두의 특별함을 강조하는 콘텐츠를 제작하고, 원두 구독 서비스의 편리함을 함께 홍보하세요. 이런 콘텐츠는 고객의 관심을 끌고, 구매로 이어질 수 있습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:54:59.083Z",
+      "type": "transcript",
+      "data": {
+        "text": "개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:55:23.955Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 진행하고 싶지만 방법을 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n인스타나 메타광고를 하고 싶은데 어떻게 해야할지 모르겠어\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n\n[이전 개입 이력 (최근 3건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1216,
+        "completionTokens": 48,
+        "totalTokens": 1264
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:55:27.332Z",
+      "type": "transcript",
+      "data": {
+        "text": "대답해 "
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:55:28.946Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 진행하고 싶지만 방법을 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n인스타나 메타광고를 하고 싶은데 어떻게 해야할지 모르겠어\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n\n[이전 개입 이력 (최근 3건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1220,
+        "completionTokens": 48,
+        "totalTokens": 1268
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:55:28.948Z",
+      "type": "summary",
+      "data": {
+        "text": "사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:55:32.719Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "intervention_generate",
+        "model": "gpt-4o",
+        "systemPrompt": "당신은 10년차 퍼포먼스 마케터입니다.\n팀원의 질문에 구체적이고 실행 가능한 답변을 제공하세요.\n\n규칙:\n- 핵심 답변 2~3문장 + 구체적 실행 방안 1~2개\n- 가능하면 수치/벤치마크 포함\n- \"~하면 좋을 것 같아요\" 보다 \"~를 추천합니다\" 톤\n- 프로젝트 컨텍스트(예산, KPI, 타겟)를 반영한 맞춤 답변\n- 매번 다른 방식으로 시작하세요.\n- 한국어로 자연스럽게",
+        "userPrompt": "트리거: direct_question\n\n[컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 진행하고 싶지만 방법을 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n인스타나 메타광고를 하고 싶은데 어떻게 해야할지 모르겠어\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n\n[이전 개입 메시지 (중복 방지용)]\n- 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와\n- 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 \n- 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 \n\n질문에 대해 구체적으로 답변하세요.",
+        "response": "인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주자를 타겟으로 설정한 후, 그들의 관심을 끌 수 있는 고품질의 콘텐츠를 제작해야 합니다. \n\n실행 방안으로는, 첫째, \"브랜드 스토리\"를 강조하는 콘텐츠를 제작하십시오. 예를 들어, 자체 로스팅 과정이나 싱글 오리진 원두의 특성을 소개하는 짧은 동영상이나 이미지 시리즈를 기획할 수 있습니다. 둘째, 메타 광고의 경우, A/B 테스트를 통해 가장 효과적인 광고 포맷과 메시지를 찾아내는 것이 중요합니다. 예산의 10%를 테스트에 할당하여, 클릭률이나 전환율이 높은 광고를 중심으로 예산을 재조정하는 것을 추천합니다.",
+        "promptTokens": 616,
+        "completionTokens": 209,
+        "totalTokens": 825
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:55:32.722Z",
+      "type": "intervention",
+      "data": {
+        "trigger": "direct_question",
+        "message": "인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주자를 타겟으로 설정한 후, 그들의 관심을 끌 수 있는 고품질의 콘텐츠를 제작해야 합니다. \n\n실행 방안으로는, 첫째, \"브랜드 스토리\"를 강조하는 콘텐츠를 제작하십시오. 예를 들어, 자체 로스팅 과정이나 싱글 오리진 원두의 특성을 소개하는 짧은 동영상이나 이미지 시리즈를 기획할 수 있습니다. 둘째, 메타 광고의 경우, A/B 테스트를 통해 가장 효과적인 광고 포맷과 메시지를 찾아내는 것이 중요합니다. 예산의 10%를 테스트에 할당하여, 클릭률이나 전환율이 높은 광고를 중심으로 예산을 재조정하는 것을 추천합니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:56:08.935Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 진행하고 싶지만 방법을 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n인스타나 메타광고를 하고 싶은데 어떻게 해야할지 모르겠어\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n\n[이전 개입 이력 (최근 4건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도\n4. [direct_question] 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1269,
+        "completionTokens": 48,
+        "totalTokens": 1317
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:56:34.421Z",
+      "type": "transcript",
+      "data": {
+        "text": "그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:56:36.236Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 진행하고 싶지만 방법을 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?\n\n[이전 개입 이력 (최근 4건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도\n4. [direct_question] 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1269,
+        "completionTokens": 55,
+        "totalTokens": 1324
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:56:36.239Z",
+      "type": "summary",
+      "data": {
+        "text": "사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:56:40.227Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "intervention_generate",
+        "model": "gpt-4o",
+        "systemPrompt": "당신은 10년차 퍼포먼스 마케터입니다.\n팀원의 질문에 구체적이고 실행 가능한 답변을 제공하세요.\n\n규칙:\n- 핵심 답변 2~3문장 + 구체적 실행 방안 1~2개\n- 가능하면 수치/벤치마크 포함\n- \"~하면 좋을 것 같아요\" 보다 \"~를 추천합니다\" 톤\n- 프로젝트 컨텍스트(예산, KPI, 타겟)를 반영한 맞춤 답변\n- 매번 다른 방식으로 시작하세요.\n- 한국어로 자연스럽게",
+        "userPrompt": "트리거: direct_question\n\n[컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 진행하고 싶지만 방법을 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?\n\n[이전 개입 메시지 (중복 방지용)]\n- 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와\n- 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 \n- 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 \n- 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 \n\n질문에 대해 구체적으로 답변하세요.",
+        "response": "인스타그램과 메타 광고를 시작하기 위해서는 우선 명확한 타겟 설정과 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 첫 단계로, \"커피 애호가\"와 \"특별한 커피 경험을 찾는 도시 거주자\"를 대상으로 한 페르소나를 구체화하고, 그들의 관심사와 행동 패턴을 분석하세요.\n\n구체적인 실행 방안으로는:\n1. **페르소나 기반 광고 타겟팅 설정**: 메타 광고 관리자에서 성별, 연령대, 지역(서울 성수동 중심), 관심사(커피, 스페셜티, 로스팅 등) 등을 설정하여 타겟팅을 세부적으로 조정합니다.\n2. **광고 콘텐츠 제작**: 브랜드 스토리와 고품질 원두의 차별점을 강조하는 비주얼 콘텐츠를 제작하세요. 이를 위해, 스토리텔링을 활용한 짧은 영상이나, 고품질 이미지와 간결한 문구를 사용해 광고를 구성하는 것을 추천합니다. 예산이 허락한다면, 프로페셔널 사진작가나 영상 제작자를 고용해 퀄리티를 높일 수 있습니다.",
+        "promptTokens": 673,
+        "completionTokens": 267,
+        "totalTokens": 940
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:56:40.230Z",
+      "type": "intervention",
+      "data": {
+        "trigger": "direct_question",
+        "message": "인스타그램과 메타 광고를 시작하기 위해서는 우선 명확한 타겟 설정과 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 첫 단계로, \"커피 애호가\"와 \"특별한 커피 경험을 찾는 도시 거주자\"를 대상으로 한 페르소나를 구체화하고, 그들의 관심사와 행동 패턴을 분석하세요.\n\n구체적인 실행 방안으로는:\n1. **페르소나 기반 광고 타겟팅 설정**: 메타 광고 관리자에서 성별, 연령대, 지역(서울 성수동 중심), 관심사(커피, 스페셜티, 로스팅 등) 등을 설정하여 타겟팅을 세부적으로 조정합니다.\n2. **광고 콘텐츠 제작**: 브랜드 스토리와 고품질 원두의 차별점을 강조하는 비주얼 콘텐츠를 제작하세요. 이를 위해, 스토리텔링을 활용한 짧은 영상이나, 고품질 이미지와 간결한 문구를 사용해 광고를 구성하는 것을 추천합니다. 예산이 허락한다면, 프로페셔널 사진작가나 영상 제작자를 고용해 퀄리티를 높일 수 있습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:56:54.078Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?\n\n[이전 개입 이력 (최근 5건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도\n4. [direct_question] 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커\n5. [direct_question] 인스타그램과 메타 광고를 시작하기 위해서는 우선 명확한 타겟 설정과 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 첫 단계로, \"커피 애호",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1323,
+        "completionTokens": 55,
+        "totalTokens": 1378
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:57:39.476Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?\n\n[이전 개입 이력 (최근 5건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도\n4. [direct_question] 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커\n5. [direct_question] 인스타그램과 메타 광고를 시작하기 위해서는 우선 명확한 타겟 설정과 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 첫 단계로, \"커피 애호",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고 시작을 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1323,
+        "completionTokens": 54,
+        "totalTokens": 1377
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:58:23.926Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?\n\n[이전 개입 이력 (최근 5건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도\n4. [direct_question] 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커\n5. [direct_question] 인스타그램과 메타 광고를 시작하기 위해서는 우선 명확한 타겟 설정과 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 첫 단계로, \"커피 애호",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1323,
+        "completionTokens": 55,
+        "totalTokens": 1378
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:59:09.476Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?\n\n[이전 개입 이력 (최근 5건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도\n4. [direct_question] 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커\n5. [direct_question] 인스타그램과 메타 광고를 시작하기 위해서는 우선 명확한 타겟 설정과 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 첫 단계로, \"커피 애호",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1323,
+        "completionTokens": 55,
+        "totalTokens": 1378
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:59:54.197Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?\n\n[이전 개입 이력 (최근 5건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도\n4. [direct_question] 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커\n5. [direct_question] 인스타그램과 메타 광고를 시작하기 위해서는 우선 명확한 타겟 설정과 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 첫 단계로, \"커피 애호",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1323,
+        "completionTokens": 55,
+        "totalTokens": 1378
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:00:43.577Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?\n\n[이전 개입 이력 (최근 5건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도\n4. [direct_question] 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커\n5. [direct_question] 인스타그램과 메타 광고를 시작하기 위해서는 우선 명확한 타겟 설정과 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 첫 단계로, \"커피 애호",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1323,
+        "completionTokens": 55,
+        "totalTokens": 1378
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:01:24.387Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?\n\n[이전 개입 이력 (최근 5건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도\n4. [direct_question] 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커\n5. [direct_question] 인스타그램과 메타 광고를 시작하기 위해서는 우선 명확한 타겟 설정과 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 첫 단계로, \"커피 애호",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1323,
+        "completionTokens": 55,
+        "totalTokens": 1378
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:02:09.178Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?\n\n[이전 개입 이력 (최근 5건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도\n4. [direct_question] 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커\n5. [direct_question] 인스타그램과 메타 광고를 시작하기 위해서는 우선 명확한 타겟 설정과 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 첫 단계로, \"커피 애호",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1323,
+        "completionTokens": 55,
+        "totalTokens": 1378
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:02:54.388Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?\n\n[이전 개입 이력 (최근 5건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도\n4. [direct_question] 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커\n5. [direct_question] 인스타그램과 메타 광고를 시작하기 위해서는 우선 명확한 타겟 설정과 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 첫 단계로, \"커피 애호",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1323,
+        "completionTokens": 55,
+        "totalTokens": 1378
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:03:39.438Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?\n\n[이전 개입 이력 (최근 5건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도\n4. [direct_question] 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커\n5. [direct_question] 인스타그램과 메타 광고를 시작하기 위해서는 우선 명확한 타겟 설정과 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 첫 단계로, \"커피 애호",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1323,
+        "completionTokens": 55,
+        "totalTokens": 1378
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:04:24.068Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?\n\n[이전 개입 이력 (최근 5건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도\n4. [direct_question] 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커\n5. [direct_question] 인스타그램과 메타 광고를 시작하기 위해서는 우선 명확한 타겟 설정과 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 첫 단계로, \"커피 애호",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 작업에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1323,
+        "completionTokens": 54,
+        "totalTokens": 1377
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:05:09.459Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?\n\n[이전 개입 이력 (최근 5건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도\n4. [direct_question] 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커\n5. [direct_question] 인스타그램과 메타 광고를 시작하기 위해서는 우선 명확한 타겟 설정과 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 첫 단계로, \"커피 애호",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1323,
+        "completionTokens": 55,
+        "totalTokens": 1378
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:05:54.139Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?\n\n[이전 개입 이력 (최근 5건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도\n4. [direct_question] 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커\n5. [direct_question] 인스타그램과 메타 광고를 시작하기 위해서는 우선 명확한 타겟 설정과 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 첫 단계로, \"커피 애호",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1323,
+        "completionTokens": 55,
+        "totalTokens": 1378
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:06:38.989Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?\n\n[이전 개입 이력 (최근 5건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도\n4. [direct_question] 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커\n5. [direct_question] 인스타그램과 메타 광고를 시작하기 위해서는 우선 명확한 타겟 설정과 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 첫 단계로, \"커피 애호",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1323,
+        "completionTokens": 55,
+        "totalTokens": 1378
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:07:24.199Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?\n\n[이전 개입 이력 (최근 5건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도\n4. [direct_question] 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커\n5. [direct_question] 인스타그램과 메타 광고를 시작하기 위해서는 우선 명확한 타겟 설정과 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 첫 단계로, \"커피 애호",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1323,
+        "completionTokens": 55,
+        "totalTokens": 1378
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:08:08.899Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?\n\n[이전 개입 이력 (최근 5건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도\n4. [direct_question] 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커\n5. [direct_question] 인스타그램과 메타 광고를 시작하기 위해서는 우선 명확한 타겟 설정과 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 첫 단계로, \"커피 애호",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고 시작을 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1323,
+        "completionTokens": 54,
+        "totalTokens": 1377
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:08:54.012Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?\n\n[이전 개입 이력 (최근 5건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도\n4. [direct_question] 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커\n5. [direct_question] 인스타그램과 메타 광고를 시작하기 위해서는 우선 명확한 타겟 설정과 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 첫 단계로, \"커피 애호",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1323,
+        "completionTokens": 55,
+        "totalTokens": 1378
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:09:39.113Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?\n\n[이전 개입 이력 (최근 5건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도\n4. [direct_question] 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커\n5. [direct_question] 인스타그램과 메타 광고를 시작하기 위해서는 우선 명확한 타겟 설정과 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 첫 단계로, \"커피 애호",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1323,
+        "completionTokens": 55,
+        "totalTokens": 1378
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:10:23.990Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?\n\n[이전 개입 이력 (최근 5건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도\n4. [direct_question] 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커\n5. [direct_question] 인스타그램과 메타 광고를 시작하기 위해서는 우선 명확한 타겟 설정과 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 첫 단계로, \"커피 애호",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1323,
+        "completionTokens": 55,
+        "totalTokens": 1378
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:11:09.182Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?\n\n[이전 개입 이력 (최근 5건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도\n4. [direct_question] 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커\n5. [direct_question] 인스타그램과 메타 광고를 시작하기 위해서는 우선 명확한 타겟 설정과 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 첫 단계로, \"커피 애호",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1323,
+        "completionTokens": 55,
+        "totalTokens": 1378
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:11:54.043Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?\n\n[이전 개입 이력 (최근 5건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도\n4. [direct_question] 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커\n5. [direct_question] 인스타그램과 메타 광고를 시작하기 위해서는 우선 명확한 타겟 설정과 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 첫 단계로, \"커피 애호",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1323,
+        "completionTokens": 55,
+        "totalTokens": 1378
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:12:39.201Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?\n\n[이전 개입 이력 (최근 5건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도\n4. [direct_question] 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커\n5. [direct_question] 인스타그램과 메타 광고를 시작하기 위해서는 우선 명확한 타겟 설정과 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 첫 단계로, \"커피 애호",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1323,
+        "completionTokens": 55,
+        "totalTokens": 1378
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:13:24.501Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?\n\n[이전 개입 이력 (최근 5건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도\n4. [direct_question] 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커\n5. [direct_question] 인스타그램과 메타 광고를 시작하기 위해서는 우선 명확한 타겟 설정과 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 첫 단계로, \"커피 애호",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1323,
+        "completionTokens": 55,
+        "totalTokens": 1378
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:14:08.932Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?\n\n[이전 개입 이력 (최근 5건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도\n4. [direct_question] 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커\n5. [direct_question] 인스타그램과 메타 광고를 시작하기 위해서는 우선 명확한 타겟 설정과 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 첫 단계로, \"커피 애호",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1323,
+        "completionTokens": 55,
+        "totalTokens": 1378
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:14:54.152Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?\n\n[이전 개입 이력 (최근 5건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도\n4. [direct_question] 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커\n5. [direct_question] 인스타그램과 메타 광고를 시작하기 위해서는 우선 명확한 타겟 설정과 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 첫 단계로, \"커피 애호",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1323,
+        "completionTokens": 55,
+        "totalTokens": 1378
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:15:38.982Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?\n\n[이전 개입 이력 (최근 5건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도\n4. [direct_question] 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커\n5. [direct_question] 인스타그램과 메타 광고를 시작하기 위해서는 우선 명확한 타겟 설정과 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 첫 단계로, \"커피 애호",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1323,
+        "completionTokens": 55,
+        "totalTokens": 1378
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:16:23.863Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- target_vague, message_abstract, experiment_missing: 이전 개입 이력에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- direct_question은 이 반복 제한에서 제외됩니다. 사용자가 질문하면 항상 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 인스타그램과 메타 광고를 어떻게 해야 할지 모르겠다고 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하는 방법에 대해 질문했습니다.\",\"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n시작하려면 뭐부터 시작해야할까요\n요약 해주세요\n개발적으로 개발해야할 거나 디자이너가 해야할 일은 뭐가 있을까\n대답해 \n그럼 결론은 여러가지 광고 아이템을 만들어서 해야한다는거지?\n\n[이전 개입 이력 (최근 5건)]\n1. [direct_question] 인스타그램과 메타 광고를 효과적으로 활용하기 위해서는 먼저 타겟팅 전략을 명확히 해야 합니다. 커피 애호가와 특별한 커피 경험을 찾는 도시 거주\n2. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 구체적인 타겟을 설정하고, 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 커피 애호가와 도시 거주\n3. [direct_question] 인스타그램과 메타 광고를 시작하려면 먼저 목표 고객과 KPI에 맞는 전략을 설정하는 것이 중요합니다. 커피 애호가와 특별한 커피 경험을 찾는 도\n4. [direct_question] 인스타그램과 메타 광고를 효과적으로 시작하기 위해서는 먼저 철저한 타겟 분석과 콘텐츠 전략을 수립하는 것이 중요합니다. 커피 애호가와 특별한 커\n5. [direct_question] 인스타그램과 메타 광고를 시작하기 위해서는 우선 명확한 타겟 설정과 그에 맞춘 광고 콘텐츠를 준비하는 것이 중요합니다. 첫 단계로, \"커피 애호",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 인스타그램과 메타 광고를 시작하기 위한 구체적인 단계와 필요한 작업에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1323,
+        "completionTokens": 55,
+        "totalTokens": 1378
+      }
+    }
+  ],
+  "tokenUsage": {
+    "totalPromptTokens": 48827,
+    "totalCompletionTokens": 3156,
+    "totalTokens": 51983,
+    "calls": 41
+  }
+}

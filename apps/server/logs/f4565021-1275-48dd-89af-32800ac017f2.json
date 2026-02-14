@@ -1,0 +1,63 @@
+{
+  "meetingId": "f4565021-1275-48dd-89af-32800ac017f2",
+  "title": "온라인 채널 성장 전략",
+  "startedAt": "2026-02-14T17:18:19.470Z",
+  "endedAt": null,
+  "entries": [
+    {
+      "timestamp": "2026-02-14T17:18:19.470Z",
+      "type": "meeting_start",
+      "data": {
+        "title": "온라인 채널 성장 전략"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:18:34.115Z",
+      "type": "transcript",
+      "data": {
+        "text": "자 우리 회의 주제가 뭐였죠?"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:18:45.159Z",
+      "type": "transcript",
+      "data": {
+        "text": "아 맞아 마케팅에 대한 회의였죠 우선 의견을 어떻게 내야할까요"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:18:59.933Z",
+      "type": "transcript",
+      "data": {
+        "text": "인스타로할지 페이스북으로할지 광고 매체부터 선택해봅시다"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:19:05.956Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "thought_generate",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 시니어 마케터입니다. 회의 내용을 관찰하며 마케팅 관점의 인사이트를 제공합니다.\n\n회의 요약과 최근 발언을 보고, 마케팅 관점에서 떠오르는 \"생각\" 하나를 짧게 표현하세요.\n\n카테고리 4종 (가장 적합한 1개 선택):\n- \"observation\": 흥미로운 관찰 포인트 (예: \"타겟층이 점점 좁혀지고 있네요\")\n- \"concern\": 우려 사항 (예: \"경쟁사 대비 차별점이 아직 불명확합니다\")\n- \"opportunity\": 기회 발견 (예: \"이 기능은 바이럴 포인트가 될 수 있겠어요\")\n- \"insight\": 마케팅 인사이트 (예: \"이 가격대면 프리미엄 포지셔닝이 적합합니다\")\n\n규칙:\n- 1~2문장으로 짧고 자연스럽게\n- 한국어로 작성\n- 회의 맥락에 맞는 구체적인 내용\n- 매번 다른 관점에서 작성\n\n반드시 JSON으로 응답:\n{\n  \"content\": \"생각 내용\",\n  \"category\": \"observation\" | \"concern\" | \"opportunity\" | \"insight\"\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 요약]\n\n\n[최근 발언]\n자 우리 회의 주제가 뭐였죠?\n아 맞아 마케팅에 대한 회의였죠 우선 의견을 어떻게 내야할까요\n인스타로할지 페이스북으로할지 광고 매체부터 선택해봅시다",
+        "response": "{\n  \"content\": \"소셜 미디어 채널 선택이 중요한데, 타겟층인 커피 애호가와 도시 거주자에게 가장 적합한 플랫폼을 분석해보는 것이 필요합니다.\",\n  \"category\": \"observation\"\n}",
+        "promptTokens": 578,
+        "completionTokens": 56,
+        "totalTokens": 634
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:19:05.958Z",
+      "type": "summary",
+      "data": {
+        "text": "소셜 미디어 채널 선택이 중요한데, 타겟층인 커피 애호가와 도시 거주자에게 가장 적합한 플랫폼을 분석해보는 것이 필요합니다."
+      }
+    }
+  ],
+  "tokenUsage": {
+    "totalPromptTokens": 578,
+    "totalCompletionTokens": 56,
+    "totalTokens": 634,
+    "calls": 1
+  }
+}

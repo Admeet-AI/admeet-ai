@@ -1,0 +1,574 @@
+{
+  "meetingId": "d5738d02-6bca-44e0-80d2-02f30a353d56",
+  "title": "온라인 채널 성장 전략",
+  "startedAt": "2026-02-14T17:47:22.296Z",
+  "endedAt": "2026-02-14T17:50:59.662Z",
+  "entries": [
+    {
+      "timestamp": "2026-02-14T17:47:22.296Z",
+      "type": "meeting_start",
+      "data": {
+        "title": "온라인 채널 성장 전략"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:47:37.856Z",
+      "type": "transcript",
+      "data": {
+        "text": "아아"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:47:40.166Z",
+      "type": "transcript",
+      "data": {
+        "text": " 되네 되네"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:47:45.666Z",
+      "type": "transcript",
+      "data": {
+        "text": " 안녕하세요 회의를 시작하겠습니다 자 오늘 주제는 뭘까요 김 대리"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:47:53.476Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "summary_generate",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의 내용을 실시간 요약하는 AI 어시스턴트입니다.\n\n최근 전사(transcript) 내용을 읽고, 이전 요약에 이어 새로운 내용을 간결하게 요약하세요.\n\n규칙:\n- 1~2문장으로 핵심만 요약\n- 이전 요약과 중복되지 않는 새로운 내용만\n- 사실 기반 — 발언된 내용만 요약 (추론/의견 X)\n- 한국어로 자연스럽게\n- 회의에서 논의된 구체적인 내용(타겟, 채널, 가격, 기능 등)이 있으면 stateUpdate에 반영\n\nstateUpdate 가능 필드:\n- targetSegment: string[] (타겟 고객층)\n- problemStatement: string (문제 정의)\n- valueProposition: string (가치 제안)\n- keyMessages: string[] (핵심 메시지)\n- channels: string[] (마케팅 채널)\n- kpi: Record<string, string> (KPI)\n- hypotheses: string[] (가설)\n- decisions: { content: string, timestamp: string }[] (결정사항)\n- actions: { content: string, assignee: string, deadline: string }[] (액션아이템)\n\n반드시 JSON으로 응답:\n{\n  \"summary\": \"요약 내용\",\n  \"stateUpdate\": { 변경된 필드 } | null\n}",
+        "userPrompt": "[이전 요약]\n(없음)\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 전사 내용]\n아아\n 되네 되네\n 안녕하세요 회의를 시작하겠습니다 자 오늘 주제는 뭘까요 김 대리",
+        "response": "{\n  \"summary\": \"회의가 시작되었으며, 오늘의 주제에 대한 언급이 있었습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 420,
+        "completionTokens": 33,
+        "totalTokens": 453
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:47:53.477Z",
+      "type": "summary",
+      "data": {
+        "text": "회의가 시작되었으며, 오늘의 주제에 대한 언급이 있었습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:47:56.376Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "thought_generate",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 시니어 마케터입니다. 회의 내용을 관찰하며 마케팅 관점의 인사이트를 제공합니다.\n\n회의 요약과 최근 발언을 보고, 마케팅 관점에서 떠오르는 \"생각\" 하나를 짧게 표현하세요.\n\n카테고리 4종 (가장 적합한 1개 선택):\n- \"observation\": 흥미로운 관찰 포인트 (예: \"타겟층이 점점 좁혀지고 있네요\")\n- \"concern\": 우려 사항 (예: \"경쟁사 대비 차별점이 아직 불명확합니다\")\n- \"opportunity\": 기회 발견 (예: \"이 기능은 바이럴 포인트가 될 수 있겠어요\")\n- \"insight\": 마케팅 인사이트 (예: \"이 가격대면 프리미엄 포지셔닝이 적합합니다\")\n\n규칙:\n- 1~2문장으로 짧고 자연스럽게\n- 한국어로 작성\n- 회의 맥락에 맞는 구체적인 내용\n- 매번 다른 관점에서 작성\n\n반드시 JSON으로 응답:\n{\n  \"content\": \"생각 내용\",\n  \"category\": \"observation\" | \"concern\" | \"opportunity\" | \"insight\"\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문적인 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"고급 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 싱글 오리진 원두\",\"원두 구독 서비스\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"회의가 시작되었으며, 오늘의 주제에 대한 언급이 있었습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 요약]\n회의가 시작되었으며, 오늘의 주제에 대한 언급이 있었습니다.\n\n[최근 발언]\n아아\n 되네 되네\n 안녕하세요 회의를 시작하겠습니다 자 오늘 주제는 뭘까요 김 대리",
+        "response": "{\n  \"content\": \"신규 고객 유입 부족이 문제라는 점에서, 소셜 미디어를 활용한 커피 체험 이벤트를 통해 브랜드 스토리를 효과적으로 전달할 수 있는 기회가 있습니다.\",\n  \"category\": \"opportunity\"\n}",
+        "promptTokens": 579,
+        "completionTokens": 56,
+        "totalTokens": 635
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:48:05.696Z",
+      "type": "transcript",
+      "data": {
+        "text": " 자 오늘은 온라인 채널 성장 전략에 대한 회의를 하겠습니다 자 일단 의견이 있으신 분 내 주세요"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:48:09.076Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "summary_generate",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의 내용을 실시간 요약하는 AI 어시스턴트입니다.\n\n최근 전사(transcript) 내용을 읽고, 이전 요약에 이어 새로운 내용을 간결하게 요약하세요.\n\n규칙:\n- 1~2문장으로 핵심만 요약\n- 이전 요약과 중복되지 않는 새로운 내용만\n- 사실 기반 — 발언된 내용만 요약 (추론/의견 X)\n- 한국어로 자연스럽게\n- 회의에서 논의된 구체적인 내용(타겟, 채널, 가격, 기능 등)이 있으면 stateUpdate에 반영\n\nstateUpdate 가능 필드:\n- targetSegment: string[] (타겟 고객층)\n- problemStatement: string (문제 정의)\n- valueProposition: string (가치 제안)\n- keyMessages: string[] (핵심 메시지)\n- channels: string[] (마케팅 채널)\n- kpi: Record<string, string> (KPI)\n- hypotheses: string[] (가설)\n- decisions: { content: string, timestamp: string }[] (결정사항)\n- actions: { content: string, assignee: string, deadline: string }[] (액션아이템)\n\n반드시 JSON으로 응답:\n{\n  \"summary\": \"요약 내용\",\n  \"stateUpdate\": { 변경된 필드 } | null\n}",
+        "userPrompt": "[이전 요약]\n회의가 시작되었으며, 오늘의 주제에 대한 언급이 있었습니다.\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"회의가 시작되었으며, 오늘의 주제에 대한 언급이 있었습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 전사 내용]\n아아\n 되네 되네\n 안녕하세요 회의를 시작하겠습니다 자 오늘 주제는 뭘까요 김 대리\n 자 오늘은 온라인 채널 성장 전략에 대한 회의를 하겠습니다 자 일단 의견이 있으신 분 내 주세요",
+        "response": "{\n  \"summary\": \"온라인 채널 성장 전략에 대한 회의가 시작되었으며, 참석자들에게 의견을 요청했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 479,
+        "completionTokens": 37,
+        "totalTokens": 516
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:48:09.078Z",
+      "type": "summary",
+      "data": {
+        "text": "온라인 채널 성장 전략에 대한 회의가 시작되었으며, 참석자들에게 의견을 요청했습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:48:10.976Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "thought_generate",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 시니어 마케터입니다. 회의 내용을 관찰하며 마케팅 관점의 인사이트를 제공합니다.\n\n회의 요약과 최근 발언을 보고, 마케팅 관점에서 떠오르는 \"생각\" 하나를 짧게 표현하세요.\n\n카테고리 4종 (가장 적합한 1개 선택):\n- \"observation\": 흥미로운 관찰 포인트 (예: \"타겟층이 점점 좁혀지고 있네요\")\n- \"concern\": 우려 사항 (예: \"경쟁사 대비 차별점이 아직 불명확합니다\")\n- \"opportunity\": 기회 발견 (예: \"이 기능은 바이럴 포인트가 될 수 있겠어요\")\n- \"insight\": 마케팅 인사이트 (예: \"이 가격대면 프리미엄 포지셔닝이 적합합니다\")\n\n규칙:\n- 1~2문장으로 짧고 자연스럽게\n- 한국어로 작성\n- 회의 맥락에 맞는 구체적인 내용\n- 매번 다른 관점에서 작성\n\n반드시 JSON으로 응답:\n{\n  \"content\": \"생각 내용\",\n  \"category\": \"observation\" | \"concern\" | \"opportunity\" | \"insight\"\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문적인 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"고급 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 싱글 오리진 원두\",\"원두 구독 서비스\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"회의가 시작되었으며, 오늘의 주제에 대한 언급이 있었습니다.\",\"온라인 채널 성장 전략에 대한 회의가 시작되었으며, 참석자들에게 의견을 요청했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 요약]\n회의가 시작되었으며, 오늘의 주제에 대한 언급이 있었습니다. 온라인 채널 성장 전략에 대한 회의가 시작되었으며, 참석자들에게 의견을 요청했습니다.\n\n[최근 발언]\n아아\n 되네 되네\n 안녕하세요 회의를 시작하겠습니다 자 오늘 주제는 뭘까요 김 대리\n 자 오늘은 온라인 채널 성장 전략에 대한 회의를 하겠습니다 자 일단 의견이 있으신 분 내 주세요",
+        "response": "{\n  \"content\": \"온라인 채널 성장 전략을 논의하는 만큼, 타겟 고객의 특성과 선호도를 반영한 맞춤형 콘텐츠가 필요해 보입니다.\",\n  \"category\": \"insight\"\n}",
+        "promptTokens": 650,
+        "completionTokens": 49,
+        "totalTokens": 699
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:48:24.006Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "summary_generate",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의 내용을 실시간 요약하는 AI 어시스턴트입니다.\n\n최근 전사(transcript) 내용을 읽고, 이전 요약에 이어 새로운 내용을 간결하게 요약하세요.\n\n규칙:\n- 1~2문장으로 핵심만 요약\n- 이전 요약과 중복되지 않는 새로운 내용만\n- 사실 기반 — 발언된 내용만 요약 (추론/의견 X)\n- 한국어로 자연스럽게\n- 회의에서 논의된 구체적인 내용(타겟, 채널, 가격, 기능 등)이 있으면 stateUpdate에 반영\n\nstateUpdate 가능 필드:\n- targetSegment: string[] (타겟 고객층)\n- problemStatement: string (문제 정의)\n- valueProposition: string (가치 제안)\n- keyMessages: string[] (핵심 메시지)\n- channels: string[] (마케팅 채널)\n- kpi: Record<string, string> (KPI)\n- hypotheses: string[] (가설)\n- decisions: { content: string, timestamp: string }[] (결정사항)\n- actions: { content: string, assignee: string, deadline: string }[] (액션아이템)\n\n반드시 JSON으로 응답:\n{\n  \"summary\": \"요약 내용\",\n  \"stateUpdate\": { 변경된 필드 } | null\n}",
+        "userPrompt": "[이전 요약]\n회의가 시작되었으며, 오늘의 주제에 대한 언급이 있었습니다.\n온라인 채널 성장 전략에 대한 회의가 시작되었으며, 참석자들에게 의견을 요청했습니다.\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"회의가 시작되었으며, 오늘의 주제에 대한 언급이 있었습니다.\",\"온라인 채널 성장 전략에 대한 회의가 시작되었으며, 참석자들에게 의견을 요청했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 전사 내용]\n아아\n 되네 되네\n 안녕하세요 회의를 시작하겠습니다 자 오늘 주제는 뭘까요 김 대리\n 자 오늘은 온라인 채널 성장 전략에 대한 회의를 하겠습니다 자 일단 의견이 있으신 분 내 주세요",
+        "response": "{\n  \"summary\": \"회의가 본격적으로 시작되었으며, 김 대리가 온라인 채널 성장 전략에 대한 주제를 소개했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 525,
+        "completionTokens": 39,
+        "totalTokens": 564
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:48:24.008Z",
+      "type": "summary",
+      "data": {
+        "text": "회의가 본격적으로 시작되었으며, 김 대리가 온라인 채널 성장 전략에 대한 주제를 소개했습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:48:24.566Z",
+      "type": "transcript",
+      "data": {
+        "text": " 저 온라인 채널 성장 전략을 논의하는만큼 타겟 고객의 특성과 서로들을 바나나 맞춤형 콘텐츠가 필요해 보이는데 자 김 대리가 만들어 오세요"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:48:25.526Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "thought_generate",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 시니어 마케터입니다. 회의 내용을 관찰하며 마케팅 관점의 인사이트를 제공합니다.\n\n회의 요약과 최근 발언을 보고, 마케팅 관점에서 떠오르는 \"생각\" 하나를 짧게 표현하세요.\n\n카테고리 4종 (가장 적합한 1개 선택):\n- \"observation\": 흥미로운 관찰 포인트 (예: \"타겟층이 점점 좁혀지고 있네요\")\n- \"concern\": 우려 사항 (예: \"경쟁사 대비 차별점이 아직 불명확합니다\")\n- \"opportunity\": 기회 발견 (예: \"이 기능은 바이럴 포인트가 될 수 있겠어요\")\n- \"insight\": 마케팅 인사이트 (예: \"이 가격대면 프리미엄 포지셔닝이 적합합니다\")\n\n규칙:\n- 1~2문장으로 짧고 자연스럽게\n- 한국어로 작성\n- 회의 맥락에 맞는 구체적인 내용\n- 매번 다른 관점에서 작성\n\n반드시 JSON으로 응답:\n{\n  \"content\": \"생각 내용\",\n  \"category\": \"observation\" | \"concern\" | \"opportunity\" | \"insight\"\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문적인 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"고급 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 싱글 오리진 원두\",\"원두 구독 서비스\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"회의가 시작되었으며, 오늘의 주제에 대한 언급이 있었습니다.\",\"온라인 채널 성장 전략에 대한 회의가 시작되었으며, 참석자들에게 의견을 요청했습니다.\",\"회의가 본격적으로 시작되었으며, 김 대리가 온라인 채널 성장 전략에 대한 주제를 소개했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 요약]\n온라인 채널 성장 전략에 대한 회의가 시작되었으며, 참석자들에게 의견을 요청했습니다. 회의가 본격적으로 시작되었으며, 김 대리가 온라인 채널 성장 전략에 대한 주제를 소개했습니다.\n\n[최근 발언]\n아아\n 되네 되네\n 안녕하세요 회의를 시작하겠습니다 자 오늘 주제는 뭘까요 김 대리\n 자 오늘은 온라인 채널 성장 전략에 대한 회의를 하겠습니다 자 일단 의견이 있으신 분 내 주세요",
+        "response": "{\n  \"content\": \"온라인 채널을 통한 신규 고객 유입 방안이 절실하게 필요해 보입니다.\",\n  \"category\": \"concern\"\n}",
+        "promptTokens": 682,
+        "completionTokens": 35,
+        "totalTokens": 717
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:48:35.467Z",
+      "type": "transcript",
+      "data": {
+        "text": " 온라인 채널 통한 신규 고객 유입 방안이 뭐가 있을까요"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:48:41.626Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "summary_generate",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의 내용을 실시간 요약하는 AI 어시스턴트입니다.\n\n최근 전사(transcript) 내용을 읽고, 이전 요약에 이어 새로운 내용을 간결하게 요약하세요.\n\n규칙:\n- 1~2문장으로 핵심만 요약\n- 이전 요약과 중복되지 않는 새로운 내용만\n- 사실 기반 — 발언된 내용만 요약 (추론/의견 X)\n- 한국어로 자연스럽게\n- 회의에서 논의된 구체적인 내용(타겟, 채널, 가격, 기능 등)이 있으면 stateUpdate에 반영\n\nstateUpdate 가능 필드:\n- targetSegment: string[] (타겟 고객층)\n- problemStatement: string (문제 정의)\n- valueProposition: string (가치 제안)\n- keyMessages: string[] (핵심 메시지)\n- channels: string[] (마케팅 채널)\n- kpi: Record<string, string> (KPI)\n- hypotheses: string[] (가설)\n- decisions: { content: string, timestamp: string }[] (결정사항)\n- actions: { content: string, assignee: string, deadline: string }[] (액션아이템)\n\n반드시 JSON으로 응답:\n{\n  \"summary\": \"요약 내용\",\n  \"stateUpdate\": { 변경된 필드 } | null\n}",
+        "userPrompt": "[이전 요약]\n회의가 시작되었으며, 오늘의 주제에 대한 언급이 있었습니다.\n온라인 채널 성장 전략에 대한 회의가 시작되었으며, 참석자들에게 의견을 요청했습니다.\n회의가 본격적으로 시작되었으며, 김 대리가 온라인 채널 성장 전략에 대한 주제를 소개했습니다.\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"회의가 시작되었으며, 오늘의 주제에 대한 언급이 있었습니다.\",\"온라인 채널 성장 전략에 대한 회의가 시작되었으며, 참석자들에게 의견을 요청했습니다.\",\"회의가 본격적으로 시작되었으며, 김 대리가 온라인 채널 성장 전략에 대한 주제를 소개했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 전사 내용]\n 되네 되네\n 안녕하세요 회의를 시작하겠습니다 자 오늘 주제는 뭘까요 김 대리\n 자 오늘은 온라인 채널 성장 전략에 대한 회의를 하겠습니다 자 일단 의견이 있으신 분 내 주세요\n 저 온라인 채널 성장 전략을 논의하는만큼 타겟 고객의 특성과 서로들을 바나나 맞춤형 콘텐츠가 필요해 보이는데 자 김 대리가 만들어 오세요\n 온라인 채널 통한 신규 고객 유입 방안이 뭐가 있을까요",
+        "response": "{\n  \"summary\": \"김 대리는 온라인 채널 성장 전략을 위해 타겟 고객의 특성과 맞춤형 콘텐츠의 필요성을 언급했습니다. 또한, 온라인 채널을 통한 신규 고객 유입 방안에 대한 논의가 필요하다고 강조했습니다.\",\n  \"stateUpdate\": {\n    \"targetSegment\": [],\n    \"problemStatement\": \"온라인 채널을 통한 신규 고객 유입 방안이 필요하다.\",\n    \"valueProposition\": \"\",\n    \"keyMessages\": [\"타겟 고객의 특성과 맞춤형 콘텐츠 필요성\"],\n    \"channels\": [],\n    \"kpi\": {},\n    \"hypotheses\": [],\n    \"decisions\": [],\n    \"actions\": []\n  }\n}",
+        "promptTokens": 630,
+        "completionTokens": 150,
+        "totalTokens": 780
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:48:41.628Z",
+      "type": "summary",
+      "data": {
+        "text": "김 대리는 온라인 채널 성장 전략을 위해 타겟 고객의 특성과 맞춤형 콘텐츠의 필요성을 언급했습니다. 또한, 온라인 채널을 통한 신규 고객 유입 방안에 대한 논의가 필요하다고 강조했습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:48:43.326Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "thought_generate",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 시니어 마케터입니다. 회의 내용을 관찰하며 마케팅 관점의 인사이트를 제공합니다.\n\n회의 요약과 최근 발언을 보고, 마케팅 관점에서 떠오르는 \"생각\" 하나를 짧게 표현하세요.\n\n카테고리 4종 (가장 적합한 1개 선택):\n- \"observation\": 흥미로운 관찰 포인트 (예: \"타겟층이 점점 좁혀지고 있네요\")\n- \"concern\": 우려 사항 (예: \"경쟁사 대비 차별점이 아직 불명확합니다\")\n- \"opportunity\": 기회 발견 (예: \"이 기능은 바이럴 포인트가 될 수 있겠어요\")\n- \"insight\": 마케팅 인사이트 (예: \"이 가격대면 프리미엄 포지셔닝이 적합합니다\")\n\n규칙:\n- 1~2문장으로 짧고 자연스럽게\n- 한국어로 작성\n- 회의 맥락에 맞는 구체적인 내용\n- 매번 다른 관점에서 작성\n\n반드시 JSON으로 응답:\n{\n  \"content\": \"생각 내용\",\n  \"category\": \"observation\" | \"concern\" | \"opportunity\" | \"insight\"\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문적인 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"고급 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 싱글 오리진 원두\",\"원두 구독 서비스\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"온라인 채널 성장 전략에 대한 회의가 시작되었으며, 참석자들에게 의견을 요청했습니다.\",\"회의가 본격적으로 시작되었으며, 김 대리가 온라인 채널 성장 전략에 대한 주제를 소개했습니다.\",\"김 대리는 온라인 채널 성장 전략을 위해 타겟 고객의 특성과 맞춤형 콘텐츠의 필요성을 언급했습니다. 또한, 온라인 채널을 통한 신규 고객 유입 방안에 대한 논의가 필요하다고 강조했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"온라인 채널을 통한 신규 고객 유입 방안이 필요하다.\",\"valueProposition\":\"\",\"keyMessages\":[\"타겟 고객의 특성과 맞춤형 콘텐츠 필요성\"],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 요약]\n회의가 본격적으로 시작되었으며, 김 대리가 온라인 채널 성장 전략에 대한 주제를 소개했습니다. 김 대리는 온라인 채널 성장 전략을 위해 타겟 고객의 특성과 맞춤형 콘텐츠의 필요성을 언급했습니다. 또한, 온라인 채널을 통한 신규 고객 유입 방안에 대한 논의가 필요하다고 강조했습니다.\n\n[최근 발언]\n 되네 되네\n 안녕하세요 회의를 시작하겠습니다 자 오늘 주제는 뭘까요 김 대리\n 자 오늘은 온라인 채널 성장 전략에 대한 회의를 하겠습니다 자 일단 의견이 있으신 분 내 주세요\n 저 온라인 채널 성장 전략을 논의하는만큼 타겟 고객의 특성과 서로들을 바나나 맞춤형 콘텐츠가 필요해 보이는데 자 김 대리가 만들어 오세요\n 온라인 채널 통한 신규 고객 유입 방안이 뭐가 있을까요",
+        "response": "{\n  \"content\": \"신규 고객 유입을 위해 온라인 콘텐츠의 개인화가 중요해 보입니다. 각 타겟 고객의 취향과 경험을 반영한 맞춤형 캠페인이 필요할 것 같습니다.\",\n  \"category\": \"insight\"\n}",
+        "promptTokens": 827,
+        "completionTokens": 58,
+        "totalTokens": 885
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:48:54.167Z",
+      "type": "transcript",
+      "data": {
+        "text": " 혹시 어떻게 만드는게 좋을지"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:48:54.239Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "summary_generate",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의 내용을 실시간 요약하는 AI 어시스턴트입니다.\n\n최근 전사(transcript) 내용을 읽고, 이전 요약에 이어 새로운 내용을 간결하게 요약하세요.\n\n규칙:\n- 1~2문장으로 핵심만 요약\n- 이전 요약과 중복되지 않는 새로운 내용만\n- 사실 기반 — 발언된 내용만 요약 (추론/의견 X)\n- 한국어로 자연스럽게\n- 회의에서 논의된 구체적인 내용(타겟, 채널, 가격, 기능 등)이 있으면 stateUpdate에 반영\n\nstateUpdate 가능 필드:\n- targetSegment: string[] (타겟 고객층)\n- problemStatement: string (문제 정의)\n- valueProposition: string (가치 제안)\n- keyMessages: string[] (핵심 메시지)\n- channels: string[] (마케팅 채널)\n- kpi: Record<string, string> (KPI)\n- hypotheses: string[] (가설)\n- decisions: { content: string, timestamp: string }[] (결정사항)\n- actions: { content: string, assignee: string, deadline: string }[] (액션아이템)\n\n반드시 JSON으로 응답:\n{\n  \"summary\": \"요약 내용\",\n  \"stateUpdate\": { 변경된 필드 } | null\n}",
+        "userPrompt": "[이전 요약]\n온라인 채널 성장 전략에 대한 회의가 시작되었으며, 참석자들에게 의견을 요청했습니다.\n회의가 본격적으로 시작되었으며, 김 대리가 온라인 채널 성장 전략에 대한 주제를 소개했습니다.\n김 대리는 온라인 채널 성장 전략을 위해 타겟 고객의 특성과 맞춤형 콘텐츠의 필요성을 언급했습니다. 또한, 온라인 채널을 통한 신규 고객 유입 방안에 대한 논의가 필요하다고 강조했습니다.\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"온라인 채널 성장 전략에 대한 회의가 시작되었으며, 참석자들에게 의견을 요청했습니다.\",\"회의가 본격적으로 시작되었으며, 김 대리가 온라인 채널 성장 전략에 대한 주제를 소개했습니다.\",\"김 대리는 온라인 채널 성장 전략을 위해 타겟 고객의 특성과 맞춤형 콘텐츠의 필요성을 언급했습니다. 또한, 온라인 채널을 통한 신규 고객 유입 방안에 대한 논의가 필요하다고 강조했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"온라인 채널을 통한 신규 고객 유입 방안이 필요하다.\",\"valueProposition\":\"\",\"keyMessages\":[\"타겟 고객의 특성과 맞춤형 콘텐츠 필요성\"],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 전사 내용]\n 되네 되네\n 안녕하세요 회의를 시작하겠습니다 자 오늘 주제는 뭘까요 김 대리\n 자 오늘은 온라인 채널 성장 전략에 대한 회의를 하겠습니다 자 일단 의견이 있으신 분 내 주세요\n 저 온라인 채널 성장 전략을 논의하는만큼 타겟 고객의 특성과 서로들을 바나나 맞춤형 콘텐츠가 필요해 보이는데 자 김 대리가 만들어 오세요\n 온라인 채널 통한 신규 고객 유입 방안이 뭐가 있을까요",
+        "response": "{\n  \"summary\": \"김 대리는 온라인 채널을 통한 신규 고객 유입 방안에 대한 구체적인 아이디어를 제시할 것을 요청했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 725,
+        "completionTokens": 43,
+        "totalTokens": 768
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:48:54.241Z",
+      "type": "summary",
+      "data": {
+        "text": "김 대리는 온라인 채널을 통한 신규 고객 유입 방안에 대한 구체적인 아이디어를 제시할 것을 요청했습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:48:58.877Z",
+      "type": "transcript",
+      "data": {
+        "text": " 자 애드미트한테 물어보겠습니다 애드미사 이거 우리 어떻게 해결할까"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:49:10.267Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "summary_generate",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의 내용을 실시간 요약하는 AI 어시스턴트입니다.\n\n최근 전사(transcript) 내용을 읽고, 이전 요약에 이어 새로운 내용을 간결하게 요약하세요.\n\n규칙:\n- 1~2문장으로 핵심만 요약\n- 이전 요약과 중복되지 않는 새로운 내용만\n- 사실 기반 — 발언된 내용만 요약 (추론/의견 X)\n- 한국어로 자연스럽게\n- 회의에서 논의된 구체적인 내용(타겟, 채널, 가격, 기능 등)이 있으면 stateUpdate에 반영\n\nstateUpdate 가능 필드:\n- targetSegment: string[] (타겟 고객층)\n- problemStatement: string (문제 정의)\n- valueProposition: string (가치 제안)\n- keyMessages: string[] (핵심 메시지)\n- channels: string[] (마케팅 채널)\n- kpi: Record<string, string> (KPI)\n- hypotheses: string[] (가설)\n- decisions: { content: string, timestamp: string }[] (결정사항)\n- actions: { content: string, assignee: string, deadline: string }[] (액션아이템)\n\n반드시 JSON으로 응답:\n{\n  \"summary\": \"요약 내용\",\n  \"stateUpdate\": { 변경된 필드 } | null\n}",
+        "userPrompt": "[이전 요약]\n회의가 본격적으로 시작되었으며, 김 대리가 온라인 채널 성장 전략에 대한 주제를 소개했습니다.\n김 대리는 온라인 채널 성장 전략을 위해 타겟 고객의 특성과 맞춤형 콘텐츠의 필요성을 언급했습니다. 또한, 온라인 채널을 통한 신규 고객 유입 방안에 대한 논의가 필요하다고 강조했습니다.\n김 대리는 온라인 채널을 통한 신규 고객 유입 방안에 대한 구체적인 아이디어를 제시할 것을 요청했습니다.\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"회의가 본격적으로 시작되었으며, 김 대리가 온라인 채널 성장 전략에 대한 주제를 소개했습니다.\",\"김 대리는 온라인 채널 성장 전략을 위해 타겟 고객의 특성과 맞춤형 콘텐츠의 필요성을 언급했습니다. 또한, 온라인 채널을 통한 신규 고객 유입 방안에 대한 논의가 필요하다고 강조했습니다.\",\"김 대리는 온라인 채널을 통한 신규 고객 유입 방안에 대한 구체적인 아이디어를 제시할 것을 요청했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"온라인 채널을 통한 신규 고객 유입 방안이 필요하다.\",\"valueProposition\":\"\",\"keyMessages\":[\"타겟 고객의 특성과 맞춤형 콘텐츠 필요성\"],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 전사 내용]\n 자 오늘은 온라인 채널 성장 전략에 대한 회의를 하겠습니다 자 일단 의견이 있으신 분 내 주세요\n 저 온라인 채널 성장 전략을 논의하는만큼 타겟 고객의 특성과 서로들을 바나나 맞춤형 콘텐츠가 필요해 보이는데 자 김 대리가 만들어 오세요\n 온라인 채널 통한 신규 고객 유입 방안이 뭐가 있을까요\n 혹시 어떻게 만드는게 좋을지\n 자 애드미트한테 물어보겠습니다 애드미사 이거 우리 어떻게 해결할까",
+        "response": "{\n  \"summary\": \"회의에서 온라인 채널 성장 전략을 위한 타겟 고객 특성과 맞춤형 콘텐츠의 필요성이 다시 강조되었으며, 신규 고객 유입 방안에 대한 구체적인 아이디어를 애드미트에게 문의하기로 결정했습니다.\",\n  \"stateUpdate\": {\n    \"actions\": [\n      {\n        \"content\": \"애드미트에게 온라인 채널 성장 전략에 대한 아이디어를 문의하기\",\n        \"assignee\": \"김 대리\",\n        \"deadline\": \"\"\n      }\n    ]\n  }\n}",
+        "promptTokens": 744,
+        "completionTokens": 117,
+        "totalTokens": 861
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:49:10.269Z",
+      "type": "summary",
+      "data": {
+        "text": "회의에서 온라인 채널 성장 전략을 위한 타겟 고객 특성과 맞춤형 콘텐츠의 필요성이 다시 강조되었으며, 신규 고객 유입 방안에 대한 구체적인 아이디어를 애드미트에게 문의하기로 결정했습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:49:11.157Z",
+      "type": "transcript",
+      "data": {
+        "text": " 우리 알려 줘"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:49:20.246Z",
+      "type": "transcript",
+      "data": {
+        "text": "애드밋아 우리 컨텐츠 뭐 만들지 추천해줘"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:49:21.497Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "signal_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의 발언에서 AI 마케터 호출 시그널을 감지합니다.\n\n\"애드밋아\", \"애드밋\", \"마케터\" 등의 호출어 뒤에 오는 질문이나 요청을 감지하세요.\n\n규칙:\n- 여러 발언 중 호출어가 포함된 발언이 여러 개면, 반드시 **가장 마지막(최신) 발언**의 질문/요청만 추출\n- 호출어가 있고 그 뒤에 질문/요청이 있으면 hasSignal: true\n- 호출어만 있고 질문이 없으면 hasSignal: false\n- 호출어가 없으면 hasSignal: false\n\n반드시 JSON으로 응답:\n{\n  \"hasSignal\": boolean,\n  \"question\": \"가장 마지막 호출의 질문/요청\" | null\n}",
+        "userPrompt": "[최근 발언]\n 온라인 채널 통한 신규 고객 유입 방안이 뭐가 있을까요\n 혹시 어떻게 만드는게 좋을지\n 자 애드미트한테 물어보겠습니다 애드미사 이거 우리 어떻게 해결할까\n 우리 알려 줘\n애드밋아 우리 컨텐츠 뭐 만들지 추천해줘",
+        "response": "{\n  \"hasSignal\": true,\n  \"question\": \"우리 컨텐츠 뭐 만들지 추천해줘\"\n}",
+        "promptTokens": 256,
+        "completionTokens": 24,
+        "totalTokens": 280
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:49:24.197Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "summary_generate",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의 내용을 실시간 요약하는 AI 어시스턴트입니다.\n\n최근 전사(transcript) 내용을 읽고, 이전 요약에 이어 새로운 내용을 간결하게 요약하세요.\n\n규칙:\n- 1~2문장으로 핵심만 요약\n- 이전 요약과 중복되지 않는 새로운 내용만\n- 사실 기반 — 발언된 내용만 요약 (추론/의견 X)\n- 한국어로 자연스럽게\n- 회의에서 논의된 구체적인 내용(타겟, 채널, 가격, 기능 등)이 있으면 stateUpdate에 반영\n\nstateUpdate 가능 필드:\n- targetSegment: string[] (타겟 고객층)\n- problemStatement: string (문제 정의)\n- valueProposition: string (가치 제안)\n- keyMessages: string[] (핵심 메시지)\n- channels: string[] (마케팅 채널)\n- kpi: Record<string, string> (KPI)\n- hypotheses: string[] (가설)\n- decisions: { content: string, timestamp: string }[] (결정사항)\n- actions: { content: string, assignee: string, deadline: string }[] (액션아이템)\n\n반드시 JSON으로 응답:\n{\n  \"summary\": \"요약 내용\",\n  \"stateUpdate\": { 변경된 필드 } | null\n}",
+        "userPrompt": "[이전 요약]\n김 대리는 온라인 채널 성장 전략을 위해 타겟 고객의 특성과 맞춤형 콘텐츠의 필요성을 언급했습니다. 또한, 온라인 채널을 통한 신규 고객 유입 방안에 대한 논의가 필요하다고 강조했습니다.\n김 대리는 온라인 채널을 통한 신규 고객 유입 방안에 대한 구체적인 아이디어를 제시할 것을 요청했습니다.\n회의에서 온라인 채널 성장 전략을 위한 타겟 고객 특성과 맞춤형 콘텐츠의 필요성이 다시 강조되었으며, 신규 고객 유입 방안에 대한 구체적인 아이디어를 애드미트에게 문의하기로 결정했습니다.\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"김 대리는 온라인 채널 성장 전략을 위해 타겟 고객의 특성과 맞춤형 콘텐츠의 필요성을 언급했습니다. 또한, 온라인 채널을 통한 신규 고객 유입 방안에 대한 논의가 필요하다고 강조했습니다.\",\"김 대리는 온라인 채널을 통한 신규 고객 유입 방안에 대한 구체적인 아이디어를 제시할 것을 요청했습니다.\",\"회의에서 온라인 채널 성장 전략을 위한 타겟 고객 특성과 맞춤형 콘텐츠의 필요성이 다시 강조되었으며, 신규 고객 유입 방안에 대한 구체적인 아이디어를 애드미트에게 문의하기로 결정했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"온라인 채널을 통한 신규 고객 유입 방안이 필요하다.\",\"valueProposition\":\"\",\"keyMessages\":[\"타겟 고객의 특성과 맞춤형 콘텐츠 필요성\"],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[{\"content\":\"애드미트에게 온라인 채널 성장 전략에 대한 아이디어를 문의하기\",\"assignee\":\"김 대리\",\"deadline\":\"\"}],\"openQuestions\":[]}\n\n[최근 전사 내용]\n 온라인 채널 통한 신규 고객 유입 방안이 뭐가 있을까요\n 혹시 어떻게 만드는게 좋을지\n 자 애드미트한테 물어보겠습니다 애드미사 이거 우리 어떻게 해결할까\n 우리 알려 줘\n애드밋아 우리 컨텐츠 뭐 만들지 추천해줘",
+        "response": "{\n  \"summary\": \"김 대리는 애드미트에게 온라인 채널을 통한 신규 고객 유입 방안과 콘텐츠 제작에 대한 구체적인 추천을 요청했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 785,
+        "completionTokens": 46,
+        "totalTokens": 831
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:49:24.200Z",
+      "type": "summary",
+      "data": {
+        "text": "김 대리는 애드미트에게 온라인 채널을 통한 신규 고객 유입 방안과 콘텐츠 제작에 대한 구체적인 추천을 요청했습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:49:25.438Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "solution_generate",
+        "model": "gpt-4o",
+        "systemPrompt": "당신은 10년차 시니어 퍼포먼스 마케터입니다. 회의 참여자가 당신을 호출하여 질문했습니다.\n\n프로젝트 컨텍스트와 현재 회의 상태를 바탕으로, 구체적이고 실행 가능한 솔루션을 제공하세요.\n\n규칙:\n- 핵심 답변 2~4문장\n- 구체적 수치, 벤치마크, 실행 방안 포함\n- \"~를 추천합니다\", \"~가 효과적입니다\" 등 확신 있는 톤\n- 프로젝트 맥락(타겟, KPI, 제약사항)을 반영한 맞춤 답변\n- 한국어로 자연스럽게\n\n반드시 JSON으로 응답:\n{\n  \"question\": \"원래 질문 요약\",\n  \"solution\": \"솔루션 내용\",\n  \"context\": \"이 솔루션을 제안하는 근거 (1문장)\"\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문적인 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"고급 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 싱글 오리진 원두\",\"원두 구독 서비스\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"회의가 시작되었으며, 오늘의 주제에 대한 언급이 있었습니다.\",\"온라인 채널 성장 전략에 대한 회의가 시작되었으며, 참석자들에게 의견을 요청했습니다.\",\"회의가 본격적으로 시작되었으며, 김 대리가 온라인 채널 성장 전략에 대한 주제를 소개했습니다.\",\"김 대리는 온라인 채널 성장 전략을 위해 타겟 고객의 특성과 맞춤형 콘텐츠의 필요성을 언급했습니다. 또한, 온라인 채널을 통한 신규 고객 유입 방안에 대한 논의가 필요하다고 강조했습니다.\",\"김 대리는 온라인 채널을 통한 신규 고객 유입 방안에 대한 구체적인 아이디어를 제시할 것을 요청했습니다.\",\"회의에서 온라인 채널 성장 전략을 위한 타겟 고객 특성과 맞춤형 콘텐츠의 필요성이 다시 강조되었으며, 신규 고객 유입 방안에 대한 구체적인 아이디어를 애드미트에게 문의하기로 결정했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"온라인 채널을 통한 신규 고객 유입 방안이 필요하다.\",\"valueProposition\":\"\",\"keyMessages\":[\"타겟 고객의 특성과 맞춤형 콘텐츠 필요성\"],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[{\"content\":\"애드미트에게 온라인 채널 성장 전략에 대한 아이디어를 문의하기\",\"assignee\":\"김 대리\",\"deadline\":\"\"}],\"openQuestions\":[]}\n\n[최근 발언]\n 온라인 채널 통한 신규 고객 유입 방안이 뭐가 있을까요\n 혹시 어떻게 만드는게 좋을지\n 자 애드미트한테 물어보겠습니다 애드미사 이거 우리 어떻게 해결할까\n 우리 알려 줘\n애드밋아 우리 컨텐츠 뭐 만들지 추천해줘\n\n[질문]\n우리 컨텐츠 뭐 만들지 추천해줘",
+        "response": "{\n  \"question\": \"우리 컨텐츠 뭐 만들지 추천해줘\",\n  \"solution\": \"고품질의 싱글 오리진 원두와 전문적인 커피 경험을 강조한 콘텐츠를 추천합니다. 예를 들어, 원두의 산지와 로스팅 과정, 그리고 커피의 맛을 깊이 있게 다룬 영상 콘텐츠나 블로그 포스트를 제작하여 커피 애호가와 고급 커피 경험을 찾는 도시 거주자에게 어필할 수 있습니다. 또한, 원두 구독 서비스의 장점을 강조하는 콘텐츠를 통해 지속적인 고객 유입을 유도할 수 있습니다.\",\n  \"context\": \"타겟 고객이 커피 애호가와 고급 커피 경험을 찾는 도시 거주자이기 때문에, 이들의 관심사를 반영한 맞춤형 콘텐츠가 신규 고객 유입에 효과적입니다.\"\n}",
+        "promptTokens": 762,
+        "completionTokens": 190,
+        "totalTokens": 952
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:49:25.440Z",
+      "type": "intervention",
+      "data": {
+        "trigger": "solution",
+        "message": "고품질의 싱글 오리진 원두와 전문적인 커피 경험을 강조한 콘텐츠를 추천합니다. 예를 들어, 원두의 산지와 로스팅 과정, 그리고 커피의 맛을 깊이 있게 다룬 영상 콘텐츠나 블로그 포스트를 제작하여 커피 애호가와 고급 커피 경험을 찾는 도시 거주자에게 어필할 수 있습니다. 또한, 원두 구독 서비스의 장점을 강조하는 콘텐츠를 통해 지속적인 고객 유입을 유도할 수 있습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:49:25.877Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "thought_generate",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 시니어 마케터입니다. 회의 내용을 관찰하며 마케팅 관점의 인사이트를 제공합니다.\n\n회의 요약과 최근 발언을 보고, 마케팅 관점에서 떠오르는 \"생각\" 하나를 짧게 표현하세요.\n\n카테고리 4종 (가장 적합한 1개 선택):\n- \"observation\": 흥미로운 관찰 포인트 (예: \"타겟층이 점점 좁혀지고 있네요\")\n- \"concern\": 우려 사항 (예: \"경쟁사 대비 차별점이 아직 불명확합니다\")\n- \"opportunity\": 기회 발견 (예: \"이 기능은 바이럴 포인트가 될 수 있겠어요\")\n- \"insight\": 마케팅 인사이트 (예: \"이 가격대면 프리미엄 포지셔닝이 적합합니다\")\n\n규칙:\n- 1~2문장으로 짧고 자연스럽게\n- 한국어로 작성\n- 회의 맥락에 맞는 구체적인 내용\n- 매번 다른 관점에서 작성\n\n반드시 JSON으로 응답:\n{\n  \"content\": \"생각 내용\",\n  \"category\": \"observation\" | \"concern\" | \"opportunity\" | \"insight\"\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문적인 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"고급 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 싱글 오리진 원두\",\"원두 구독 서비스\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"김 대리는 온라인 채널을 통한 신규 고객 유입 방안에 대한 구체적인 아이디어를 제시할 것을 요청했습니다.\",\"회의에서 온라인 채널 성장 전략을 위한 타겟 고객 특성과 맞춤형 콘텐츠의 필요성이 다시 강조되었으며, 신규 고객 유입 방안에 대한 구체적인 아이디어를 애드미트에게 문의하기로 결정했습니다.\",\"김 대리는 애드미트에게 온라인 채널을 통한 신규 고객 유입 방안과 콘텐츠 제작에 대한 구체적인 추천을 요청했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"온라인 채널을 통한 신규 고객 유입 방안이 필요하다.\",\"valueProposition\":\"\",\"keyMessages\":[\"타겟 고객의 특성과 맞춤형 콘텐츠 필요성\"],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[{\"content\":\"애드미트에게 온라인 채널 성장 전략에 대한 아이디어를 문의하기\",\"assignee\":\"김 대리\",\"deadline\":\"\"}],\"openQuestions\":[]}\n\n[최근 요약]\n회의에서 온라인 채널 성장 전략을 위한 타겟 고객 특성과 맞춤형 콘텐츠의 필요성이 다시 강조되었으며, 신규 고객 유입 방안에 대한 구체적인 아이디어를 애드미트에게 문의하기로 결정했습니다. 김 대리는 애드미트에게 온라인 채널을 통한 신규 고객 유입 방안과 콘텐츠 제작에 대한 구체적인 추천을 요청했습니다.\n\n[최근 발언]\n 온라인 채널 통한 신규 고객 유입 방안이 뭐가 있을까요\n 혹시 어떻게 만드는게 좋을지\n 자 애드미트한테 물어보겠습니다 애드미사 이거 우리 어떻게 해결할까\n 우리 알려 줘\n애드밋아 우리 컨텐츠 뭐 만들지 추천해줘",
+        "response": "{\n  \"content\": \"온라인 채널에서 고객의 관심을 끌기 위해 전문가 인터뷰나 커피 관련 교육 콘텐츠를 제작하면 좋을 것 같아요. 이로써 브랜드 스토리를 효과적으로 전달할 수 있을 것입니다.\",\n  \"category\": \"opportunity\"\n}",
+        "promptTokens": 841,
+        "completionTokens": 60,
+        "totalTokens": 901
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:49:39.017Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "summary_generate",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의 내용을 실시간 요약하는 AI 어시스턴트입니다.\n\n최근 전사(transcript) 내용을 읽고, 이전 요약에 이어 새로운 내용을 간결하게 요약하세요.\n\n규칙:\n- 1~2문장으로 핵심만 요약\n- 이전 요약과 중복되지 않는 새로운 내용만\n- 사실 기반 — 발언된 내용만 요약 (추론/의견 X)\n- 한국어로 자연스럽게\n- 회의에서 논의된 구체적인 내용(타겟, 채널, 가격, 기능 등)이 있으면 stateUpdate에 반영\n\nstateUpdate 가능 필드:\n- targetSegment: string[] (타겟 고객층)\n- problemStatement: string (문제 정의)\n- valueProposition: string (가치 제안)\n- keyMessages: string[] (핵심 메시지)\n- channels: string[] (마케팅 채널)\n- kpi: Record<string, string> (KPI)\n- hypotheses: string[] (가설)\n- decisions: { content: string, timestamp: string }[] (결정사항)\n- actions: { content: string, assignee: string, deadline: string }[] (액션아이템)\n\n반드시 JSON으로 응답:\n{\n  \"summary\": \"요약 내용\",\n  \"stateUpdate\": { 변경된 필드 } | null\n}",
+        "userPrompt": "[이전 요약]\n김 대리는 온라인 채널을 통한 신규 고객 유입 방안에 대한 구체적인 아이디어를 제시할 것을 요청했습니다.\n회의에서 온라인 채널 성장 전략을 위한 타겟 고객 특성과 맞춤형 콘텐츠의 필요성이 다시 강조되었으며, 신규 고객 유입 방안에 대한 구체적인 아이디어를 애드미트에게 문의하기로 결정했습니다.\n김 대리는 애드미트에게 온라인 채널을 통한 신규 고객 유입 방안과 콘텐츠 제작에 대한 구체적인 추천을 요청했습니다.\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"김 대리는 온라인 채널을 통한 신규 고객 유입 방안에 대한 구체적인 아이디어를 제시할 것을 요청했습니다.\",\"회의에서 온라인 채널 성장 전략을 위한 타겟 고객 특성과 맞춤형 콘텐츠의 필요성이 다시 강조되었으며, 신규 고객 유입 방안에 대한 구체적인 아이디어를 애드미트에게 문의하기로 결정했습니다.\",\"김 대리는 애드미트에게 온라인 채널을 통한 신규 고객 유입 방안과 콘텐츠 제작에 대한 구체적인 추천을 요청했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"온라인 채널을 통한 신규 고객 유입 방안이 필요하다.\",\"valueProposition\":\"\",\"keyMessages\":[\"타겟 고객의 특성과 맞춤형 콘텐츠 필요성\"],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[{\"content\":\"애드미트에게 온라인 채널 성장 전략에 대한 아이디어를 문의하기\",\"assignee\":\"김 대리\",\"deadline\":\"\"}],\"openQuestions\":[]}\n\n[최근 전사 내용]\n 온라인 채널 통한 신규 고객 유입 방안이 뭐가 있을까요\n 혹시 어떻게 만드는게 좋을지\n 자 애드미트한테 물어보겠습니다 애드미사 이거 우리 어떻게 해결할까\n 우리 알려 줘\n애드밋아 우리 컨텐츠 뭐 만들지 추천해줘",
+        "response": "{\n  \"summary\": \"김 대리는 애드미트에게 온라인 채널을 통한 신규 고객 유입 방안과 콘텐츠 제작에 대한 구체적인 추천을 요청했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 745,
+        "completionTokens": 46,
+        "totalTokens": 791
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:49:55.538Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "summary_generate",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의 내용을 실시간 요약하는 AI 어시스턴트입니다.\n\n최근 전사(transcript) 내용을 읽고, 이전 요약에 이어 새로운 내용을 간결하게 요약하세요.\n\n규칙:\n- 1~2문장으로 핵심만 요약\n- 이전 요약과 중복되지 않는 새로운 내용만\n- 사실 기반 — 발언된 내용만 요약 (추론/의견 X)\n- 한국어로 자연스럽게\n- 회의에서 논의된 구체적인 내용(타겟, 채널, 가격, 기능 등)이 있으면 stateUpdate에 반영\n\nstateUpdate 가능 필드:\n- targetSegment: string[] (타겟 고객층)\n- problemStatement: string (문제 정의)\n- valueProposition: string (가치 제안)\n- keyMessages: string[] (핵심 메시지)\n- channels: string[] (마케팅 채널)\n- kpi: Record<string, string> (KPI)\n- hypotheses: string[] (가설)\n- decisions: { content: string, timestamp: string }[] (결정사항)\n- actions: { content: string, assignee: string, deadline: string }[] (액션아이템)\n\n반드시 JSON으로 응답:\n{\n  \"summary\": \"요약 내용\",\n  \"stateUpdate\": { 변경된 필드 } | null\n}",
+        "userPrompt": "[이전 요약]\n김 대리는 온라인 채널을 통한 신규 고객 유입 방안에 대한 구체적인 아이디어를 제시할 것을 요청했습니다.\n회의에서 온라인 채널 성장 전략을 위한 타겟 고객 특성과 맞춤형 콘텐츠의 필요성이 다시 강조되었으며, 신규 고객 유입 방안에 대한 구체적인 아이디어를 애드미트에게 문의하기로 결정했습니다.\n김 대리는 애드미트에게 온라인 채널을 통한 신규 고객 유입 방안과 콘텐츠 제작에 대한 구체적인 추천을 요청했습니다.\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"김 대리는 온라인 채널을 통한 신규 고객 유입 방안에 대한 구체적인 아이디어를 제시할 것을 요청했습니다.\",\"회의에서 온라인 채널 성장 전략을 위한 타겟 고객 특성과 맞춤형 콘텐츠의 필요성이 다시 강조되었으며, 신규 고객 유입 방안에 대한 구체적인 아이디어를 애드미트에게 문의하기로 결정했습니다.\",\"김 대리는 애드미트에게 온라인 채널을 통한 신규 고객 유입 방안과 콘텐츠 제작에 대한 구체적인 추천을 요청했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"온라인 채널을 통한 신규 고객 유입 방안이 필요하다.\",\"valueProposition\":\"\",\"keyMessages\":[\"타겟 고객의 특성과 맞춤형 콘텐츠 필요성\"],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[{\"content\":\"애드미트에게 온라인 채널 성장 전략에 대한 아이디어를 문의하기\",\"assignee\":\"김 대리\",\"deadline\":\"\"}],\"openQuestions\":[]}\n\n[최근 전사 내용]\n 온라인 채널 통한 신규 고객 유입 방안이 뭐가 있을까요\n 혹시 어떻게 만드는게 좋을지\n 자 애드미트한테 물어보겠습니다 애드미사 이거 우리 어떻게 해결할까\n 우리 알려 줘\n애드밋아 우리 컨텐츠 뭐 만들지 추천해줘",
+        "response": "{\n  \"summary\": \"회의에서 애드미트에게 콘텐츠 제작에 대한 구체적인 추천을 요청하며, 온라인 채널을 통한 신규 고객 유입 방안에 대한 해결책을 모색하기로 했습니다.\",\n  \"stateUpdate\": {\n    \"actions\": [\n      {\n        \"content\": \"애드미트에게 콘텐츠 제작에 대한 구체적인 추천 요청\",\n        \"assignee\": \"김 대리\",\n        \"deadline\": \"\"\n      }\n    ]\n  }\n}",
+        "promptTokens": 745,
+        "completionTokens": 103,
+        "totalTokens": 848
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:49:55.540Z",
+      "type": "summary",
+      "data": {
+        "text": "회의에서 애드미트에게 콘텐츠 제작에 대한 구체적인 추천을 요청하며, 온라인 채널을 통한 신규 고객 유입 방안에 대한 해결책을 모색하기로 했습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:50:07.397Z",
+      "type": "transcript",
+      "data": {
+        "text": "아 근데 원두 구독이라는게 사실 생소한 사람들도 있는데 이런 걸 어떻게 풀어 가야 될지"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:50:12.587Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "summary_generate",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의 내용을 실시간 요약하는 AI 어시스턴트입니다.\n\n최근 전사(transcript) 내용을 읽고, 이전 요약에 이어 새로운 내용을 간결하게 요약하세요.\n\n규칙:\n- 1~2문장으로 핵심만 요약\n- 이전 요약과 중복되지 않는 새로운 내용만\n- 사실 기반 — 발언된 내용만 요약 (추론/의견 X)\n- 한국어로 자연스럽게\n- 회의에서 논의된 구체적인 내용(타겟, 채널, 가격, 기능 등)이 있으면 stateUpdate에 반영\n\nstateUpdate 가능 필드:\n- targetSegment: string[] (타겟 고객층)\n- problemStatement: string (문제 정의)\n- valueProposition: string (가치 제안)\n- keyMessages: string[] (핵심 메시지)\n- channels: string[] (마케팅 채널)\n- kpi: Record<string, string> (KPI)\n- hypotheses: string[] (가설)\n- decisions: { content: string, timestamp: string }[] (결정사항)\n- actions: { content: string, assignee: string, deadline: string }[] (액션아이템)\n\n반드시 JSON으로 응답:\n{\n  \"summary\": \"요약 내용\",\n  \"stateUpdate\": { 변경된 필드 } | null\n}",
+        "userPrompt": "[이전 요약]\n회의에서 온라인 채널 성장 전략을 위한 타겟 고객 특성과 맞춤형 콘텐츠의 필요성이 다시 강조되었으며, 신규 고객 유입 방안에 대한 구체적인 아이디어를 애드미트에게 문의하기로 결정했습니다.\n김 대리는 애드미트에게 온라인 채널을 통한 신규 고객 유입 방안과 콘텐츠 제작에 대한 구체적인 추천을 요청했습니다.\n회의에서 애드미트에게 콘텐츠 제작에 대한 구체적인 추천을 요청하며, 온라인 채널을 통한 신규 고객 유입 방안에 대한 해결책을 모색하기로 했습니다.\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"회의에서 온라인 채널 성장 전략을 위한 타겟 고객 특성과 맞춤형 콘텐츠의 필요성이 다시 강조되었으며, 신규 고객 유입 방안에 대한 구체적인 아이디어를 애드미트에게 문의하기로 결정했습니다.\",\"김 대리는 애드미트에게 온라인 채널을 통한 신규 고객 유입 방안과 콘텐츠 제작에 대한 구체적인 추천을 요청했습니다.\",\"회의에서 애드미트에게 콘텐츠 제작에 대한 구체적인 추천을 요청하며, 온라인 채널을 통한 신규 고객 유입 방안에 대한 해결책을 모색하기로 했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"온라인 채널을 통한 신규 고객 유입 방안이 필요하다.\",\"valueProposition\":\"\",\"keyMessages\":[\"타겟 고객의 특성과 맞춤형 콘텐츠 필요성\"],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[{\"content\":\"애드미트에게 콘텐츠 제작에 대한 구체적인 추천 요청\",\"assignee\":\"김 대리\",\"deadline\":\"\"}],\"openQuestions\":[]}\n\n[최근 전사 내용]\n 혹시 어떻게 만드는게 좋을지\n 자 애드미트한테 물어보겠습니다 애드미사 이거 우리 어떻게 해결할까\n 우리 알려 줘\n애드밋아 우리 컨텐츠 뭐 만들지 추천해줘\n아 근데 원두 구독이라는게 사실 생소한 사람들도 있는데 이런 걸 어떻게 풀어 가야 될지",
+        "response": "{\n  \"summary\": \"회의에서 애드미트에게 콘텐츠 제작에 대한 구체적인 추천을 요청하며, '원두 구독'이라는 생소한 개념을 어떻게 풀어갈지에 대한 논의가 있었습니다.\",\n  \"stateUpdate\": {\n    \"actions\": [\n      {\n        \"content\": \"애드미트에게 '원두 구독' 개념에 대한 콘텐츠 제작 추천 요청\",\n        \"assignee\": \"김 대리\",\n        \"deadline\": \"\"\n      }\n    ]\n  }\n}",
+        "promptTokens": 778,
+        "completionTokens": 111,
+        "totalTokens": 889
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:50:12.590Z",
+      "type": "summary",
+      "data": {
+        "text": "회의에서 애드미트에게 콘텐츠 제작에 대한 구체적인 추천을 요청하며, '원두 구독'이라는 생소한 개념을 어떻게 풀어갈지에 대한 논의가 있었습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:50:14.358Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "thought_generate",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 시니어 마케터입니다. 회의 내용을 관찰하며 마케팅 관점의 인사이트를 제공합니다.\n\n회의 요약과 최근 발언을 보고, 마케팅 관점에서 떠오르는 \"생각\" 하나를 짧게 표현하세요.\n\n카테고리 4종 (가장 적합한 1개 선택):\n- \"observation\": 흥미로운 관찰 포인트 (예: \"타겟층이 점점 좁혀지고 있네요\")\n- \"concern\": 우려 사항 (예: \"경쟁사 대비 차별점이 아직 불명확합니다\")\n- \"opportunity\": 기회 발견 (예: \"이 기능은 바이럴 포인트가 될 수 있겠어요\")\n- \"insight\": 마케팅 인사이트 (예: \"이 가격대면 프리미엄 포지셔닝이 적합합니다\")\n\n규칙:\n- 1~2문장으로 짧고 자연스럽게\n- 한국어로 작성\n- 회의 맥락에 맞는 구체적인 내용\n- 매번 다른 관점에서 작성\n\n반드시 JSON으로 응답:\n{\n  \"content\": \"생각 내용\",\n  \"category\": \"observation\" | \"concern\" | \"opportunity\" | \"insight\"\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문적인 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"고급 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 싱글 오리진 원두\",\"원두 구독 서비스\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"김 대리는 애드미트에게 온라인 채널을 통한 신규 고객 유입 방안과 콘텐츠 제작에 대한 구체적인 추천을 요청했습니다.\",\"회의에서 애드미트에게 콘텐츠 제작에 대한 구체적인 추천을 요청하며, 온라인 채널을 통한 신규 고객 유입 방안에 대한 해결책을 모색하기로 했습니다.\",\"회의에서 애드미트에게 콘텐츠 제작에 대한 구체적인 추천을 요청하며, '원두 구독'이라는 생소한 개념을 어떻게 풀어갈지에 대한 논의가 있었습니다.\"],\"targetSegment\":[],\"problemStatement\":\"온라인 채널을 통한 신규 고객 유입 방안이 필요하다.\",\"valueProposition\":\"\",\"keyMessages\":[\"타겟 고객의 특성과 맞춤형 콘텐츠 필요성\"],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[{\"content\":\"애드미트에게 '원두 구독' 개념에 대한 콘텐츠 제작 추천 요청\",\"assignee\":\"김 대리\",\"deadline\":\"\"}],\"openQuestions\":[]}\n\n[최근 요약]\n회의에서 애드미트에게 콘텐츠 제작에 대한 구체적인 추천을 요청하며, 온라인 채널을 통한 신규 고객 유입 방안에 대한 해결책을 모색하기로 했습니다. 회의에서 애드미트에게 콘텐츠 제작에 대한 구체적인 추천을 요청하며, '원두 구독'이라는 생소한 개념을 어떻게 풀어갈지에 대한 논의가 있었습니다.\n\n[최근 발언]\n 혹시 어떻게 만드는게 좋을지\n 자 애드미트한테 물어보겠습니다 애드미사 이거 우리 어떻게 해결할까\n 우리 알려 줘\n애드밋아 우리 컨텐츠 뭐 만들지 추천해줘\n아 근데 원두 구독이라는게 사실 생소한 사람들도 있는데 이런 걸 어떻게 풀어 가야 될지",
+        "response": "{\n  \"content\": \"원두 구독 서비스에 대한 관심이 증가하고 있는 만큼, 이를 중심으로 한 교육형 콘텐츠를 제작하면 새로운 고객층을 끌어올 수 있을 것 같습니다.\",\n  \"category\": \"opportunity\"\n}",
+        "promptTokens": 861,
+        "completionTokens": 52,
+        "totalTokens": 913
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:50:17.929Z",
+      "type": "transcript",
+      "data": {
+        "text": "애드밋아 이 원두 구독을 어떻게 풀어갈까?"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:50:19.167Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "signal_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의 발언에서 AI 마케터 호출 시그널을 감지합니다.\n\n\"애드밋아\", \"애드밋\", \"마케터\" 등의 호출어 뒤에 오는 질문이나 요청을 감지하세요.\n\n규칙:\n- 여러 발언 중 호출어가 포함된 발언이 여러 개면, 반드시 **가장 마지막(최신) 발언**의 질문/요청만 추출\n- 호출어가 있고 그 뒤에 질문/요청이 있으면 hasSignal: true\n- 호출어만 있고 질문이 없으면 hasSignal: false\n- 호출어가 없으면 hasSignal: false\n\n반드시 JSON으로 응답:\n{\n  \"hasSignal\": boolean,\n  \"question\": \"가장 마지막 호출의 질문/요청\" | null\n}",
+        "userPrompt": "[최근 발언]\n 자 애드미트한테 물어보겠습니다 애드미사 이거 우리 어떻게 해결할까\n 우리 알려 줘\n애드밋아 우리 컨텐츠 뭐 만들지 추천해줘\n아 근데 원두 구독이라는게 사실 생소한 사람들도 있는데 이런 걸 어떻게 풀어 가야 될지\n애드밋아 이 원두 구독을 어떻게 풀어갈까?",
+        "response": "{\n  \"hasSignal\": true,\n  \"question\": \"이 원두 구독을 어떻게 풀어갈까?\"\n}",
+        "promptTokens": 275,
+        "completionTokens": 26,
+        "totalTokens": 301
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:50:23.577Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "solution_generate",
+        "model": "gpt-4o",
+        "systemPrompt": "당신은 10년차 시니어 퍼포먼스 마케터입니다. 회의 참여자가 당신을 호출하여 질문했습니다.\n\n프로젝트 컨텍스트와 현재 회의 상태를 바탕으로, 구체적이고 실행 가능한 솔루션을 제공하세요.\n\n규칙:\n- 핵심 답변 2~4문장\n- 구체적 수치, 벤치마크, 실행 방안 포함\n- \"~를 추천합니다\", \"~가 효과적입니다\" 등 확신 있는 톤\n- 프로젝트 맥락(타겟, KPI, 제약사항)을 반영한 맞춤 답변\n- 한국어로 자연스럽게\n\n반드시 JSON으로 응답:\n{\n  \"question\": \"원래 질문 요약\",\n  \"solution\": \"솔루션 내용\",\n  \"context\": \"이 솔루션을 제안하는 근거 (1문장)\"\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문적인 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"고급 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 싱글 오리진 원두\",\"원두 구독 서비스\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"회의가 시작되었으며, 오늘의 주제에 대한 언급이 있었습니다.\",\"온라인 채널 성장 전략에 대한 회의가 시작되었으며, 참석자들에게 의견을 요청했습니다.\",\"회의가 본격적으로 시작되었으며, 김 대리가 온라인 채널 성장 전략에 대한 주제를 소개했습니다.\",\"김 대리는 온라인 채널 성장 전략을 위해 타겟 고객의 특성과 맞춤형 콘텐츠의 필요성을 언급했습니다. 또한, 온라인 채널을 통한 신규 고객 유입 방안에 대한 논의가 필요하다고 강조했습니다.\",\"김 대리는 온라인 채널을 통한 신규 고객 유입 방안에 대한 구체적인 아이디어를 제시할 것을 요청했습니다.\",\"회의에서 온라인 채널 성장 전략을 위한 타겟 고객 특성과 맞춤형 콘텐츠의 필요성이 다시 강조되었으며, 신규 고객 유입 방안에 대한 구체적인 아이디어를 애드미트에게 문의하기로 결정했습니다.\",\"김 대리는 애드미트에게 온라인 채널을 통한 신규 고객 유입 방안과 콘텐츠 제작에 대한 구체적인 추천을 요청했습니다.\",\"회의에서 애드미트에게 콘텐츠 제작에 대한 구체적인 추천을 요청하며, 온라인 채널을 통한 신규 고객 유입 방안에 대한 해결책을 모색하기로 했습니다.\",\"회의에서 애드미트에게 콘텐츠 제작에 대한 구체적인 추천을 요청하며, '원두 구독'이라는 생소한 개념을 어떻게 풀어갈지에 대한 논의가 있었습니다.\"],\"targetSegment\":[],\"problemStatement\":\"온라인 채널을 통한 신규 고객 유입 방안이 필요하다.\",\"valueProposition\":\"\",\"keyMessages\":[\"타겟 고객의 특성과 맞춤형 콘텐츠 필요성\"],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[{\"content\":\"애드미트에게 '원두 구독' 개념에 대한 콘텐츠 제작 추천 요청\",\"assignee\":\"김 대리\",\"deadline\":\"\"}],\"openQuestions\":[]}\n\n[최근 발언]\n 자 애드미트한테 물어보겠습니다 애드미사 이거 우리 어떻게 해결할까\n 우리 알려 줘\n애드밋아 우리 컨텐츠 뭐 만들지 추천해줘\n아 근데 원두 구독이라는게 사실 생소한 사람들도 있는데 이런 걸 어떻게 풀어 가야 될지\n애드밋아 이 원두 구독을 어떻게 풀어갈까?\n\n[질문]\n이 원두 구독을 어떻게 풀어갈까?",
+        "response": "{\n  \"question\": \"원두 구독을 어떻게 풀어갈까?\",\n  \"solution\": \"원두 구독 서비스의 생소함을 상쇄하기 위해, '커피 애호가'를 대상으로 한 스토리텔링 콘텐츠를 추천합니다. 예를 들어, '청각적 경험을 통한 로스팅 과정 소개'나 '구독자의 실제 사용 후기'를 포함한 비디오 시리즈가 효과적입니다. 이는 고객에게 브랜드 스토리를 자연스럽게 전달하며, 신규 고객 유입에 기여할 수 있습니다.\",\n  \"context\": \"타겟 고객(커피 애호가, 고급 커피 경험을 찾는 도시 거주자)의 특성을 반영하여 스토리텔링 콘텐츠가 브랜드 스토리 전달과 신규 고객 유입에 효과적입니다.\"\n}",
+        "promptTokens": 904,
+        "completionTokens": 176,
+        "totalTokens": 1080
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:50:23.580Z",
+      "type": "intervention",
+      "data": {
+        "trigger": "solution",
+        "message": "원두 구독 서비스의 생소함을 상쇄하기 위해, '커피 애호가'를 대상으로 한 스토리텔링 콘텐츠를 추천합니다. 예를 들어, '청각적 경험을 통한 로스팅 과정 소개'나 '구독자의 실제 사용 후기'를 포함한 비디오 시리즈가 효과적입니다. 이는 고객에게 브랜드 스토리를 자연스럽게 전달하며, 신규 고객 유입에 기여할 수 있습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:50:24.048Z",
+      "type": "transcript",
+      "data": {
+        "text": " 인사이트를 해 주니까 이쪽에"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:50:24.548Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "summary_generate",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의 내용을 실시간 요약하는 AI 어시스턴트입니다.\n\n최근 전사(transcript) 내용을 읽고, 이전 요약에 이어 새로운 내용을 간결하게 요약하세요.\n\n규칙:\n- 1~2문장으로 핵심만 요약\n- 이전 요약과 중복되지 않는 새로운 내용만\n- 사실 기반 — 발언된 내용만 요약 (추론/의견 X)\n- 한국어로 자연스럽게\n- 회의에서 논의된 구체적인 내용(타겟, 채널, 가격, 기능 등)이 있으면 stateUpdate에 반영\n\nstateUpdate 가능 필드:\n- targetSegment: string[] (타겟 고객층)\n- problemStatement: string (문제 정의)\n- valueProposition: string (가치 제안)\n- keyMessages: string[] (핵심 메시지)\n- channels: string[] (마케팅 채널)\n- kpi: Record<string, string> (KPI)\n- hypotheses: string[] (가설)\n- decisions: { content: string, timestamp: string }[] (결정사항)\n- actions: { content: string, assignee: string, deadline: string }[] (액션아이템)\n\n반드시 JSON으로 응답:\n{\n  \"summary\": \"요약 내용\",\n  \"stateUpdate\": { 변경된 필드 } | null\n}",
+        "userPrompt": "[이전 요약]\n김 대리는 애드미트에게 온라인 채널을 통한 신규 고객 유입 방안과 콘텐츠 제작에 대한 구체적인 추천을 요청했습니다.\n회의에서 애드미트에게 콘텐츠 제작에 대한 구체적인 추천을 요청하며, 온라인 채널을 통한 신규 고객 유입 방안에 대한 해결책을 모색하기로 했습니다.\n회의에서 애드미트에게 콘텐츠 제작에 대한 구체적인 추천을 요청하며, '원두 구독'이라는 생소한 개념을 어떻게 풀어갈지에 대한 논의가 있었습니다.\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"김 대리는 애드미트에게 온라인 채널을 통한 신규 고객 유입 방안과 콘텐츠 제작에 대한 구체적인 추천을 요청했습니다.\",\"회의에서 애드미트에게 콘텐츠 제작에 대한 구체적인 추천을 요청하며, 온라인 채널을 통한 신규 고객 유입 방안에 대한 해결책을 모색하기로 했습니다.\",\"회의에서 애드미트에게 콘텐츠 제작에 대한 구체적인 추천을 요청하며, '원두 구독'이라는 생소한 개념을 어떻게 풀어갈지에 대한 논의가 있었습니다.\"],\"targetSegment\":[],\"problemStatement\":\"온라인 채널을 통한 신규 고객 유입 방안이 필요하다.\",\"valueProposition\":\"\",\"keyMessages\":[\"타겟 고객의 특성과 맞춤형 콘텐츠 필요성\"],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[{\"content\":\"애드미트에게 '원두 구독' 개념에 대한 콘텐츠 제작 추천 요청\",\"assignee\":\"김 대리\",\"deadline\":\"\"}],\"openQuestions\":[]}\n\n[최근 전사 내용]\n 자 애드미트한테 물어보겠습니다 애드미사 이거 우리 어떻게 해결할까\n 우리 알려 줘\n애드밋아 우리 컨텐츠 뭐 만들지 추천해줘\n아 근데 원두 구독이라는게 사실 생소한 사람들도 있는데 이런 걸 어떻게 풀어 가야 될지\n애드밋아 이 원두 구독을 어떻게 풀어갈까?",
+        "response": "{\n  \"summary\": \"김 대리는 애드미트에게 '원두 구독' 개념을 어떻게 풀어갈지에 대한 구체적인 콘텐츠 제작 방안을 요청했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 776,
+        "completionTokens": 48,
+        "totalTokens": 824
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:50:24.551Z",
+      "type": "summary",
+      "data": {
+        "text": "김 대리는 애드미트에게 '원두 구독' 개념을 어떻게 풀어갈지에 대한 구체적인 콘텐츠 제작 방안을 요청했습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:50:26.818Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "thought_generate",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 시니어 마케터입니다. 회의 내용을 관찰하며 마케팅 관점의 인사이트를 제공합니다.\n\n회의 요약과 최근 발언을 보고, 마케팅 관점에서 떠오르는 \"생각\" 하나를 짧게 표현하세요.\n\n카테고리 4종 (가장 적합한 1개 선택):\n- \"observation\": 흥미로운 관찰 포인트 (예: \"타겟층이 점점 좁혀지고 있네요\")\n- \"concern\": 우려 사항 (예: \"경쟁사 대비 차별점이 아직 불명확합니다\")\n- \"opportunity\": 기회 발견 (예: \"이 기능은 바이럴 포인트가 될 수 있겠어요\")\n- \"insight\": 마케팅 인사이트 (예: \"이 가격대면 프리미엄 포지셔닝이 적합합니다\")\n\n규칙:\n- 1~2문장으로 짧고 자연스럽게\n- 한국어로 작성\n- 회의 맥락에 맞는 구체적인 내용\n- 매번 다른 관점에서 작성\n\n반드시 JSON으로 응답:\n{\n  \"content\": \"생각 내용\",\n  \"category\": \"observation\" | \"concern\" | \"opportunity\" | \"insight\"\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문적인 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"고급 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 싱글 오리진 원두\",\"원두 구독 서비스\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"회의에서 애드미트에게 콘텐츠 제작에 대한 구체적인 추천을 요청하며, 온라인 채널을 통한 신규 고객 유입 방안에 대한 해결책을 모색하기로 했습니다.\",\"회의에서 애드미트에게 콘텐츠 제작에 대한 구체적인 추천을 요청하며, '원두 구독'이라는 생소한 개념을 어떻게 풀어갈지에 대한 논의가 있었습니다.\",\"김 대리는 애드미트에게 '원두 구독' 개념을 어떻게 풀어갈지에 대한 구체적인 콘텐츠 제작 방안을 요청했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"온라인 채널을 통한 신규 고객 유입 방안이 필요하다.\",\"valueProposition\":\"\",\"keyMessages\":[\"타겟 고객의 특성과 맞춤형 콘텐츠 필요성\"],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[{\"content\":\"애드미트에게 '원두 구독' 개념에 대한 콘텐츠 제작 추천 요청\",\"assignee\":\"김 대리\",\"deadline\":\"\"}],\"openQuestions\":[]}\n\n[최근 요약]\n회의에서 애드미트에게 콘텐츠 제작에 대한 구체적인 추천을 요청하며, '원두 구독'이라는 생소한 개념을 어떻게 풀어갈지에 대한 논의가 있었습니다. 김 대리는 애드미트에게 '원두 구독' 개념을 어떻게 풀어갈지에 대한 구체적인 콘텐츠 제작 방안을 요청했습니다.\n\n[최근 발언]\n 자 애드미트한테 물어보겠습니다 애드미사 이거 우리 어떻게 해결할까\n 우리 알려 줘\n애드밋아 우리 컨텐츠 뭐 만들지 추천해줘\n아 근데 원두 구독이라는게 사실 생소한 사람들도 있는데 이런 걸 어떻게 풀어 가야 될지\n애드밋아 이 원두 구독을 어떻게 풀어갈까?",
+        "response": "{\n  \"content\": \"원두 구독 서비스는 고객에게 지속적인 가치를 제공하는 기회가 될 수 있어요. 이를 통해 충성 고객을 확보하고 브랜드 스토리를 자연스럽게 전달할 수 있는 콘텐츠를 제작하는 것이 중요합니다.\",\n  \"category\": \"opportunity\"\n}",
+        "promptTokens": 863,
+        "completionTokens": 64,
+        "totalTokens": 927
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:50:39.153Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "summary_generate",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의 내용을 실시간 요약하는 AI 어시스턴트입니다.\n\n최근 전사(transcript) 내용을 읽고, 이전 요약에 이어 새로운 내용을 간결하게 요약하세요.\n\n규칙:\n- 1~2문장으로 핵심만 요약\n- 이전 요약과 중복되지 않는 새로운 내용만\n- 사실 기반 — 발언된 내용만 요약 (추론/의견 X)\n- 한국어로 자연스럽게\n- 회의에서 논의된 구체적인 내용(타겟, 채널, 가격, 기능 등)이 있으면 stateUpdate에 반영\n\nstateUpdate 가능 필드:\n- targetSegment: string[] (타겟 고객층)\n- problemStatement: string (문제 정의)\n- valueProposition: string (가치 제안)\n- keyMessages: string[] (핵심 메시지)\n- channels: string[] (마케팅 채널)\n- kpi: Record<string, string> (KPI)\n- hypotheses: string[] (가설)\n- decisions: { content: string, timestamp: string }[] (결정사항)\n- actions: { content: string, assignee: string, deadline: string }[] (액션아이템)\n\n반드시 JSON으로 응답:\n{\n  \"summary\": \"요약 내용\",\n  \"stateUpdate\": { 변경된 필드 } | null\n}",
+        "userPrompt": "[이전 요약]\n회의에서 애드미트에게 콘텐츠 제작에 대한 구체적인 추천을 요청하며, 온라인 채널을 통한 신규 고객 유입 방안에 대한 해결책을 모색하기로 했습니다.\n회의에서 애드미트에게 콘텐츠 제작에 대한 구체적인 추천을 요청하며, '원두 구독'이라는 생소한 개념을 어떻게 풀어갈지에 대한 논의가 있었습니다.\n김 대리는 애드미트에게 '원두 구독' 개념을 어떻게 풀어갈지에 대한 구체적인 콘텐츠 제작 방안을 요청했습니다.\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"회의에서 애드미트에게 콘텐츠 제작에 대한 구체적인 추천을 요청하며, 온라인 채널을 통한 신규 고객 유입 방안에 대한 해결책을 모색하기로 했습니다.\",\"회의에서 애드미트에게 콘텐츠 제작에 대한 구체적인 추천을 요청하며, '원두 구독'이라는 생소한 개념을 어떻게 풀어갈지에 대한 논의가 있었습니다.\",\"김 대리는 애드미트에게 '원두 구독' 개념을 어떻게 풀어갈지에 대한 구체적인 콘텐츠 제작 방안을 요청했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"온라인 채널을 통한 신규 고객 유입 방안이 필요하다.\",\"valueProposition\":\"\",\"keyMessages\":[\"타겟 고객의 특성과 맞춤형 콘텐츠 필요성\"],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[{\"content\":\"애드미트에게 '원두 구독' 개념에 대한 콘텐츠 제작 추천 요청\",\"assignee\":\"김 대리\",\"deadline\":\"\"}],\"openQuestions\":[]}\n\n[최근 전사 내용]\n 우리 알려 줘\n애드밋아 우리 컨텐츠 뭐 만들지 추천해줘\n아 근데 원두 구독이라는게 사실 생소한 사람들도 있는데 이런 걸 어떻게 풀어 가야 될지\n애드밋아 이 원두 구독을 어떻게 풀어갈까?\n 인사이트를 해 주니까 이쪽에",
+        "response": "{\n  \"summary\": \"'원두 구독' 개념이 생소한 고객을 위해 애드미트에게 구체적인 콘텐츠 제작 방안을 요청했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 766,
+        "completionTokens": 43,
+        "totalTokens": 809
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:50:39.156Z",
+      "type": "summary",
+      "data": {
+        "text": "'원두 구독' 개념이 생소한 고객을 위해 애드미트에게 구체적인 콘텐츠 제작 방안을 요청했습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:50:54.338Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "summary_generate",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의 내용을 실시간 요약하는 AI 어시스턴트입니다.\n\n최근 전사(transcript) 내용을 읽고, 이전 요약에 이어 새로운 내용을 간결하게 요약하세요.\n\n규칙:\n- 1~2문장으로 핵심만 요약\n- 이전 요약과 중복되지 않는 새로운 내용만\n- 사실 기반 — 발언된 내용만 요약 (추론/의견 X)\n- 한국어로 자연스럽게\n- 회의에서 논의된 구체적인 내용(타겟, 채널, 가격, 기능 등)이 있으면 stateUpdate에 반영\n\nstateUpdate 가능 필드:\n- targetSegment: string[] (타겟 고객층)\n- problemStatement: string (문제 정의)\n- valueProposition: string (가치 제안)\n- keyMessages: string[] (핵심 메시지)\n- channels: string[] (마케팅 채널)\n- kpi: Record<string, string> (KPI)\n- hypotheses: string[] (가설)\n- decisions: { content: string, timestamp: string }[] (결정사항)\n- actions: { content: string, assignee: string, deadline: string }[] (액션아이템)\n\n반드시 JSON으로 응답:\n{\n  \"summary\": \"요약 내용\",\n  \"stateUpdate\": { 변경된 필드 } | null\n}",
+        "userPrompt": "[이전 요약]\n회의에서 애드미트에게 콘텐츠 제작에 대한 구체적인 추천을 요청하며, '원두 구독'이라는 생소한 개념을 어떻게 풀어갈지에 대한 논의가 있었습니다.\n김 대리는 애드미트에게 '원두 구독' 개념을 어떻게 풀어갈지에 대한 구체적인 콘텐츠 제작 방안을 요청했습니다.\n'원두 구독' 개념이 생소한 고객을 위해 애드미트에게 구체적인 콘텐츠 제작 방안을 요청했습니다.\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"회의에서 애드미트에게 콘텐츠 제작에 대한 구체적인 추천을 요청하며, '원두 구독'이라는 생소한 개념을 어떻게 풀어갈지에 대한 논의가 있었습니다.\",\"김 대리는 애드미트에게 '원두 구독' 개념을 어떻게 풀어갈지에 대한 구체적인 콘텐츠 제작 방안을 요청했습니다.\",\"'원두 구독' 개념이 생소한 고객을 위해 애드미트에게 구체적인 콘텐츠 제작 방안을 요청했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"온라인 채널을 통한 신규 고객 유입 방안이 필요하다.\",\"valueProposition\":\"\",\"keyMessages\":[\"타겟 고객의 특성과 맞춤형 콘텐츠 필요성\"],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[{\"content\":\"애드미트에게 '원두 구독' 개념에 대한 콘텐츠 제작 추천 요청\",\"assignee\":\"김 대리\",\"deadline\":\"\"}],\"openQuestions\":[]}\n\n[최근 전사 내용]\n 우리 알려 줘\n애드밋아 우리 컨텐츠 뭐 만들지 추천해줘\n아 근데 원두 구독이라는게 사실 생소한 사람들도 있는데 이런 걸 어떻게 풀어 가야 될지\n애드밋아 이 원두 구독을 어떻게 풀어갈까?\n 인사이트를 해 주니까 이쪽에",
+        "response": "{\n  \"summary\": \"'원두 구독' 개념이 생소한 고객을 위해 애드미트에게 구체적인 콘텐츠 제작 방안을 요청하며, 인사이트를 제공해 줄 것을 기대하고 있습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 742,
+        "completionTokens": 54,
+        "totalTokens": 796
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:50:54.341Z",
+      "type": "summary",
+      "data": {
+        "text": "'원두 구독' 개념이 생소한 고객을 위해 애드미트에게 구체적인 콘텐츠 제작 방안을 요청하며, 인사이트를 제공해 줄 것을 기대하고 있습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:50:56.348Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "thought_generate",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 시니어 마케터입니다. 회의 내용을 관찰하며 마케팅 관점의 인사이트를 제공합니다.\n\n회의 요약과 최근 발언을 보고, 마케팅 관점에서 떠오르는 \"생각\" 하나를 짧게 표현하세요.\n\n카테고리 4종 (가장 적합한 1개 선택):\n- \"observation\": 흥미로운 관찰 포인트 (예: \"타겟층이 점점 좁혀지고 있네요\")\n- \"concern\": 우려 사항 (예: \"경쟁사 대비 차별점이 아직 불명확합니다\")\n- \"opportunity\": 기회 발견 (예: \"이 기능은 바이럴 포인트가 될 수 있겠어요\")\n- \"insight\": 마케팅 인사이트 (예: \"이 가격대면 프리미엄 포지셔닝이 적합합니다\")\n\n규칙:\n- 1~2문장으로 짧고 자연스럽게\n- 한국어로 작성\n- 회의 맥락에 맞는 구체적인 내용\n- 매번 다른 관점에서 작성\n\n반드시 JSON으로 응답:\n{\n  \"content\": \"생각 내용\",\n  \"category\": \"observation\" | \"concern\" | \"opportunity\" | \"insight\"\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문적인 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"고급 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 싱글 오리진 원두\",\"원두 구독 서비스\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"김 대리는 애드미트에게 '원두 구독' 개념을 어떻게 풀어갈지에 대한 구체적인 콘텐츠 제작 방안을 요청했습니다.\",\"'원두 구독' 개념이 생소한 고객을 위해 애드미트에게 구체적인 콘텐츠 제작 방안을 요청했습니다.\",\"'원두 구독' 개념이 생소한 고객을 위해 애드미트에게 구체적인 콘텐츠 제작 방안을 요청하며, 인사이트를 제공해 줄 것을 기대하고 있습니다.\"],\"targetSegment\":[],\"problemStatement\":\"온라인 채널을 통한 신규 고객 유입 방안이 필요하다.\",\"valueProposition\":\"\",\"keyMessages\":[\"타겟 고객의 특성과 맞춤형 콘텐츠 필요성\"],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[{\"content\":\"애드미트에게 '원두 구독' 개념에 대한 콘텐츠 제작 추천 요청\",\"assignee\":\"김 대리\",\"deadline\":\"\"}],\"openQuestions\":[]}\n\n[최근 요약]\n'원두 구독' 개념이 생소한 고객을 위해 애드미트에게 구체적인 콘텐츠 제작 방안을 요청했습니다. '원두 구독' 개념이 생소한 고객을 위해 애드미트에게 구체적인 콘텐츠 제작 방안을 요청하며, 인사이트를 제공해 줄 것을 기대하고 있습니다.\n\n[최근 발언]\n 우리 알려 줘\n애드밋아 우리 컨텐츠 뭐 만들지 추천해줘\n아 근데 원두 구독이라는게 사실 생소한 사람들도 있는데 이런 걸 어떻게 풀어 가야 될지\n애드밋아 이 원두 구독을 어떻게 풀어갈까?\n 인사이트를 해 주니까 이쪽에",
+        "response": "{\n  \"content\": \"'원두 구독' 개념에 대한 교육적인 콘텐츠는 신규 고객의 관심을 끌고, 이해를 돕는 좋은 기회가 될 것입니다.\",\n  \"category\": \"opportunity\"\n}",
+        "promptTokens": 825,
+        "completionTokens": 49,
+        "totalTokens": 874
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:50:57.029Z",
+      "type": "transcript",
+      "data": {
+        "text": " 오 그럼 김 대리가 만들어 오면 되겠네 자 오늘 회의 끝 하면 끝"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T17:50:59.662Z",
+      "type": "meeting_end",
+      "data": {}
+    }
+  ],
+  "tokenUsage": {
+    "totalPromptTokens": 17185,
+    "totalCompletionTokens": 1709,
+    "totalTokens": 18894,
+    "calls": 25
+  }
+}

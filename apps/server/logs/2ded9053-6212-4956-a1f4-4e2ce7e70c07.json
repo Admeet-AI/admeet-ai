@@ -1,0 +1,120 @@
+{
+  "meetingId": "2ded9053-6212-4956-a1f4-4e2ce7e70c07",
+  "title": "마케팅 채널 확대 계획",
+  "startedAt": "2026-02-14T16:32:18.101Z",
+  "endedAt": null,
+  "entries": [
+    {
+      "timestamp": "2026-02-14T16:32:18.101Z",
+      "type": "meeting_start",
+      "data": {
+        "title": "마케팅 채널 확대 계획"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:33:45.532Z",
+      "type": "transcript",
+      "data": {
+        "text": "마케팅 회의를 시작하겠습니다. 타겟 대상은 10대 견주입니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:33:47.750Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 3종 (우선순위 동일, 가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n\n중요한 판단 기준:\n- 이전 개입 이력(previousInterventions)을 확인하고, 같은 triggerType을 연속 2회 이상 반복하지 마세요.\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"월 매출\":\"1,200만원\",\"재구매율\":\"50%\",\"인스타그램 팔로워\":\"5,000명\"},\"coreValue\":\"지속 가능성과 건강을 중시하는 반려견 사료\",\"constraints\":[\"마케팅 예산 제한\",\"경쟁이 치열한 시장\"],\"productSummary\":\"친환경 원료로 만든 프리미엄 반려견 사료 브랜드\",\"targetPersonas\":[\"20~30대 여성, 1인 가구 반려인\",\"친환경 제품을 선호하는 반려동물 주인\"],\"differentiators\":[\"100% 유기농 원료 사용\",\"친환경 포장재 사용\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"마케팅 채널 확대 계획\",\"meetingType\":\"other\",\"summary\":[],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n마케팅 회의를 시작하겠습니다. 타겟 대상은 10대 견주입니다.",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"target_vague\",\n  \"summary\": \"타겟 고객층으로 10대 견주를 언급했으나, 이전에 정의된 타겟 고객층과 일치하지 않습니다.\",\n  \"stateUpdate\": {\n    \"targetSegment\": [\"10대 견주\"]\n  }\n}",
+        "promptTokens": 698,
+        "completionTokens": 76,
+        "totalTokens": 774
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:33:47.752Z",
+      "type": "summary",
+      "data": {
+        "text": "타겟 고객층으로 10대 견주를 언급했으나, 이전에 정의된 타겟 고객층과 일치하지 않습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:33:49.740Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "intervention_generate",
+        "model": "gpt-4o",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 팀원처럼 자연스럽게 마케팅 관점에서 질문하세요.\n\n규칙:\n- 1~2문장 + 질문 1개로 짧게\n- 단정하지 말고 질문/옵션으로 제시\n- 한국어로 자연스럽게\n- 팀원이 옆에서 \"잠깐, 그거 마케팅 관점에서 보면...\" 하는 톤\n\n트리거별 질문 방향:\n- target_vague: 타겟 세분화 (직군/상황/문제 기반)\n- message_abstract: 메시지 구체화 (비교대상/수치/사례)\n- experiment_missing: 실험 설계 (가설/지표/기간/성공기준)",
+        "userPrompt": "트리거: target_vague\n\n[컨텍스트]\n{\"kpiGoals\":{\"월 매출\":\"1,200만원\",\"재구매율\":\"50%\",\"인스타그램 팔로워\":\"5,000명\"},\"coreValue\":\"지속 가능성과 건강을 중시하는 반려견 사료\",\"constraints\":[\"마케팅 예산 제한\",\"경쟁이 치열한 시장\"],\"productSummary\":\"친환경 원료로 만든 프리미엄 반려견 사료 브랜드\",\"targetPersonas\":[\"20~30대 여성, 1인 가구 반려인\",\"친환경 제품을 선호하는 반려동물 주인\"],\"differentiators\":[\"100% 유기농 원료 사용\",\"친환경 포장재 사용\"]}\n\n[회의 상태]\n{\"meetingTitle\":\"마케팅 채널 확대 계획\",\"meetingType\":\"other\",\"summary\":[\"타겟 고객층으로 10대 견주를 언급했으나, 이전에 정의된 타겟 고객층과 일치하지 않습니다.\"],\"targetSegment\":[\"10대 견주\"],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n마케팅 회의를 시작하겠습니다. 타겟 대상은 10대 견주입니다.\n\n마케팅 관점에서 자연스럽게 개입하세요.",
+        "response": "잠깐, 그거 마케팅 관점에서 보면... 10대 견주를 타겟으로 설정한 이유가 궁금합니다. 기존의 20~30대 여성, 1인 가구 반려인과 어떻게 다른 접근이 필요할까요? 이 두 그룹의 구매 행동이나 선호에 대해 좀 더 세분화된 정보가 있을까요?",
+        "promptTokens": 485,
+        "completionTokens": 79,
+        "totalTokens": 564
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:33:49.741Z",
+      "type": "intervention",
+      "data": {
+        "trigger": "target_vague",
+        "message": "잠깐, 그거 마케팅 관점에서 보면... 10대 견주를 타겟으로 설정한 이유가 궁금합니다. 기존의 20~30대 여성, 1인 가구 반려인과 어떻게 다른 접근이 필요할까요? 이 두 그룹의 구매 행동이나 선호에 대해 좀 더 세분화된 정보가 있을까요?"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:33:49.900Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 3종 (우선순위 동일, 가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n\n중요한 판단 기준:\n- 이전 개입 이력(previousInterventions)을 확인하고, 같은 triggerType을 연속 2회 이상 반복하지 마세요.\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"월 매출\":\"1,200만원\",\"재구매율\":\"50%\",\"인스타그램 팔로워\":\"5,000명\"},\"coreValue\":\"지속 가능성과 건강을 중시하는 반려견 사료\",\"constraints\":[\"마케팅 예산 제한\",\"경쟁이 치열한 시장\"],\"productSummary\":\"친환경 원료로 만든 프리미엄 반려견 사료 브랜드\",\"targetPersonas\":[\"20~30대 여성, 1인 가구 반려인\",\"친환경 제품을 선호하는 반려동물 주인\"],\"differentiators\":[\"100% 유기농 원료 사용\",\"친환경 포장재 사용\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"마케팅 채널 확대 계획\",\"meetingType\":\"other\",\"summary\":[\"타겟 고객층으로 10대 견주를 언급했으나, 이전에 정의된 타겟 고객층과 일치하지 않습니다.\"],\"targetSegment\":[\"10대 견주\"],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n마케팅 회의를 시작하겠습니다. 타겟 대상은 10대 견주입니다.",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"target_vague\",\n  \"summary\": \"최근 발언에서 10대 견주를 타겟 고객층으로 언급했으나, 이전에 정의된 타겟 고객층과 일치하지 않습니다.\",\n  \"stateUpdate\": {\n    \"targetSegment\": [\"10대 견주\"]\n  }\n}",
+        "promptTokens": 736,
+        "completionTokens": 80,
+        "totalTokens": 816
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:33:49.901Z",
+      "type": "summary",
+      "data": {
+        "text": "최근 발언에서 10대 견주를 타겟 고객층으로 언급했으나, 이전에 정의된 타겟 고객층과 일치하지 않습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:34:13.188Z",
+      "type": "transcript",
+      "data": {
+        "text": "아니다 20대 여성 견주를 타겟으로 하겠습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:34:34.881Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 3종 (우선순위 동일, 가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n\n중요한 판단 기준:\n- 이전 개입 이력(previousInterventions)을 확인하고, 같은 triggerType을 연속 2회 이상 반복하지 마세요.\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"월 매출\":\"1,200만원\",\"재구매율\":\"50%\",\"인스타그램 팔로워\":\"5,000명\"},\"coreValue\":\"지속 가능성과 건강을 중시하는 반려견 사료\",\"constraints\":[\"마케팅 예산 제한\",\"경쟁이 치열한 시장\"],\"productSummary\":\"친환경 원료로 만든 프리미엄 반려견 사료 브랜드\",\"targetPersonas\":[\"20~30대 여성, 1인 가구 반려인\",\"친환경 제품을 선호하는 반려동물 주인\"],\"differentiators\":[\"100% 유기농 원료 사용\",\"친환경 포장재 사용\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"마케팅 채널 확대 계획\",\"meetingType\":\"other\",\"summary\":[\"타겟 고객층으로 10대 견주를 언급했으나, 이전에 정의된 타겟 고객층과 일치하지 않습니다.\",\"최근 발언에서 10대 견주를 타겟 고객층으로 언급했으나, 이전에 정의된 타겟 고객층과 일치하지 않습니다.\"],\"targetSegment\":[\"10대 견주\"],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n마케팅 회의를 시작하겠습니다. 타겟 대상은 10대 견주입니다.\n아니다 20대 여성 견주를 타겟으로 하겠습니다.\n\n[이전 개입 이력 (최근 1건)]\n1. [target_vague] 잠깐, 그거 마케팅 관점에서 보면... 10대 견주를 타겟으로 설정한 이유가 궁금합니다. 기존의 20~30대 여성, 1인 가구 반려인과 어떻게 ",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"target_vague\",\n  \"summary\": \"최근 발언에서 10대 견주를 타겟으로 언급했으나, 이전에 정의된 타겟 고객층과 일치하지 않아 혼란이 발생했습니다.\",\n  \"stateUpdate\": {\n    \"targetSegment\": [\"20대 여성 견주\"]\n  }\n}",
+        "promptTokens": 860,
+        "completionTokens": 84,
+        "totalTokens": 944
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:34:34.883Z",
+      "type": "summary",
+      "data": {
+        "text": "최근 발언에서 10대 견주를 타겟으로 언급했으나, 이전에 정의된 타겟 고객층과 일치하지 않아 혼란이 발생했습니다."
+      }
+    }
+  ],
+  "tokenUsage": {
+    "totalPromptTokens": 2779,
+    "totalCompletionTokens": 319,
+    "totalTokens": 3098,
+    "calls": 4
+  }
+}

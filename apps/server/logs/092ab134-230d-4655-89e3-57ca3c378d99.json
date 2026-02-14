@@ -1,0 +1,205 @@
+{
+  "meetingId": "092ab134-230d-4655-89e3-57ca3c378d99",
+  "title": "온라인 채널 성장 전략",
+  "startedAt": "2026-02-14T16:49:17.905Z",
+  "endedAt": null,
+  "entries": [
+    {
+      "timestamp": "2026-02-14T16:49:17.905Z",
+      "type": "meeting_start",
+      "data": {
+        "title": "온라인 채널 성장 전략"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:49:37.672Z",
+      "type": "transcript",
+      "data": {
+        "text": "온라인에서 매출을 더 늘리고 싶은데 좋은 방법이 뭐가 있을지 회의해봅시다"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:49:39.444Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- 이전 개입 이력(previousInterventions)에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n온라인에서 매출을 더 늘리고 싶은데 좋은 방법이 뭐가 있을지 회의해봅시다",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 온라인 매출을 늘리기 위한 좋은 방법에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 933,
+        "completionTokens": 47,
+        "totalTokens": 980
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:49:39.446Z",
+      "type": "summary",
+      "data": {
+        "text": "사용자가 온라인 매출을 늘리기 위한 좋은 방법에 대해 질문했습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:49:43.095Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "intervention_generate",
+        "model": "gpt-4o",
+        "systemPrompt": "당신은 10년차 퍼포먼스 마케터입니다.\n팀원의 질문에 구체적이고 실행 가능한 답변을 제공하세요.\n\n규칙:\n- 핵심 답변 2~3문장 + 구체적 실행 방안 1~2개\n- 가능하면 수치/벤치마크 포함\n- \"~하면 좋을 것 같아요\" 보다 \"~를 추천합니다\" 톤\n- 프로젝트 컨텍스트(예산, KPI, 타겟)를 반영한 맞춤 답변\n- 매번 다른 방식으로 시작하세요.\n- 한국어로 자연스럽게",
+        "userPrompt": "트리거: direct_question\n\n[컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 온라인 매출을 늘리기 위한 좋은 방법에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n온라인에서 매출을 더 늘리고 싶은데 좋은 방법이 뭐가 있을지 회의해봅시다\n\n질문에 대해 구체적으로 답변하세요.",
+        "response": "온라인 매출을 늘리기 위해서는 타겟 고객의 관심을 끌고, 브랜드의 스토리를 효과적으로 전달하는 것이 중요합니다. 추천드리는 첫 번째 방법은 소셜 미디어와 연계된 콘텐츠 마케팅을 강화하는 것입니다. 특히, 인스타그램이나 유튜브와 같은 시각적 플랫폼을 활용하여, 로스팅 과정이나 원두의 여정을 담은 영상을 제작해 브랜드 스토리를 전달하세요. 이를 통해 신규 고객의 관심을 끌고 브랜드 충성도를 높일 수 있습니다.\n\n또한, 온라인 광고 캠페인을 통해 신규 고객을 유입하는 것도 필수적입니다. 페이스북 및 인스타그램 광고를 통해 커피 애호가와 특별한 경험을 찾는 도시 거주자에게 타겟팅된 광고를 집행하세요. 광고 세그먼트는 25-40세 도시 거주자로 설정하고, 첫 구매 고객에게는 10% 할인 쿠폰을 제공하는 프로모션을 진행해 유입을 촉진하세요. 이러한 전략을 통해 월 600만원 매출 목표를 달성할 수 있을 것입니다.",
+        "promptTokens": 423,
+        "completionTokens": 241,
+        "totalTokens": 664
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:49:43.097Z",
+      "type": "intervention",
+      "data": {
+        "trigger": "direct_question",
+        "message": "온라인 매출을 늘리기 위해서는 타겟 고객의 관심을 끌고, 브랜드의 스토리를 효과적으로 전달하는 것이 중요합니다. 추천드리는 첫 번째 방법은 소셜 미디어와 연계된 콘텐츠 마케팅을 강화하는 것입니다. 특히, 인스타그램이나 유튜브와 같은 시각적 플랫폼을 활용하여, 로스팅 과정이나 원두의 여정을 담은 영상을 제작해 브랜드 스토리를 전달하세요. 이를 통해 신규 고객의 관심을 끌고 브랜드 충성도를 높일 수 있습니다.\n\n또한, 온라인 광고 캠페인을 통해 신규 고객을 유입하는 것도 필수적입니다. 페이스북 및 인스타그램 광고를 통해 커피 애호가와 특별한 경험을 찾는 도시 거주자에게 타겟팅된 광고를 집행하세요. 광고 세그먼트는 25-40세 도시 거주자로 설정하고, 첫 구매 고객에게는 10% 할인 쿠폰을 제공하는 프로모션을 진행해 유입을 촉진하세요. 이러한 전략을 통해 월 600만원 매출 목표를 달성할 수 있을 것입니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:50:04.396Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- 이전 개입 이력(previousInterventions)에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 온라인 매출을 늘리기 위한 좋은 방법에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n온라인에서 매출을 더 늘리고 싶은데 좋은 방법이 뭐가 있을지 회의해봅시다\n\n[이전 개입 이력 (최근 1건)]\n1. [direct_question] 온라인 매출을 늘리기 위해서는 타겟 고객의 관심을 끌고, 브랜드의 스토리를 효과적으로 전달하는 것이 중요합니다. 추천드리는 첫 번째 방법은 소셜",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 온라인 매출을 늘리기 위한 좋은 방법에 대해 질문했습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1012,
+        "completionTokens": 47,
+        "totalTokens": 1059
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:50:09.161Z",
+      "type": "transcript",
+      "data": {
+        "text": "그럼 뭐부터 시작해야할까요? 개발적으로 할 일은 없나요?"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:50:11.846Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- 이전 개입 이력(previousInterventions)에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 온라인 매출을 늘리기 위한 좋은 방법에 대해 질문했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[]}\n\n[최근 발언]\n온라인에서 매출을 더 늘리고 싶은데 좋은 방법이 뭐가 있을지 회의해봅시다\n그럼 뭐부터 시작해야할까요? 개발적으로 할 일은 없나요?\n\n[이전 개입 이력 (최근 1건)]\n1. [direct_question] 온라인 매출을 늘리기 위해서는 타겟 고객의 관심을 끌고, 브랜드의 스토리를 효과적으로 전달하는 것이 중요합니다. 추천드리는 첫 번째 방법은 소셜",
+        "response": "{\n  \"hasTrigger\": true,\n  \"triggerType\": \"direct_question\",\n  \"summary\": \"사용자가 온라인 매출을 늘리기 위한 방법에 대해 질문하며, 시작할 일과 개발적인 측면에 대한 논의를 요청했습니다.\",\n  \"stateUpdate\": {\n    \"openQuestions\": [\"온라인 매출을 늘리기 위한 좋은 방법은 무엇인가요?\", \"무엇부터 시작해야 할까요?\", \"개발적으로 할 일은 없나요?\"]\n  }\n}",
+        "promptTokens": 1029,
+        "completionTokens": 103,
+        "totalTokens": 1132
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:50:11.848Z",
+      "type": "summary",
+      "data": {
+        "text": "사용자가 온라인 매출을 늘리기 위한 방법에 대해 질문하며, 시작할 일과 개발적인 측면에 대한 논의를 요청했습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:50:15.633Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "intervention_generate",
+        "model": "gpt-4o",
+        "systemPrompt": "당신은 10년차 퍼포먼스 마케터입니다.\n팀원의 질문에 구체적이고 실행 가능한 답변을 제공하세요.\n\n규칙:\n- 핵심 답변 2~3문장 + 구체적 실행 방안 1~2개\n- 가능하면 수치/벤치마크 포함\n- \"~하면 좋을 것 같아요\" 보다 \"~를 추천합니다\" 톤\n- 프로젝트 컨텍스트(예산, KPI, 타겟)를 반영한 맞춤 답변\n- 매번 다른 방식으로 시작하세요.\n- 한국어로 자연스럽게",
+        "userPrompt": "트리거: direct_question\n\n[컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 온라인 매출을 늘리기 위한 좋은 방법에 대해 질문했습니다.\",\"사용자가 온라인 매출을 늘리기 위한 방법에 대해 질문하며, 시작할 일과 개발적인 측면에 대한 논의를 요청했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[\"온라인 매출을 늘리기 위한 좋은 방법은 무엇인가요?\",\"무엇부터 시작해야 할까요?\",\"개발적으로 할 일은 없나요?\"]}\n\n[최근 발언]\n온라인에서 매출을 더 늘리고 싶은데 좋은 방법이 뭐가 있을지 회의해봅시다\n그럼 뭐부터 시작해야할까요? 개발적으로 할 일은 없나요?\n\n[이전 개입 메시지 (중복 방지용)]\n- 온라인 매출을 늘리기 위해서는 타겟 고객의 관심을 끌고, 브랜드의 스토리를 효과적으로 전달하는 것이 중요합니\n\n질문에 대해 구체적으로 답변하세요.",
+        "response": "온라인 매출을 늘리기 위해서는 먼저 브랜드 스토리를 강화하고 신규 고객 유입을 촉진하는 것이 중요합니다. 이를 위해 소셜 미디어 캠페인을 기획하여 스토리를 전달하고, 구독 서비스의 장점을 강조하는 광고를 추천합니다.\n\n실행 방안:\n1. **소셜 미디어 캠페인**: 인스타그램과 페이스북을 활용하여 스페셜티 커피의 차별성과 구독 서비스의 혜택을 강조하는 콘텐츠를 제작하세요. 매주 한 번씩 브랜드 스토리를 담은 포스팅을 통해 팔로워와의 상호작용을 늘리는 것을 목표로 합니다.\n2. **SEO 최적화**: 웹사이트의 블로그에서 싱글 오리진 원두와 로스팅 기술에 대한 유익한 정보를 제공하여 검색 엔진 최적화를 강화하세요. 이를 통해 커피 애호가들이 검색 시 더 쉽게 당신의 브랜드를 발견할 수 있도록 합니다.",
+        "promptTokens": 555,
+        "completionTokens": 212,
+        "totalTokens": 767
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:50:15.635Z",
+      "type": "intervention",
+      "data": {
+        "trigger": "direct_question",
+        "message": "온라인 매출을 늘리기 위해서는 먼저 브랜드 스토리를 강화하고 신규 고객 유입을 촉진하는 것이 중요합니다. 이를 위해 소셜 미디어 캠페인을 기획하여 스토리를 전달하고, 구독 서비스의 장점을 강조하는 광고를 추천합니다.\n\n실행 방안:\n1. **소셜 미디어 캠페인**: 인스타그램과 페이스북을 활용하여 스페셜티 커피의 차별성과 구독 서비스의 혜택을 강조하는 콘텐츠를 제작하세요. 매주 한 번씩 브랜드 스토리를 담은 포스팅을 통해 팔로워와의 상호작용을 늘리는 것을 목표로 합니다.\n2. **SEO 최적화**: 웹사이트의 블로그에서 싱글 오리진 원두와 로스팅 기술에 대한 유익한 정보를 제공하여 검색 엔진 최적화를 강화하세요. 이를 통해 커피 애호가들이 검색 시 더 쉽게 당신의 브랜드를 발견할 수 있도록 합니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:50:35.003Z",
+      "type": "transcript",
+      "data": {
+        "text": "네이버 검색광고나 메타 광고는 어떤가요?"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:50:50.104Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- 이전 개입 이력(previousInterventions)에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 온라인 매출을 늘리기 위한 좋은 방법에 대해 질문했습니다.\",\"사용자가 온라인 매출을 늘리기 위한 방법에 대해 질문하며, 시작할 일과 개발적인 측면에 대한 논의를 요청했습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[\"온라인 매출을 늘리기 위한 좋은 방법은 무엇인가요?\",\"무엇부터 시작해야 할까요?\",\"개발적으로 할 일은 없나요?\"]}\n\n[최근 발언]\n온라인에서 매출을 더 늘리고 싶은데 좋은 방법이 뭐가 있을지 회의해봅시다\n그럼 뭐부터 시작해야할까요? 개발적으로 할 일은 없나요?\n네이버 검색광고나 메타 광고는 어떤가요?\n\n[이전 개입 이력 (최근 2건)]\n1. [direct_question] 온라인 매출을 늘리기 위해서는 타겟 고객의 관심을 끌고, 브랜드의 스토리를 효과적으로 전달하는 것이 중요합니다. 추천드리는 첫 번째 방법은 소셜\n2. [direct_question] 온라인 매출을 늘리기 위해서는 먼저 브랜드 스토리를 강화하고 신규 고객 유입을 촉진하는 것이 중요합니다. 이를 위해 소셜 미디어 캠페인을 기획하",
+        "response": "{\n  \"hasTrigger\": false,\n  \"triggerType\": null,\n  \"summary\": \"사용자가 온라인 매출을 늘리기 위한 방법에 대해 질문하며, 시작할 일과 개발적인 측면에 대한 논의를 요청했습니다. 또한 네이버 검색광고와 메타 광고에 대한 언급이 있었습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1157,
+        "completionTokens": 77,
+        "totalTokens": 1234
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:50:50.107Z",
+      "type": "summary",
+      "data": {
+        "text": "사용자가 온라인 매출을 늘리기 위한 방법에 대해 질문하며, 시작할 일과 개발적인 측면에 대한 논의를 요청했습니다. 또한 네이버 검색광고와 메타 광고에 대한 언급이 있었습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:51:11.548Z",
+      "type": "transcript",
+      "data": {
+        "text": "말씀해주세요"
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:51:13.764Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- 이전 개입 이력(previousInterventions)에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 온라인 매출을 늘리기 위한 좋은 방법에 대해 질문했습니다.\",\"사용자가 온라인 매출을 늘리기 위한 방법에 대해 질문하며, 시작할 일과 개발적인 측면에 대한 논의를 요청했습니다.\",\"사용자가 온라인 매출을 늘리기 위한 방법에 대해 질문하며, 시작할 일과 개발적인 측면에 대한 논의를 요청했습니다. 또한 네이버 검색광고와 메타 광고에 대한 언급이 있었습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[\"온라인 매출을 늘리기 위한 좋은 방법은 무엇인가요?\",\"무엇부터 시작해야 할까요?\",\"개발적으로 할 일은 없나요?\"]}\n\n[최근 발언]\n온라인에서 매출을 더 늘리고 싶은데 좋은 방법이 뭐가 있을지 회의해봅시다\n그럼 뭐부터 시작해야할까요? 개발적으로 할 일은 없나요?\n네이버 검색광고나 메타 광고는 어떤가요?\n말씀해주세요\n\n[이전 개입 이력 (최근 2건)]\n1. [direct_question] 온라인 매출을 늘리기 위해서는 타겟 고객의 관심을 끌고, 브랜드의 스토리를 효과적으로 전달하는 것이 중요합니다. 추천드리는 첫 번째 방법은 소셜\n2. [direct_question] 온라인 매출을 늘리기 위해서는 먼저 브랜드 스토리를 강화하고 신규 고객 유입을 촉진하는 것이 중요합니다. 이를 위해 소셜 미디어 캠페인을 기획하",
+        "response": "{\n  \"hasTrigger\": false,\n  \"triggerType\": null,\n  \"summary\": \"사용자가 온라인 매출을 늘리기 위한 방법에 대해 질문하며, 시작할 일과 개발적인 측면에 대한 논의를 요청했습니다. 또한 네이버 검색광고와 메타 광고에 대한 언급이 있었습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1210,
+        "completionTokens": 77,
+        "totalTokens": 1287
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:51:13.766Z",
+      "type": "summary",
+      "data": {
+        "text": "사용자가 온라인 매출을 늘리기 위한 방법에 대해 질문하며, 시작할 일과 개발적인 측면에 대한 논의를 요청했습니다. 또한 네이버 검색광고와 메타 광고에 대한 언급이 있었습니다."
+      }
+    },
+    {
+      "timestamp": "2026-02-14T16:51:34.934Z",
+      "type": "ai_call",
+      "data": {
+        "purpose": "trigger_detect",
+        "model": "gpt-4o-mini",
+        "systemPrompt": "당신은 회의에 배석한 AI 마케터입니다. 최근 발언을 분석하여 마케팅 관점에서 개입이 필요한지 판단하세요.\n\n트리거 4종 (가장 적합한 1개만 선택):\n1. \"target_vague\" - 타겟 고객층이 구체적이지 않을 때만. 단, 이미 타겟을 구체화하는 중이거나 이전 개입에서 다뤘다면 트리거하지 마세요.\n2. \"message_abstract\" - 가치 제안/메시지/슬로건이 추상적일 때 (\"빠르고 편리\", \"혁신적\", \"쉽고 직관적\", \"좋은\", \"최고의\"). 구체적 수치나 비교 대상 없이 형용사만 나열할 때.\n3. \"experiment_missing\" - 마케팅 실행을 논의하면서 가설/지표/성공기준 없이 바로 실행하려 할 때 (\"카피 바꿔보자\", \"광고 돌려보자\", \"SNS에 올리자\", \"마케팅 해보자\", \"채널을 정하자\", \"전략을 세워주세요\").\n4. \"direct_question\" - 사용자가 AI에게 직접 질문하거나 답변을 요청할 때 (\"마케터 대답하세요\", \"어떻게 해야할까요\", \"좋은 방법 있을까요\", \"추천해주세요\", \"알려주세요\").\n\n절대 규칙 (위반 시 실패):\n- 이전 개입 이력(previousInterventions)에서 같은 triggerType이 이미 2회 연속 있으면, 반드시 hasTrigger: false로 응답하세요.\n- 사용자가 이미 구체적 계획을 말한 경우 (예: \"A/B 테스트\", \"금액 대비 매출 비교\", 구체적 지표 언급) experiment_missing을 트리거하지 마세요.\n\n중요한 판단 기준:\n- 대화가 타겟 논의에서 실행/전략 논의로 넘어갔다면 target_vague 대신 experiment_missing을 고려하세요.\n- 메시지/슬로건/가치 제안을 논의 중이면 message_abstract를 우선 고려하세요.\n- 사용자가 직접 질문하거나 \"대답하세요\"라고 하면 direct_question을 트리거하세요.\n- 개입이 필요 없다면 hasTrigger: false로 응답하세요.\n\nstateUpdate 규칙:\n- 사용자의 발언에서 구체적 내용이 나오면 반드시 해당 state 필드에 반영하세요.\n- 예: \"A/B 테스트로 금액 대비 매출 비교\" → experiments, hypotheses에 반영\n- 예: \"20대 직장인 여성\" → targetSegment에 반영\n- 예: \"인스타그램과 틱톡\" → channels에 반영\n- null로 두지 말고 최대한 추출하세요.\n\n반드시 JSON으로 응답:\n{\n  \"hasTrigger\": boolean,\n  \"triggerType\": \"target_vague\" | \"message_abstract\" | \"experiment_missing\" | \"direct_question\" | null,\n  \"summary\": \"최근 발언 요약 (1~2문장)\",\n  \"stateUpdate\": { 변경된 MeetingState 필드 } | null\n}",
+        "userPrompt": "[프로젝트 컨텍스트]\n{\"kpiGoals\":{\"온라인 원두 판매\":\"월 600만원\"},\"coreValue\":\"고품질의 싱글 오리진 원두와 전문 로스팅 기술을 통한 특별한 커피 경험 제공\",\"constraints\":[\"신규 고객 유입 부족\",\"브랜드 스토리 전달의 어려움\"],\"productSummary\":\"서울 성수동에 위치한 스페셜티 커피 로스터리 카페\",\"targetPersonas\":[\"커피 애호가\",\"특별한 커피 경험을 찾는 도시 거주자\"],\"differentiators\":[\"자체 로스팅 및 싱글 오리진 원두 전문성\",\"원두 구독 서비스 제공\"]}\n\n[현재 회의 상태]\n{\"meetingTitle\":\"온라인 채널 성장 전략\",\"meetingType\":\"other\",\"summary\":[\"사용자가 온라인 매출을 늘리기 위한 좋은 방법에 대해 질문했습니다.\",\"사용자가 온라인 매출을 늘리기 위한 방법에 대해 질문하며, 시작할 일과 개발적인 측면에 대한 논의를 요청했습니다.\",\"사용자가 온라인 매출을 늘리기 위한 방법에 대해 질문하며, 시작할 일과 개발적인 측면에 대한 논의를 요청했습니다. 또한 네이버 검색광고와 메타 광고에 대한 언급이 있었습니다.\"],\"targetSegment\":[],\"problemStatement\":\"\",\"valueProposition\":\"\",\"keyMessages\":[],\"differentiators\":[],\"channels\":[],\"kpi\":{},\"hypotheses\":[],\"experiments\":[],\"decisions\":[],\"actions\":[],\"openQuestions\":[\"온라인 매출을 늘리기 위한 좋은 방법은 무엇인가요?\",\"무엇부터 시작해야 할까요?\",\"개발적으로 할 일은 없나요?\"]}\n\n[최근 발언]\n온라인에서 매출을 더 늘리고 싶은데 좋은 방법이 뭐가 있을지 회의해봅시다\n그럼 뭐부터 시작해야할까요? 개발적으로 할 일은 없나요?\n네이버 검색광고나 메타 광고는 어떤가요?\n말씀해주세요\n\n[이전 개입 이력 (최근 2건)]\n1. [direct_question] 온라인 매출을 늘리기 위해서는 타겟 고객의 관심을 끌고, 브랜드의 스토리를 효과적으로 전달하는 것이 중요합니다. 추천드리는 첫 번째 방법은 소셜\n2. [direct_question] 온라인 매출을 늘리기 위해서는 먼저 브랜드 스토리를 강화하고 신규 고객 유입을 촉진하는 것이 중요합니다. 이를 위해 소셜 미디어 캠페인을 기획하",
+        "response": "{\n  \"hasTrigger\": false,\n  \"triggerType\": null,\n  \"summary\": \"사용자가 온라인 매출을 늘리기 위한 방법과 시작할 일, 개발적인 측면에 대해 질문했습니다. 네이버 검색광고와 메타 광고에 대한 언급도 있었습니다.\",\n  \"stateUpdate\": null\n}",
+        "promptTokens": 1210,
+        "completionTokens": 70,
+        "totalTokens": 1280
+      }
+    }
+  ],
+  "tokenUsage": {
+    "totalPromptTokens": 7529,
+    "totalCompletionTokens": 874,
+    "totalTokens": 8403,
+    "calls": 8
+  }
+}

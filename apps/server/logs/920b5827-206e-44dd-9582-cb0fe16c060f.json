@@ -1,0 +1,21 @@
+{
+  "meetingId": "920b5827-206e-44dd-9582-cb0fe16c060f",
+  "title": "Q1 마케팅 전략 회의",
+  "startedAt": "2026-02-14T17:35:26.403Z",
+  "endedAt": null,
+  "entries": [
+    {
+      "timestamp": "2026-02-14T17:35:26.403Z",
+      "type": "meeting_start",
+      "data": {
+        "title": "Q1 마케팅 전략 회의"
+      }
+    }
+  ],
+  "tokenUsage": {
+    "totalPromptTokens": 0,
+    "totalCompletionTokens": 0,
+    "totalTokens": 0,
+    "calls": 0
+  }
+}

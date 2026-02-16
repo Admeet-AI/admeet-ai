@@ -2,7 +2,7 @@ import { openai } from "../lib/openai.js";
 import { supabase } from "../lib/supabase.js";
 import type { ProjectContextCard } from "@admeet/shared";
 
-const CONTEXT_CARD_PROMPT = `당신은 마케팅 전문가(CMO)입니다. 사용자가 제공한 제품/서비스 정보를 분석하여 Project Context Card를 생성하세요.
+const CONTEXT_CARD_PROMPT = `당신은 프로젝트 분석 전문가입니다. 사용자가 제공한 제품/서비스 정보를 분석하여 Project Context Card를 생성하세요.
 
 반드시 아래 JSON 형식으로만 응답하세요:
 {
@@ -17,7 +17,7 @@ const CONTEXT_CARD_PROMPT = `당신은 마케팅 전문가(CMO)입니다. 사용
   "followUpQuestions": [
     "보충 질문 1 (업종/시장 관련)",
     "보충 질문 2 (경쟁사 관련)",
-    "보충 질문 3 (현재 마케팅 채널 관련)"
+    "보충 질문 3 (현재 프로젝트 목표/일정 관련)"
   ]
 }
 

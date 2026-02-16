@@ -48,17 +48,17 @@ export default function ReportPage() {
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-slate-50 flex items-center justify-center">
+      <main className="min-h-screen bg-background flex items-center justify-center">
         <p className="text-muted-foreground">회의록 생성 중...</p>
       </main>
     );
   }
 
   return (
-    <main className="min-h-screen bg-slate-50 py-12">
+    <main className="min-h-screen bg-background py-12">
       <div className="mx-auto max-w-3xl px-6">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-bold">회의록</h1>
+          <h1 className="text-2xl font-bold text-foreground">회의록</h1>
           <div className="flex gap-2">
             <Button variant="outline" size="sm" onClick={handleCopy}>복사</Button>
             <Button variant="outline" size="sm" onClick={handleDownload}>다운로드 (.md)</Button>

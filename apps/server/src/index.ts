@@ -7,6 +7,7 @@ import { initRoutes } from "./routes/init.js";
 import { meetingRoutes } from "./routes/meeting.js";
 import { reportRoutes } from "./routes/report.js";
 import { logRoutes } from "./routes/logs.js";
+import { personaRoutes } from "./routes/persona.js";
 import { setupWebSocket } from "./ws/handler.js";
 
 const app = express();
@@ -25,6 +26,7 @@ app.use("/api/init", initRoutes);
 app.use("/api/meetings", meetingRoutes);
 app.use("/api/reports", reportRoutes);
 app.use("/api/logs", logRoutes);
+app.use("/api/personas", personaRoutes);
 
 // Static files (log viewer)
 app.use(express.static(join(process.cwd(), "public")));

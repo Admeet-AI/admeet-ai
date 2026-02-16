@@ -123,10 +123,10 @@ export default function DevPage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50 py-12">
+    <main className="min-h-screen bg-background py-12">
       <div className="mx-auto max-w-3xl px-6">
         <div className="flex items-center gap-3 mb-2">
-          <h1 className="text-3xl font-bold">데모 모드</h1>
+          <h1 className="text-3xl font-bold text-foreground">데모 모드</h1>
           <Badge variant="secondary" className="bg-amber-100 text-amber-800">DEV</Badge>
         </div>
         <p className="text-muted-foreground mb-8">
@@ -141,8 +141,8 @@ export default function DevPage() {
               onClick={() => selectPreset(idx)}
               className={`flex-1 text-left p-4 rounded-lg border-2 transition-all ${
                 selectedPreset === idx
-                  ? "border-blue-500 bg-blue-50"
-                  : "border-slate-200 bg-white hover:border-slate-300"
+                  ? "border-blue-500 bg-blue-50 dark:bg-blue-950/30"
+                  : "border-border bg-card hover:border-muted-foreground/30"
               }`}
             >
               <div className="font-semibold text-sm">{preset.label}</div>

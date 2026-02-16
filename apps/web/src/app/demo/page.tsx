@@ -387,12 +387,6 @@ export default function DemoPage() {
         onSendText={(text) => {
           store.addTranscript(text);
         }}
-        onEndMeeting={() => {
-          alert("데모 모드에서는 회의 종료가 비활성화됩니다.");
-        }}
-        settingsSlot={
-          <SettingsModal onIntervalChange={() => {}} />
-        }
       />
     </main>
   );

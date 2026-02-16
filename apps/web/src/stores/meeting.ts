@@ -112,6 +112,14 @@ export const useMeetingStore = create<MeetingStore>((set) => ({
   addSharedTranscript: (entry) =>
     set((s) => {
       if (!entry.isFinal) return s;
+      // 중복 방지: 같은 텍스트 + 같은 화자가 2초 이내에 이미 추가되었으면 무시
+      const isDuplicate = s.transcripts.some(
+        (t) =>
+          t.text === entry.text &&
+          t.speakerName === entry.speakerName &&
+          Math.abs(t.timestamp - entry.timestamp) < 2000
+      );
+      if (isDuplicate) return s;
       return {
         transcripts: [...s.transcripts, entry],
       };

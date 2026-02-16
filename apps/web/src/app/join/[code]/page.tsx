@@ -248,7 +248,6 @@ export default function JoinPage() {
           store.addTranscript(text);
           send({ type: "transcript", data: { text, isFinal: true } });
         }}
-        onEndMeeting={handleLeave}
       />
     </main>
   );

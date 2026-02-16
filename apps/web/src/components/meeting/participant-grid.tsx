@@ -7,13 +7,6 @@ export function ParticipantGrid() {
   const participants = useMeetingStore((s) => s.participants);
   const isAnalyzing = useMeetingStore((s) => s.isAnalyzing);
   const analyzingPersonaId = useMeetingStore((s) => s.analyzingPersonaId);
-  const thoughts = useMeetingStore((s) => s.thoughts);
-
-  const getLatestThought = (participantId: string) => {
-    const personaId = participantId.replace("ai-", "");
-    const personaThoughts = thoughts.filter((t) => t.personaId === personaId);
-    return personaThoughts[personaThoughts.length - 1]?.content;
-  };
 
   return (
     <div className="flex flex-wrap items-center justify-center gap-3 p-4">
@@ -26,7 +19,6 @@ export function ParticipantGrid() {
             p.isAI &&
             (!analyzingPersonaId || p.id === `ai-${analyzingPersonaId}`)
           }
-          latestThought={p.isAI ? getLatestThought(p.id) : undefined}
         />
       ))}
     </div>

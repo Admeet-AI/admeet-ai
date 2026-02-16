@@ -3,9 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Mic, MicOff, Send, MessageCircle, PhoneOff } from "lucide-react";
-import { useMeetingStore } from "@/stores/meeting";
-import { cn } from "@/lib/utils";
+import { Mic, MicOff, Send, PhoneOff } from "lucide-react";
 
 interface MeetingControlsProps {
   isListening: boolean;
@@ -23,8 +21,6 @@ export function MeetingControls({
   settingsSlot,
 }: MeetingControlsProps) {
   const [textInput, setTextInput] = useState("");
-  const isChatOpen = useMeetingStore((s) => s.isChatOpen);
-  const setChatOpen = useMeetingStore((s) => s.setChatOpen);
 
   const handleSubmit = () => {
     if (!textInput.trim()) return;
@@ -58,14 +54,6 @@ export function MeetingControls({
         >
           {isListening ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
           <span className="hidden sm:inline">{isListening ? "음소거" : "마이크"}</span>
-        </Button>
-
-        <Button
-          size="sm"
-          variant={isChatOpen ? "default" : "outline"}
-          onClick={() => setChatOpen(!isChatOpen)}
-        >
-          <MessageCircle className="h-4 w-4" />
         </Button>
 
         {settingsSlot}

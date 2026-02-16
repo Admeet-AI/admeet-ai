@@ -7,9 +7,14 @@ import { BrainCircuit } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function SharedTranscript() {
-  const transcripts = useMeetingStore((s) => s.transcripts);
+  const allTranscripts = useMeetingStore((s) => s.transcripts);
   const interimTranscript = useMeetingStore((s) => s.interimTranscript);
   const currentUserName = useMeetingStore((s) => s.currentUserName);
+
+  // AI 발언 제외 — 인간 참여자만 표시
+  const transcripts = allTranscripts.filter(
+    (t) => !t.isAI && !t.speakerId.startsWith("ai-")
+  );
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

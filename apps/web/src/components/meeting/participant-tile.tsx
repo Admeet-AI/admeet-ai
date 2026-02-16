@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils";
 interface ParticipantTileProps {
   participant: ParticipantInfo;
   isAnalyzing?: boolean;
-  latestThought?: string;
 }
 
 const AI_COLORS: Record<string, string> = {
@@ -30,7 +29,6 @@ function getInitials(name: string): string {
 export function ParticipantTile({
   participant,
   isAnalyzing,
-  latestThought,
 }: ParticipantTileProps) {
   const color = participant.isAI
     ? AI_COLORS[participant.displayName] || "#6b7280"
@@ -83,15 +81,6 @@ export function ParticipantTile({
         </span>
       )}
 
-      {/* AI 생각 말풍선 */}
-      {participant.isAI && latestThought && (
-        <div
-          className="absolute -bottom-1 left-1/2 -translate-x-1/2 translate-y-full z-10 w-48 rounded-lg border p-2 text-[10px] leading-relaxed shadow-lg bg-card"
-          style={{ borderColor: `${color}30` }}
-        >
-          <p className="line-clamp-2 text-muted-foreground">{latestThought}</p>
-        </div>
-      )}
     </div>
   );
 }

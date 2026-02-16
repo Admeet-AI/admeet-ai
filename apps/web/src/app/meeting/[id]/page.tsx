@@ -29,7 +29,7 @@ export default function MeetingPage() {
   const { connect, disconnect, send, sendAfterJoin } = useWebSocket();
   const meetingTitle = searchParams.get("title") || "새 회의";
   const [hasJoined, setHasJoined] = useState(false);
-  const [activeTab, setActiveTab] = useState<"transcript" | "insights">("transcript");
+  const [activeTab, setActiveTab] = useState<"transcript" | "summary" | "insights">("transcript");
   const [activePersonaTab, setActivePersonaTab] = useState<string | null>(null);
 
   const personaIdsParam = searchParams.get("personaIds");
@@ -173,126 +173,77 @@ export default function MeetingPage() {
         <ParticipantGrid />
       </div>
 
-      {/* 메인 컨텐츠 */}
+      {/* 모바일 탭 전환 */}
+      <div className="flex border-b border-border bg-card sm:hidden">
+        {(["transcript", "summary", "insights"] as const).map((tab) => (
+          <button
+            key={tab}
+            onClick={() => setActiveTab(tab)}
+            className={`flex-1 px-4 py-2 text-sm font-medium transition-colors ${
+              activeTab === tab
+                ? "border-b-2 border-blue-500 text-blue-600"
+                : "text-muted-foreground"
+            }`}
+          >
+            {tab === "transcript" ? "트랜스크립트" : tab === "summary" ? "실시간 요약" : "AI 상태"}
+          </button>
+        ))}
+      </div>
+
+      {/* 메인 컨텐츠 — 3컬럼 */}
       <div className="flex-1 flex overflow-hidden">
-        {/* 탭 전환 (모바일) */}
-        <div className="flex-1 flex flex-col overflow-hidden">
-          <div className="flex border-b border-border bg-card sm:hidden">
-            <button
-              onClick={() => setActiveTab("transcript")}
-              className={`flex-1 px-4 py-2 text-sm font-medium transition-colors ${
-                activeTab === "transcript"
-                  ? "border-b-2 border-blue-500 text-blue-600"
-                  : "text-muted-foreground"
-              }`}
-            >
-              트랜스크립트
-            </button>
-            <button
-              onClick={() => setActiveTab("insights")}
-              className={`flex-1 px-4 py-2 text-sm font-medium transition-colors ${
-                activeTab === "insights"
-                  ? "border-b-2 border-blue-500 text-blue-600"
-                  : "text-muted-foreground"
-              }`}
-            >
-              인사이트
-            </button>
-          </div>
-
-          <div className="flex-1 flex overflow-hidden">
-            {/* 공유 트랜스크립트 */}
-            <div
-              className={`flex-1 p-3 overflow-hidden ${
-                activeTab !== "transcript" ? "hidden sm:flex sm:flex-col" : "flex flex-col"
-              }`}
-            >
-              <SharedTranscript />
-            </div>
-
-            {/* 사이드 패널: 요약 + 페르소나 인사이트 */}
-            <div
-              className={`w-full sm:w-80 lg:w-96 border-l border-border flex flex-col overflow-hidden ${
-                activeTab !== "insights" ? "hidden sm:flex" : "flex"
-              }`}
-            >
-              {/* 요약 */}
-              <div className="h-1/3 border-b border-border p-3 overflow-hidden">
-                <SummaryPanel />
-              </div>
-
-              {/* 페르소나 인사이트 */}
-              <div className="flex-1 p-3 overflow-hidden flex flex-col">
-                {store.activePersonas.length > 1 && (
-                  <div className="flex gap-1 mb-2 overflow-x-auto pb-1">
-                    {store.activePersonas.map((p) => (
-                      <button
-                        key={p.id}
-                        onClick={() => setActivePersonaTab(p.id)}
-                        className={`px-2 py-1 text-xs rounded-md whitespace-nowrap transition-colors ${
-                          activePersonaTab === p.id
-                            ? "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300 font-medium"
-                            : "bg-muted text-muted-foreground hover:bg-muted/80"
-                        }`}
-                      >
-                        {p.name}
-                      </button>
-                    ))}
-                  </div>
-                )}
-                {store.activePersonas.length > 0 ? (
-                  <PersonaPanel
-                    persona={
-                      store.activePersonas.find((p) => p.id === activePersonaTab) ||
-                      store.activePersonas[0]
-                    }
-                  />
-                ) : (
-                  <PersonaPanel persona={null} />
-                )}
-              </div>
-            </div>
-          </div>
+        {/* 1. 공유 트랜스크립트 */}
+        <div
+          className={`flex-1 p-3 overflow-hidden border-r border-border ${
+            activeTab !== "transcript" ? "hidden sm:flex sm:flex-col" : "flex flex-col"
+          }`}
+        >
+          <SharedTranscript />
         </div>
 
-        {/* 채팅 사이드바 */}
-        {store.isChatOpen && (
-          <div className="w-72 border-l border-border flex flex-col bg-card">
-            <div className="px-3 py-2 border-b border-border">
-              <h3 className="text-sm font-semibold">채팅</h3>
-            </div>
-            <div className="flex-1 overflow-y-auto p-3 space-y-2">
-              {store.chatMessages.map((msg, i) => (
-                <div key={i} className="text-xs">
-                  <span className="font-semibold">{msg.senderName}</span>
-                  <span className="text-muted-foreground ml-1">
-                    {new Date(msg.timestamp).toLocaleTimeString("ko-KR", {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
-                  </span>
-                  <p className="mt-0.5">{msg.text}</p>
-                </div>
+        {/* 2. 실시간 요약 */}
+        <div
+          className={`flex-1 p-3 overflow-hidden border-r border-border ${
+            activeTab !== "summary" ? "hidden sm:flex sm:flex-col" : "flex flex-col"
+          }`}
+        >
+          <SummaryPanel />
+        </div>
+
+        {/* 3. AI 상태 (페르소나 인사이트) */}
+        <div
+          className={`flex-1 p-3 overflow-hidden flex flex-col ${
+            activeTab !== "insights" ? "hidden sm:flex sm:flex-col" : "flex flex-col"
+          }`}
+        >
+          {store.activePersonas.length > 1 && (
+            <div className="flex gap-1 mb-2 overflow-x-auto pb-1">
+              {store.activePersonas.map((p) => (
+                <button
+                  key={p.id}
+                  onClick={() => setActivePersonaTab(p.id)}
+                  className={`px-2 py-1 text-xs rounded-md whitespace-nowrap transition-colors ${
+                    activePersonaTab === p.id
+                      ? "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300 font-medium"
+                      : "bg-muted text-muted-foreground hover:bg-muted/80"
+                  }`}
+                >
+                  {p.name}
+                </button>
               ))}
             </div>
-            <div className="p-2 border-t border-border">
-              <input
-                type="text"
-                placeholder="메시지 입력..."
-                className="w-full px-2 py-1.5 text-xs border border-border rounded-md bg-background"
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" && (e.target as HTMLInputElement).value.trim()) {
-                    send({
-                      type: "chat:message",
-                      data: { text: (e.target as HTMLInputElement).value },
-                    });
-                    (e.target as HTMLInputElement).value = "";
-                  }
-                }}
-              />
-            </div>
-          </div>
-        )}
+          )}
+          {store.activePersonas.length > 0 ? (
+            <PersonaPanel
+              persona={
+                store.activePersonas.find((p) => p.id === activePersonaTab) ||
+                store.activePersonas[0]
+              }
+            />
+          ) : (
+            <PersonaPanel persona={null} />
+          )}
+        </div>
       </div>
 
       {/* 하단 컨트롤 바 */}

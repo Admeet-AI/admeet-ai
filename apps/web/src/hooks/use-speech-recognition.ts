@@ -8,20 +8,57 @@ interface UseSpeechRecognitionOptions {
   onError?: (error: string) => void;
 }
 
+interface SpeechRecognitionAlternativeLike {
+  transcript: string;
+}
+
+interface SpeechRecognitionResultLike {
+  isFinal: boolean;
+  [index: number]: SpeechRecognitionAlternativeLike;
+}
+
+interface SpeechRecognitionEventLike {
+  resultIndex: number;
+  results: SpeechRecognitionResultLike[];
+}
+
+interface SpeechRecognitionErrorEventLike {
+  error: string;
+}
+
+interface SpeechRecognitionLike {
+  lang: string;
+  continuous: boolean;
+  interimResults: boolean;
+  onresult: ((event: SpeechRecognitionEventLike) => void) | null;
+  onerror: ((event: SpeechRecognitionErrorEventLike) => void) | null;
+  onend: (() => void) | null;
+  start: () => void;
+  stop: () => void;
+}
+
+type SpeechRecognitionConstructor = new () => SpeechRecognitionLike;
+
+type SpeechWindow = Window & {
+  SpeechRecognition?: SpeechRecognitionConstructor;
+  webkitSpeechRecognition?: SpeechRecognitionConstructor;
+};
+
 export function useSpeechRecognition({
   lang = "ko-KR",
   onResult,
   onError,
 }: UseSpeechRecognitionOptions) {
   const [isListening, setIsListening] = useState(false);
-  const recognitionRef = useRef<SpeechRecognition | null>(null);
+  const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
 
   const start = useCallback(() => {
+    const speechWindow = window as SpeechWindow;
     const SpeechRecognition =
-      window.SpeechRecognition || window.webkitSpeechRecognition;
+      speechWindow.SpeechRecognition || speechWindow.webkitSpeechRecognition;
 
     if (!SpeechRecognition) {
-      onError?.("Web Speech API를 지원하지 않는 브라우저입니다.");
+      onError?.("Web Speech API is not supported in this browser.");
       return;
     }
 
@@ -43,8 +80,8 @@ export function useSpeechRecognition({
       }
     };
 
+    // Auto-restart as a fallback for unstable continuous mode behavior.
     recognition.onend = () => {
-      // 자동 재시작 (continuous가 끊기는 경우 대비)
       if (recognitionRef.current) {
         try {
           recognitionRef.current.start();

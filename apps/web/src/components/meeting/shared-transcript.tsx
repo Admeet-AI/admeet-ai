@@ -8,18 +8,18 @@ import { cn } from "@/lib/utils";
 
 /** 페르소나별 고유 컬러 (랜딩페이지와 동일) */
 const AI_COLORS: Record<string, { color: string; icon: typeof BrainCircuit }> = {
-  "시니어 마케터": { color: "#00d4ff", icon: Target },
-  마케터: { color: "#00d4ff", icon: Target },
+  "시니어 마케터": { color: "#2563eb", icon: Target },
+  마케터: { color: "#2563eb", icon: Target },
   "데이터 분석가": { color: "#7c3aed", icon: BarChart3 },
   PM: { color: "#7c3aed", icon: BarChart3 },
-  "UX 디자이너": { color: "#f59e0b", icon: Users },
-  "UX 리서처": { color: "#f59e0b", icon: Users },
-  CTO: { color: "#10b981", icon: BrainCircuit },
-  "법무 자문": { color: "#ef4444", icon: ShieldCheck },
+  "UX 디자이너": { color: "#d97706", icon: Users },
+  "UX 리서처": { color: "#d97706", icon: Users },
+  CTO: { color: "#059669", icon: BrainCircuit },
+  "법무 자문": { color: "#dc2626", icon: ShieldCheck },
 };
 
 function getAIStyle(name: string) {
-  return AI_COLORS[name] || { color: "#00d4ff", icon: BrainCircuit };
+  return AI_COLORS[name] || { color: "#2563eb", icon: BrainCircuit };
 }
 
 export { getAIStyle, AI_COLORS };
@@ -63,7 +63,7 @@ export function SharedTranscript() {
   });
 
   return (
-    <ScrollArea className="flex-1 overflow-hidden">
+    <ScrollArea className="h-full">
       <div className="p-4 space-y-3">
         {timeline.map((item, i) => {
           if (item.kind === "solution") {
@@ -103,7 +103,7 @@ export function SharedTranscript() {
         {interimTranscript && (
           <div className="flex justify-end">
             <div className="max-w-[75%]">
-              <div className="px-4 py-2.5 rounded-2xl rounded-br-sm bg-slate-900/90 dark:bg-white/90 text-white dark:text-slate-900 text-sm italic">
+              <div className="px-4 py-2.5 rounded-2xl rounded-br-sm bg-[#2563eb]/80 dark:bg-[#3b82f6]/80 text-white text-sm italic">
                 {interimTranscript}
                 <span className="inline-flex ml-1.5 gap-0.5">
                   <span className="h-1 w-1 rounded-full bg-current opacity-60 animate-bounce" />
@@ -138,7 +138,7 @@ function MyBubble({ text, timestamp }: { text: string; timestamp: number }) {
   return (
     <div className="flex justify-end gap-2">
       <div className="flex flex-col items-end max-w-[75%]">
-        <div className="px-4 py-2.5 rounded-2xl rounded-br-sm bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm leading-relaxed">
+        <div className="px-4 py-2.5 rounded-2xl rounded-br-sm bg-[#2563eb] dark:bg-[#3b82f6] text-white text-sm leading-relaxed">
           {text}
         </div>
         <TimeStamp timestamp={timestamp} className="mr-1" />
@@ -159,14 +159,14 @@ function OtherBubble({
 }) {
   return (
     <div className="flex gap-2.5">
-      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-100 dark:bg-white/[0.06] text-xs font-bold text-slate-500 dark:text-white/40">
+      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-200 dark:bg-slate-700 text-xs font-bold text-slate-600 dark:text-slate-300">
         {name[0]?.toUpperCase()}
       </div>
       <div className="flex flex-col max-w-[75%]">
-        <span className="text-[11px] font-medium text-slate-500 dark:text-white/40 mb-1 ml-1">
+        <span className="text-[11px] font-semibold text-slate-600 dark:text-slate-300 mb-1 ml-1">
           {name}
         </span>
-        <div className="px-4 py-2.5 rounded-2xl rounded-tl-sm border border-slate-200/60 dark:border-white/[0.06] bg-white/60 dark:bg-white/[0.03] text-sm leading-relaxed">
+        <div className="px-4 py-2.5 rounded-2xl rounded-tl-sm bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 text-sm leading-relaxed">
           {text}
         </div>
         <TimeStamp timestamp={timestamp} className="ml-1" />

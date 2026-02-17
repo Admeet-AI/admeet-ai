@@ -4,7 +4,10 @@ import { useEffect, useState } from "react";
 import { useMeetingStore } from "@/stores/meeting";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
+import { useSmartScroll } from "@/hooks/use-smart-scroll";
+import { ChevronDown } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { getAIStyle } from "./shared-transcript";
 import type { Persona, PersonaThought, PersonaSolution } from "../../../../../packages/shared/types";
 
 const CATEGORY_COLORS = [
@@ -27,30 +30,43 @@ interface PersonaPanelProps {
 export function PersonaPanel({ persona }: PersonaPanelProps) {
   const thoughts = useMeetingStore((s) => s.thoughts);
   const solutions = useMeetingStore((s) => s.solutions);
+  const activePersonas = useMeetingStore((s) => s.activePersonas);
   const isAnalyzing = useMeetingStore((s) => s.isAnalyzing);
   const lastRefreshAt = useMeetingStore((s) => s.lastRefreshAt);
   const analysisInterval = useMeetingStore((s) => s.analysisInterval);
   const [countdown, setCountdown] = useState(analysisInterval);
 
   // 페르소나별 카테고리 설정 빌드
-  const categoryConfig: Record<string, { label: string; color: string; icon: string }> =
-    persona
-      ? Object.fromEntries(
-          persona.thoughtCategories.map((cat, i) => [
-            cat.key,
-            {
-              label: cat.label,
-              color: CATEGORY_COLORS[i % CATEGORY_COLORS.length],
-              icon: cat.icon,
-            },
-          ])
-        )
-      : {
-          observation: { label: "관찰", color: CATEGORY_COLORS[0], icon: "👀" },
-          concern: { label: "우려", color: CATEGORY_COLORS[1], icon: "⚠️" },
-          opportunity: { label: "기회", color: CATEGORY_COLORS[2], icon: "✨" },
-          insight: { label: "인사이트", color: CATEGORY_COLORS[3], icon: "💡" },
-        };
+  // 전체 모드(persona === null)일 때 모든 페르소나의 카테고리를 합침
+  const categoryConfig: Record<string, { label: string; color: string; icon: string }> = (() => {
+    if (persona) {
+      return Object.fromEntries(
+        persona.thoughtCategories.map((cat, i) => [
+          cat.key,
+          {
+            label: cat.label,
+            color: CATEGORY_COLORS[i % CATEGORY_COLORS.length],
+            icon: cat.icon,
+          },
+        ])
+      );
+    }
+    const merged: Record<string, { label: string; color: string; icon: string }> = {};
+    let colorIdx = 0;
+    for (const p of activePersonas) {
+      for (const cat of p.thoughtCategories) {
+        if (!merged[cat.key]) {
+          merged[cat.key] = {
+            label: cat.label,
+            color: CATEGORY_COLORS[colorIdx % CATEGORY_COLORS.length],
+            icon: cat.icon,
+          };
+          colorIdx++;
+        }
+      }
+    }
+    return merged;
+  })();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -75,8 +91,11 @@ export function PersonaPanel({ persona }: PersonaPanelProps) {
     ...filteredSolutions.map((s) => ({ type: "solution" as const, data: s })),
   ].sort((a, b) => a.data.timestamp - b.data.timestamp);
 
+  const { scrollRef, bottomRef, isAtBottom, handleScroll, scrollToBottom } =
+    useSmartScroll({ deps: [timeline.length] });
+
   const progress = ((analysisInterval - countdown) / analysisInterval) * 100;
-  const displayName = persona?.name || "AI 페르소나";
+  const displayName = persona?.name || "전체";
   const signalHint = persona?.signalKeywords?.[0] || "호출";
 
   return (
@@ -103,30 +122,48 @@ export function PersonaPanel({ persona }: PersonaPanelProps) {
         />
       </div>
 
-      <ScrollArea className="flex-1 overflow-hidden">
-        <div className="space-y-3">
-          {timeline.map((item) =>
-            item.type === "thought" ? (
-              <ThoughtCard
-                key={item.data.id}
-                thought={item.data}
-                categoryConfig={categoryConfig}
-              />
-            ) : (
-              <SolutionCard key={item.data.id} solution={item.data} />
-            )
-          )}
-          {timeline.length === 0 && (
-            <p className="text-sm text-muted-foreground px-1">
-              회의 내용을 관찰하며 {displayName}이(가) 인사이트를 제공합니다.
-              <br />
-              <span className="text-xs">
-                &quot;{signalHint}&quot;(으)로 호출하면 솔루션을 제안합니다.
-              </span>
-            </p>
-          )}
-        </div>
-      </ScrollArea>
+      <div className="relative flex-1 overflow-hidden">
+        <ScrollArea className="h-full">
+          <div
+            ref={scrollRef}
+            onScroll={handleScroll}
+            className="space-y-3 px-[0.5em] h-full overflow-y-auto"
+          >
+            {timeline.map((item) =>
+              item.type === "thought" ? (
+                <ThoughtCard
+                  key={item.data.id}
+                  thought={item.data}
+                  categoryConfig={categoryConfig}
+                />
+              ) : (
+                <SolutionCard key={item.data.id} solution={item.data} />
+              )
+            )}
+            {timeline.length === 0 && (
+              <p className="text-sm text-muted-foreground px-1">
+                회의 내용을 관찰하며 {displayName}이(가) 인사이트를 제공합니다.
+                <br />
+                <span className="text-xs">
+                  &quot;{signalHint}&quot;(으)로 호출하면 솔루션을 제안합니다.
+                </span>
+              </p>
+            )}
+            <div ref={bottomRef} />
+          </div>
+        </ScrollArea>
+
+        {/* 새 인사이트 플로팅 버튼 */}
+        {!isAtBottom && timeline.length > 0 && (
+          <button
+            onClick={scrollToBottom}
+            className="absolute bottom-2 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1 rounded-full bg-blue-500 px-3 py-1.5 text-xs font-medium text-white shadow-lg transition-all hover:bg-blue-600 animate-[fadeInUp_0.3s_ease-out_both]"
+          >
+            <ChevronDown className="h-3 w-3" />
+            새 인사이트
+          </button>
+        )}
+      </div>
     </div>
   );
 }
@@ -143,13 +180,23 @@ function ThoughtCard({
     color: CATEGORY_COLORS[0],
     icon: "📌",
   };
+  const personaColor = thought.personaName
+    ? getAIStyle(thought.personaName).color
+    : undefined;
 
   return (
-    <Card className="border-border bg-muted/50">
+    <Card className="border-border bg-muted/50 animate-[bubbleIn_0.4s_ease-out_both]">
       <CardContent className="p-3">
-        <div className="flex items-center gap-1.5 mb-1.5">
-          <span className="text-sm">{config.icon}</span>
-          <Badge variant="secondary" className={`text-[10px] px-1.5 py-0 ${config.color}`}>
+        <div className="flex items-center gap-2 mb-1.5">
+          {thought.personaName && (
+            <span
+              className="text-xs font-bold"
+              style={{ color: personaColor }}
+            >
+              {thought.personaName}
+            </span>
+          )}
+          <Badge variant="secondary" className={`text-xs px-2 py-0.5 ${config.color}`}>
             {config.label}
           </Badge>
         </div>
@@ -160,12 +207,26 @@ function ThoughtCard({
 }
 
 function SolutionCard({ solution }: { solution: PersonaSolution }) {
+  const personaColor = solution.personaName
+    ? getAIStyle(solution.personaName).color
+    : undefined;
+
   return (
-    <Card className="border-blue-300 dark:border-blue-700 bg-blue-50 dark:bg-blue-950/30">
+    <Card className="border-blue-300 dark:border-blue-700 bg-blue-50 dark:bg-blue-950/30 animate-[bubbleIn_0.4s_ease-out_both]">
       <CardContent className="p-3">
-        <Badge variant="secondary" className="bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300 text-[10px] px-1.5 py-0 mb-1.5">
-          솔루션
-        </Badge>
+        <div className="flex items-center gap-2 mb-1.5">
+          {solution.personaName && (
+            <span
+              className="text-xs font-bold"
+              style={{ color: personaColor }}
+            >
+              {solution.personaName}
+            </span>
+          )}
+          <Badge variant="secondary" className="bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300 text-xs px-2 py-0.5">
+            솔루션
+          </Badge>
+        </div>
         <p className="text-xs text-blue-600 dark:text-blue-400 mb-1.5 font-medium">Q. {solution.question}</p>
         <p className="text-sm leading-relaxed">{solution.solution}</p>
         {solution.context && (

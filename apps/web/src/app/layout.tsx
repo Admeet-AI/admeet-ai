@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning>
       <body
-        className={`${sora.variable} ${notoSansKR.variable} antialiased bg-[#f8f9fb] dark:bg-[#0a0a0f]`}
+        className={`${sora.variable} ${notoSansKR.variable} antialiased`}
       >
         <ThemeProvider>
           <div className="mx-auto max-w-[1440px]">

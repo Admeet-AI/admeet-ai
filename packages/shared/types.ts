@@ -168,6 +168,7 @@ export type WSServerEvent =
   | { type: "room:joined"; data: { participant: ParticipantInfo } }
   | { type: "room:left"; data: { participantId: string; displayName: string } }
   | { type: "transcript:shared"; data: SharedTranscript }
+  | { type: "transcript:corrected"; data: { speakerId: string; timestamp: number; originalText: string; correctedText: string } }
   | { type: "chat:received"; data: ChatMessage }
   | { type: "summary"; data: { text: string } }
   | { type: "persona:thought"; data: PersonaThought }

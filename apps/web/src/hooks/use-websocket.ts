@@ -59,6 +59,13 @@ export function useWebSocket() {
           case "transcript:shared":
             store.addSharedTranscript(data.data);
             break;
+          case "transcript:corrected":
+            store.correctTranscript(
+              data.data.speakerId,
+              data.data.timestamp,
+              data.data.correctedText
+            );
+            break;
           case "chat:received":
             store.addChatMessage(data.data);
             break;

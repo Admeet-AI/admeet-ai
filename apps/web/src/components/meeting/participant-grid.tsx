@@ -1,7 +1,6 @@
 "use client";
 
 import { useMeetingStore } from "@/stores/meeting";
-import { BrainCircuit } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const AI_COLORS: Record<string, string> = {
@@ -42,11 +41,7 @@ export function ParticipantGrid() {
               )}
               style={{ backgroundColor: `${color}20`, color }}
             >
-              {p.isAI ? (
-                <BrainCircuit className="h-3.5 w-3.5" />
-              ) : (
-                p.displayName[0]?.toUpperCase()
-              )}
+              {p.isAI ? "AI" : p.displayName[0]?.toUpperCase()}
             </div>
           </div>
         );

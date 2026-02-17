@@ -15,8 +15,10 @@ import { MeetingControls } from "@/components/meeting/meeting-controls";
 import { SettingsModal } from "@/components/meeting/settings-modal";
 import { SummaryDrawer } from "@/components/meeting/summary-drawer";
 import { InsightsSidebar } from "@/components/meeting/insights-sidebar";
+import { EndMeetingOverlay } from "@/components/meeting/end-meeting-overlay";
+import type { EndingPhase } from "@/components/meeting/end-meeting-overlay";
 import type { Persona } from "../../../../../../packages/shared/types";
-import { BarChart3, PhoneOff } from "lucide-react";
+import { X } from "lucide-react";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
 
@@ -31,6 +33,8 @@ export default function MeetingPage() {
   const meetingTitle = searchParams.get("title") || "새 회의";
   const [hasJoined, setHasJoined] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [insightsOpen, setInsightsOpen] = useState(false);
+  const [endingPhase, setEndingPhase] = useState<EndingPhase | null>(null);
 
   const personaIdsParam = searchParams.get("personaIds");
   const personaIds = personaIdsParam ? personaIdsParam.split(",").filter(Boolean) : [];
@@ -113,16 +117,29 @@ export default function MeetingPage() {
     [send, store]
   );
 
-  const handleEndMeeting = useCallback(async () => {
-    stopSTT();
-    stopTTS();
-    send({ type: "meeting:end", data: { meetingId: store.meetingId } });
-    disconnect();
-    if (store.meetingId) {
-      await fetch(`${API_URL}/api/reports/${store.meetingId}`, { method: "POST" });
-      router.push(`/report/${store.meetingId}`);
+  const executeEndMeeting = useCallback(async () => {
+    try {
+      setEndingPhase("ending");
+      stopSTT();
+      stopTTS();
+      send({ type: "meeting:end", data: { meetingId: store.meetingId } });
+      disconnect();
+
+      if (store.meetingId) {
+        setEndingPhase("generating");
+        await fetch(`${API_URL}/api/reports/${store.meetingId}`, { method: "POST" });
+
+        setEndingPhase("redirecting");
+        router.push(`/report/${store.meetingId}`);
+      }
+    } catch {
+      setEndingPhase("error");
     }
   }, [send, disconnect, store.meetingId, router, stopSTT, stopTTS]);
+
+  const handleEndMeeting = useCallback(() => {
+    executeEndMeeting();
+  }, [executeEndMeeting]);
 
   useEffect(() => {
     return () => {
@@ -147,33 +164,32 @@ export default function MeetingPage() {
   return (
     <main className="h-screen flex flex-col bg-background">
       {/* Header */}
-      <header className="flex items-center justify-between px-4 py-2 bg-card border-b border-border">
-        <div className="flex items-center gap-3">
-          <h1 className="font-bold text-lg">AdMeet</h1>
+      <header className="flex items-center justify-between px-3 sm:px-4 py-2 bg-card border-b border-border gap-2">
+        <div className="flex items-center gap-2 min-w-0">
+          <h1 className="font-bold text-base sm:text-lg shrink-0">AdMeet</h1>
           <span className="text-muted-foreground hidden sm:inline">|</span>
-          <span className="text-sm font-medium hidden sm:inline">{meetingTitle}</span>
-          <Badge variant={store.isConnected ? "default" : "destructive"} className="text-xs">
-            {store.isConnected ? "연결됨" : "연결 끊김"}
+          <span className="text-sm font-medium hidden sm:inline truncate">{meetingTitle}</span>
+          <Badge variant={store.isConnected ? "default" : "destructive"} className="text-[10px] sm:text-xs shrink-0">
+            {store.isConnected ? "연결됨" : "끊김"}
           </Badge>
         </div>
 
-        <div className="flex items-center gap-2">
-          {/* 참여자 아바타 */}
-          <ParticipantGrid />
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          {/* 참여자 아바타 — 모바일 숨김 */}
+          <div className="hidden sm:flex items-center gap-1.5">
+            <ParticipantGrid />
+            <span className="text-xs text-muted-foreground whitespace-nowrap">
+              {humanCount}명{aiCount > 0 && ` + AI ${aiCount}`}
+            </span>
+          </div>
 
-          <span className="text-xs text-muted-foreground whitespace-nowrap">
-            {humanCount}명{aiCount > 0 && ` + AI ${aiCount}`}
-          </span>
-
-          {/* 요약 Drawer 버튼 */}
+          {/* 요약 */}
           <Button
             variant="outline"
             size="sm"
             onClick={() => setDrawerOpen(true)}
-            className="gap-1.5"
           >
-            <BarChart3 className="h-4 w-4" />
-            <span className="hidden sm:inline">요약</span>
+            요약
           </Button>
 
           {/* 설정 */}
@@ -189,10 +205,8 @@ export default function MeetingPage() {
             variant="destructive"
             size="sm"
             onClick={handleEndMeeting}
-            className="gap-1.5"
           >
-            <PhoneOff className="h-4 w-4" />
-            <span className="hidden sm:inline">종료</span>
+            종료
           </Button>
         </div>
       </header>
@@ -206,7 +220,7 @@ export default function MeetingPage() {
 
         {/* 오른쪽: 채팅 영역 */}
         <div className="flex-1 flex flex-col overflow-hidden">
-          <div className="flex-1 overflow-hidden bg-background">
+          <div className="flex-1 overflow-hidden bg-slate-50 dark:bg-slate-950">
             <SharedTranscript />
           </div>
 
@@ -221,6 +235,45 @@ export default function MeetingPage() {
 
       {/* 오른쪽 Drawer: 실시간 요약만 */}
       <SummaryDrawer open={drawerOpen} onOpenChange={setDrawerOpen} />
+
+      {/* 모바일: AI 인사이트 슬라이드 패널 */}
+      {insightsOpen && (
+        <div className="fixed inset-0 z-40 sm:hidden">
+          {/* 배경 오버레이 */}
+          <div
+            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+            onClick={() => setInsightsOpen(false)}
+          />
+          {/* 슬라이드 패널 */}
+          <aside className="absolute inset-y-0 left-0 w-[85%] max-w-80 bg-card border-r border-border flex flex-col animate-[slideInLeft_0.25s_ease-out_both]">
+            <div className="flex items-center justify-between px-4 py-3 border-b border-border">
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-bold text-[#2563eb]">AI</span>
+                <span className="text-sm font-semibold">인사이트</span>
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setInsightsOpen(false)}
+                className="h-8 w-8 p-0"
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            </div>
+            <div className="flex-1 overflow-hidden">
+              <InsightsSidebar />
+            </div>
+          </aside>
+        </div>
+      )}
+
+      {/* 종료 프로그레스 오버레이 */}
+      {endingPhase && (
+        <EndMeetingOverlay
+          phase={endingPhase}
+          onRetry={executeEndMeeting}
+        />
+      )}
     </main>
   );
 }

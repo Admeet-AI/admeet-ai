@@ -1,17 +1,17 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useMeetingStore } from "@/stores/meeting";
-import { ParticipantGrid } from "@/components/meeting/participant-grid";
 import { SharedTranscript } from "@/components/meeting/shared-transcript";
-import { PersonaPanel } from "@/components/meeting/persona-panel";
-import { SummaryPanel } from "@/components/meeting/summary-panel";
+import { InsightsSidebar } from "@/components/meeting/insights-sidebar";
 import { MeetingControls } from "@/components/meeting/meeting-controls";
+import { SummaryDrawer } from "@/components/meeting/summary-drawer";
+import { ParticipantGrid } from "@/components/meeting/participant-grid";
 import { SettingsModal } from "@/components/meeting/settings-modal";
 import type { Persona } from "../../../../../packages/shared/types";
-import { Users, RotateCcw } from "lucide-react";
+import { RotateCcw, X } from "lucide-react";
 
 // ─── Mock Data ─────────────────────────────────────────────
 
@@ -165,46 +165,30 @@ const MOCK_SUMMARIES = [
   "월 광고 예산 200만원 배분 방안과 신규 유입 vs 기존 고객 유지 전략에 대한 논의 진행.",
 ];
 
-const MOCK_CHAT = [
-  {
-    senderId: "user-2",
-    senderName: "박매니저",
-    text: "발표 자료에 이 내용 반영할게요",
-    timestamp: Date.now() - 100000,
-  },
-  {
-    senderId: "user-1",
-    senderName: "김대표",
-    text: "넵 좋습니다 👍",
-    timestamp: Date.now() - 90000,
-  },
-  {
-    senderId: "user-2",
-    senderName: "박매니저",
-    text: "UGC 캠페인 레퍼런스도 찾아볼게요",
-    timestamp: Date.now() - 50000,
-  },
-];
-
 // ─── Demo Page ─────────────────────────────────────────────
 
 export default function DemoPage() {
   const store = useMeetingStore();
   const [isHydrated, setIsHydrated] = useState(false);
-  const [activeTab, setActiveTab] = useState<"transcript" | "summary" | "insights">("transcript");
-  const [activePersonaTab, setActivePersonaTab] = useState<string | null>(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [insightsOpen, setInsightsOpen] = useState(false);
 
-  // 목 데이터 주입
+  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+
+  const clearTimers = useCallback(() => {
+    timersRef.current.forEach(clearTimeout);
+    timersRef.current = [];
+  }, []);
+
   const hydrateMockData = useCallback(() => {
+    clearTimers();
     store.reset();
 
-    // 연결 상태
     store.setConnected(true);
     store.setCurrentUser("user-1", "김대표");
     store.setMeetingId("demo-meeting-001");
     store.setMeetingStarted(true);
 
-    // 참여자
     store.setParticipants([
       { id: "user-1", displayName: "김대표", isAI: false, isSpeaking: false },
       { id: "user-2", displayName: "박매니저", isAI: false, isSpeaking: false },
@@ -226,25 +210,36 @@ export default function DemoPage() {
       },
     ]);
 
-    // 페르소나
     store.setActivePersonas(MOCK_PERSONAS);
 
-    // 트랜스크립트
+    // 트랜스크립트는 즉시 로드
     MOCK_TRANSCRIPTS.forEach((t) => store.addSharedTranscript(t));
-
-    // 생각 & 솔루션
-    MOCK_THOUGHTS.forEach((t) => store.addThought(t));
-    MOCK_SOLUTIONS.forEach((s) => store.addSolution(s));
-
-    // 요약
     MOCK_SUMMARIES.forEach((s) => store.addSummary(s));
 
+    // AI 생각 & 솔루션은 순차적으로 생성 시뮬레이션
+    const allItems = [
+      ...MOCK_THOUGHTS.map((t) => ({ type: "thought" as const, data: t })),
+      ...MOCK_SOLUTIONS.map((s) => ({ type: "solution" as const, data: s })),
+    ].sort((a, b) => a.data.timestamp - b.data.timestamp);
+
+    allItems.forEach((item, i) => {
+      const timer = setTimeout(() => {
+        if (item.type === "thought") {
+          store.addThought({ ...item.data, timestamp: Date.now() });
+        } else {
+          store.addSolution({ ...item.data, timestamp: Date.now() });
+        }
+      }, 800 + i * 1200);
+      timersRef.current.push(timer);
+    });
+
     setIsHydrated(true);
-  }, [store]);
+  }, [store, clearTimers]);
 
   useEffect(() => {
     hydrateMockData();
     return () => {
+      clearTimers();
       store.reset();
     };
   }, []);
@@ -284,110 +279,109 @@ export default function DemoPage() {
         </Button>
       </div>
 
-      {/* Header */}
-      <header className="flex items-center justify-between px-4 py-2 bg-card border-b border-border">
-        <div className="flex items-center gap-3">
-          <h1 className="font-bold text-lg">AdMeet</h1>
-          <span className="text-muted-foreground">|</span>
-          <span className="text-sm font-medium">{meetingTitle}</span>
-          <Badge variant={store.isConnected ? "default" : "destructive"} className="text-xs">
-            {store.isConnected ? "연결됨" : "연결 끊김"}
+      {/* Header — /meeting/[id]와 동일 */}
+      <header className="flex items-center justify-between px-3 sm:px-4 py-2 bg-card border-b border-border gap-2">
+        <div className="flex items-center gap-2 min-w-0">
+          <h1 className="font-bold text-base sm:text-lg shrink-0">AdMeet</h1>
+          <span className="text-muted-foreground hidden sm:inline">|</span>
+          <span className="text-sm font-medium hidden sm:inline truncate">{meetingTitle}</span>
+          <Badge variant={store.isConnected ? "default" : "destructive"} className="text-[10px] sm:text-xs shrink-0">
+            {store.isConnected ? "연결됨" : "끊김"}
           </Badge>
         </div>
-        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-          <Users className="h-3.5 w-3.5" />
-          <span>
-            {humanCount}명{aiCount > 0 && ` + AI ${aiCount}`}
-          </span>
+
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          {/* 참여자 아바타 — 모바일 숨김 */}
+          <div className="hidden sm:flex items-center gap-1.5">
+            <ParticipantGrid />
+            <span className="text-xs text-muted-foreground whitespace-nowrap">
+              {humanCount}명{aiCount > 0 && ` + AI ${aiCount}`}
+            </span>
+          </div>
+
+          {/* 요약 */}
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setDrawerOpen(true)}
+          >
+            요약
+          </Button>
+
+          {/* 설정 */}
+          <SettingsModal
+            onIntervalChange={() => {}}
+          />
+
+          {/* 종료 (데모에서는 홈으로 이동) */}
+          <Button
+            variant="destructive"
+            size="sm"
+            onClick={() => {
+              store.reset();
+              window.location.href = "/";
+            }}
+          >
+            종료
+          </Button>
         </div>
       </header>
 
-      {/* 참여자 그리드 */}
-      <div className="bg-muted/30 border-b border-border">
-        <ParticipantGrid />
-      </div>
-
-      {/* 모바일 탭 전환 */}
-      <div className="flex border-b border-border bg-card sm:hidden">
-        {(["transcript", "summary", "insights"] as const).map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`flex-1 px-4 py-2 text-sm font-medium transition-colors ${
-              activeTab === tab
-                ? "border-b-2 border-blue-500 text-blue-600"
-                : "text-muted-foreground"
-            }`}
-          >
-            {tab === "transcript" ? "트랜스크립트" : tab === "summary" ? "실시간 요약" : "AI 상태"}
-          </button>
-        ))}
-      </div>
-
-      {/* 메인 컨텐츠 — 3컬럼 */}
+      {/* 메인 영역: 왼쪽 AI 인사이트 고정 + 오른쪽 채팅 — /meeting/[id]와 동일 */}
       <div className="flex-1 flex overflow-hidden">
-        {/* 1. 공유 트랜스크립트 */}
-        <div
-          className={`flex-1 p-3 overflow-hidden border-r border-border ${
-            activeTab !== "transcript" ? "hidden sm:flex sm:flex-col" : "flex flex-col"
-          }`}
-        >
-          <SharedTranscript />
-        </div>
+        {/* 왼쪽: AI 인사이트 패널 (고정) */}
+        <aside className="hidden sm:flex w-72 lg:w-80 border-r border-border bg-card flex-col shrink-0">
+          <InsightsSidebar />
+        </aside>
 
-        {/* 2. 실시간 요약 */}
-        <div
-          className={`flex-1 p-3 overflow-hidden border-r border-border ${
-            activeTab !== "summary" ? "hidden sm:flex sm:flex-col" : "flex flex-col"
-          }`}
-        >
-          <SummaryPanel />
-        </div>
+        {/* 오른쪽: 채팅 영역 */}
+        <div className="flex-1 flex flex-col overflow-hidden">
+          <div className="flex-1 overflow-hidden bg-slate-50 dark:bg-slate-950">
+            <SharedTranscript />
+          </div>
 
-        {/* 3. AI 상태 (페르소나 인사이트) */}
-        <div
-          className={`flex-1 p-3 overflow-hidden flex flex-col ${
-            activeTab !== "insights" ? "hidden sm:flex sm:flex-col" : "flex flex-col"
-          }`}
-        >
-          {store.activePersonas.length > 1 && (
-            <div className="flex gap-1 mb-2 overflow-x-auto pb-1">
-              {store.activePersonas.map((p) => (
-                <button
-                  key={p.id}
-                  onClick={() => setActivePersonaTab(p.id)}
-                  className={`px-2 py-1 text-xs rounded-md whitespace-nowrap transition-colors ${
-                    activePersonaTab === p.id
-                      ? "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300 font-medium"
-                      : "bg-muted text-muted-foreground hover:bg-muted/80"
-                  }`}
-                >
-                  {p.name}
-                </button>
-              ))}
-            </div>
-          )}
-          {store.activePersonas.length > 0 ? (
-            <PersonaPanel
-              persona={
-                store.activePersonas.find((p) => p.id === activePersonaTab) ||
-                store.activePersonas[0]
-              }
-            />
-          ) : (
-            <PersonaPanel persona={null} />
-          )}
+          {/* 하단 메신저 입력바 */}
+          <MeetingControls
+            isListening={false}
+            onToggleMic={() => {}}
+            onSendText={(text) => {
+              store.addTranscript(text);
+            }}
+          />
         </div>
       </div>
 
-      {/* 하단 컨트롤 바 */}
-      <MeetingControls
-        isListening={false}
-        onToggleMic={() => {}}
-        onSendText={(text) => {
-          store.addTranscript(text);
-        }}
-      />
+      {/* 오른쪽 Drawer: 실시간 요약 — /meeting/[id]와 동일 */}
+      <SummaryDrawer open={drawerOpen} onOpenChange={setDrawerOpen} />
+
+      {/* 모바일: AI 인사이트 슬라이드 패널 */}
+      {insightsOpen && (
+        <div className="fixed inset-0 z-40 sm:hidden">
+          <div
+            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+            onClick={() => setInsightsOpen(false)}
+          />
+          <aside className="absolute inset-y-0 left-0 w-[85%] max-w-80 bg-card border-r border-border flex flex-col animate-[slideInLeft_0.25s_ease-out_both]">
+            <div className="flex items-center justify-between px-4 py-3 border-b border-border">
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-bold text-[#2563eb]">AI</span>
+                <span className="text-sm font-semibold">인사이트</span>
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setInsightsOpen(false)}
+                className="h-8 w-8 p-0"
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            </div>
+            <div className="flex-1 overflow-hidden">
+              <InsightsSidebar />
+            </div>
+          </aside>
+        </div>
+      )}
     </main>
   );
 }

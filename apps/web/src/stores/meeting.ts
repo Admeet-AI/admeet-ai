@@ -37,6 +37,7 @@ interface MeetingStore {
   transcripts: SharedTranscript[];
   interimTranscript: string;
   addSharedTranscript: (entry: SharedTranscript) => void;
+  correctTranscript: (speakerId: string, timestamp: number, correctedText: string) => void;
   addTranscript: (text: string) => void;
   setInterimTranscript: (text: string) => void;
 
@@ -124,6 +125,14 @@ export const useMeetingStore = create<MeetingStore>((set) => ({
         transcripts: [...s.transcripts, entry],
       };
     }),
+  correctTranscript: (speakerId, timestamp, correctedText) =>
+    set((s) => ({
+      transcripts: s.transcripts.map((t) =>
+        t.speakerId === speakerId && Math.abs(t.timestamp - timestamp) < 5000
+          ? { ...t, text: correctedText }
+          : t
+      ),
+    })),
   addTranscript: (text) =>
     set((s) => ({
       transcripts: [

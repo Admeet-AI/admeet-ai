@@ -2,6 +2,7 @@ import { Server as HttpServer } from "http";
 import { WebSocketServer, WebSocket } from "ws";
 import { randomUUID } from "crypto";
 import { personaAiService } from "../services/persona-ai.js";
+import { correctTranscript } from "../services/transcript-corrector.js";
 import { supabase } from "../lib/supabase.js";
 import { meetingLogger } from "../lib/logger.js";
 import type {
@@ -360,6 +361,7 @@ async function handleEvent(ws: WebSocket, event: WSClientEvent) {
       });
 
       if (isFinal && text.trim()) {
+        // 1차: 원본 텍스트로 recentTranscript 즉시 저장 (실시간성 유지)
         room.recentTranscript.push({
           speakerId: participant.id,
           speakerName: participant.displayName,
@@ -371,11 +373,56 @@ async function handleEvent(ws: WebSocket, event: WSClientEvent) {
           room.recentTranscript.shift();
         }
 
-        await supabase.from("meeting_events").insert({
-          meeting_id: room.meetingId,
-          type: "transcript",
-          payload: { text, speakerId: participant.id, speakerName: participant.displayName },
-        });
+        // 2차: AI 보정 (비동기, 원본 브로드캐스트 이후)
+        const timestamp = sharedTranscript.timestamp;
+        correctTranscript(text)
+          .then(({ corrected, meta }) => {
+            meetingLogger.aiCall(room.meetingId, meta);
+
+            const finalText = corrected || text;
+
+            // 보정된 텍스트가 원본과 다르면 corrected 이벤트 브로드캐스트
+            if (finalText !== text) {
+              broadcastToRoom(room, {
+                type: "transcript:corrected",
+                data: {
+                  speakerId: participant.id,
+                  timestamp,
+                  originalText: text,
+                  correctedText: finalText,
+                },
+              });
+            }
+
+            // recentTranscript에 보정된 텍스트 반영 (AI 분석 품질 향상)
+            const entry = room.recentTranscript.find(
+              (t) => t.speakerId === participant.id && t.text === text
+            );
+            if (entry) {
+              entry.text = finalText;
+            }
+
+            // DB에는 보정된 텍스트 저장
+            return supabase.from("meeting_events").insert({
+              meeting_id: room.meetingId,
+              type: "transcript",
+              payload: {
+                text: finalText,
+                originalText: finalText !== text ? text : undefined,
+                speakerId: participant.id,
+                speakerName: participant.displayName,
+              },
+            });
+          })
+          .catch((err) => {
+            console.error("[WS] Transcript correction failed:", err);
+            // 보정 실패 시 원본으로 DB 저장
+            supabase.from("meeting_events").insert({
+              meeting_id: room.meetingId,
+              type: "transcript",
+              payload: { text, speakerId: participant.id, speakerName: participant.displayName },
+            });
+          });
 
         await checkSignal(room, text);
       }

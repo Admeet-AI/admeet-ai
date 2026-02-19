@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -36,7 +36,7 @@ export function MeetingControls({
           {isListening ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
         </Button>
 
-        {/* 메신저 스타일 입력 필드 */}
+        {/* 메시지 텍스트 입력 필드 */}
         <div className="flex-1 flex items-center gap-2 bg-muted rounded-full px-4 py-1.5">
           <input
             type="text"
@@ -51,10 +51,11 @@ export function MeetingControls({
             disabled={!textInput.trim()}
             className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue-500 text-white transition-opacity disabled:opacity-30 hover:bg-blue-600"
           >
-            <Send className="h-3.5 w-3.5" />
+            <Send className="block h-3.5 w-3.5" />
           </button>
         </div>
       </div>
     </div>
   );
 }
+

@@ -172,6 +172,7 @@ export default function DemoPage() {
   const [isHydrated, setIsHydrated] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [insightsOpen, setInsightsOpen] = useState(false);
+  const [copyToast, setCopyToast] = useState<"idle" | "success" | "error">("idle");
 
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
@@ -179,6 +180,23 @@ export default function DemoPage() {
     timersRef.current.forEach(clearTimeout);
     timersRef.current = [];
   }, []);
+
+  const handleCopyInviteLink = useCallback(async () => {
+    if (typeof window === "undefined") return;
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      setCopyToast("success");
+    } catch (error) {
+      console.error("Failed to copy invite link:", error);
+      setCopyToast("error");
+    }
+  }, []);
+
+  useEffect(() => {
+    if (copyToast === "idle") return;
+    const timer = window.setTimeout(() => setCopyToast("idle"), 1800);
+    return () => window.clearTimeout(timer);
+  }, [copyToast]);
 
   const hydrateMockData = useCallback(() => {
     clearTimers();
@@ -246,7 +264,7 @@ export default function DemoPage() {
 
   if (!isHydrated) {
     return (
-      <main className="h-screen flex items-center justify-center bg-background">
+      <main className="h-[100dvh] flex items-center justify-center bg-background">
         <p className="text-muted-foreground">데모 데이터 로딩 중...</p>
       </main>
     );
@@ -257,7 +275,7 @@ export default function DemoPage() {
   const aiCount = store.participants.filter((p) => p.isAI).length;
 
   return (
-    <main className="h-screen flex flex-col bg-background">
+    <main className="h-[100dvh] overflow-hidden flex flex-col bg-background">
       {/* 데모 배너 */}
       <div className="flex items-center justify-between px-4 py-1.5 bg-amber-50 dark:bg-amber-950/30 border-b border-amber-200 dark:border-amber-800 text-xs">
         <div className="flex items-center gap-2">
@@ -300,17 +318,36 @@ export default function DemoPage() {
           </div>
 
           {/* 요약 */}
+                    <Button
+            variant="outline"
+            size="sm"
+            onClick={handleCopyInviteLink}
+            className="hidden sm:inline-flex"
+          >
+            {"링크초대"}
+          </Button>
+
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setInsightsOpen(true)}
+            className="sm:hidden"
+          >
+            {"인사이트"}
+          </Button>
+
           <Button
             variant="outline"
             size="sm"
             onClick={() => setDrawerOpen(true)}
           >
-            요약
+            {"요약"}
           </Button>
 
           {/* 설정 */}
           <SettingsModal
             onIntervalChange={() => {}}
+            onMobileInviteClick={handleCopyInviteLink}
           />
 
           {/* 종료 (데모에서는 홈으로 이동) */}
@@ -328,15 +365,15 @@ export default function DemoPage() {
       </header>
 
       {/* 메인 영역: 왼쪽 AI 인사이트 고정 + 오른쪽 채팅 — /meeting/[id]와 동일 */}
-      <div className="flex-1 flex overflow-hidden">
+      <div className="flex-1 min-h-0 flex overflow-hidden">
         {/* 왼쪽: AI 인사이트 패널 (고정) */}
         <aside className="hidden sm:flex w-72 lg:w-80 border-r border-border bg-card flex-col shrink-0">
           <InsightsSidebar />
         </aside>
 
         {/* 오른쪽: 채팅 영역 */}
-        <div className="flex-1 flex flex-col overflow-hidden">
-          <div className="flex-1 overflow-hidden bg-slate-50 dark:bg-slate-950">
+        <div className="flex-1 min-h-0 flex flex-col overflow-hidden">
+          <div className="flex-1 min-h-0 overflow-hidden bg-slate-50 dark:bg-slate-950">
             <SharedTranscript />
           </div>
 
@@ -380,6 +417,14 @@ export default function DemoPage() {
               <InsightsSidebar />
             </div>
           </aside>
+        </div>
+      )}
+
+      {copyToast !== "idle" && (
+        <div className="pointer-events-none fixed bottom-20 left-1/2 z-[80] -translate-x-1/2 rounded-full bg-slate-900/90 px-3 py-1.5 text-xs font-medium text-white shadow-lg">
+          {copyToast === "success"
+            ? "링크가 복사되었습니다."
+            : "복사에 실패했습니다."}
         </div>
       )}
     </main>

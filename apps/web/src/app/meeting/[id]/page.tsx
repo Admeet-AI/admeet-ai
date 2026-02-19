@@ -35,6 +35,8 @@ export default function MeetingPage() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [insightsOpen, setInsightsOpen] = useState(false);
   const [endingPhase, setEndingPhase] = useState<EndingPhase | null>(null);
+  const [inviteCode, setInviteCode] = useState<string | null>(null);
+  const [copyToast, setCopyToast] = useState<"idle" | "success" | "error">("idle");
 
   const personaIdsParam = searchParams.get("personaIds");
   const personaIds = personaIdsParam ? personaIdsParam.split(",").filter(Boolean) : [];
@@ -69,6 +71,9 @@ export default function MeetingPage() {
   const handleJoin = useCallback(
     async (displayName: string) => {
       try {
+        const normalizedDisplayName = displayName.trim().slice(0, 6);
+        if (!normalizedDisplayName) return;
+
         if (personaIds.length > 0) {
           const personaPromises = personaIds.map((id) =>
             fetch(`${API_URL}/api/personas/${id}`).then((r) => r.json())
@@ -90,10 +95,11 @@ export default function MeetingPage() {
         if (!meeting.id) {
           throw new Error("회의 생성 응답에 ID가 없습니다");
         }
+        setInviteCode(typeof meeting.invite_code === "string" ? meeting.invite_code : null);
         store.setMeetingId(meeting.id);
-        store.setCurrentUser("pending", displayName);
+        store.setCurrentUser("pending", normalizedDisplayName);
 
-        connect(meeting.id, displayName);
+        connect(meeting.id, normalizedDisplayName);
 
         sendAfterJoin({
           type: "meeting:start",
@@ -108,6 +114,24 @@ export default function MeetingPage() {
     },
     [personaIds, projectId, meetingTitle, connect, send, store]
   );
+
+  const handleCopyInviteLink = useCallback(async () => {
+    if (!inviteCode || typeof window === "undefined") return;
+    const link = `${window.location.origin}/join/${inviteCode}`;
+    try {
+      await navigator.clipboard.writeText(link);
+      setCopyToast("success");
+    } catch (error) {
+      console.error("Failed to copy invite link:", error);
+      setCopyToast("error");
+    }
+  }, [inviteCode]);
+
+  useEffect(() => {
+    if (copyToast === "idle") return;
+    const timer = window.setTimeout(() => setCopyToast("idle"), 1800);
+    return () => window.clearTimeout(timer);
+  }, [copyToast]);
 
   const handleSendText = useCallback(
     (text: string) => {
@@ -162,7 +186,7 @@ export default function MeetingPage() {
   const aiCount = store.participants.filter((p) => p.isAI).length;
 
   return (
-    <main className="h-screen flex flex-col bg-background">
+    <main className="h-[100dvh] overflow-hidden flex flex-col bg-background">
       {/* Header */}
       <header className="flex items-center justify-between px-3 sm:px-4 py-2 bg-card border-b border-border gap-2">
         <div className="flex items-center gap-2 min-w-0">
@@ -184,12 +208,31 @@ export default function MeetingPage() {
           </div>
 
           {/* 요약 */}
+                    <Button
+            variant="outline"
+            size="sm"
+            onClick={handleCopyInviteLink}
+            className="hidden sm:inline-flex"
+            disabled={!inviteCode}
+          >
+            {"링크초대"}
+          </Button>
+
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setInsightsOpen(true)}
+            className="sm:hidden"
+          >
+            {"인사이트"}
+          </Button>
+
           <Button
             variant="outline"
             size="sm"
             onClick={() => setDrawerOpen(true)}
           >
-            요약
+            {"요약"}
           </Button>
 
           {/* 설정 */}
@@ -198,6 +241,7 @@ export default function MeetingPage() {
               send({ type: "meeting:config", data: { analysisInterval: seconds } });
               store.resetTimer();
             }}
+            onMobileInviteClick={handleCopyInviteLink}
           />
 
           {/* 종료 */}
@@ -212,15 +256,15 @@ export default function MeetingPage() {
       </header>
 
       {/* 메인 영역: 왼쪽 AI 인사이트 고정 + 오른쪽 채팅 */}
-      <div className="flex-1 flex overflow-hidden">
+      <div className="flex-1 min-h-0 flex overflow-hidden">
         {/* 왼쪽: AI 인사이트 패널 (고정) */}
         <aside className="hidden sm:flex w-72 lg:w-80 border-r border-border bg-card flex-col shrink-0">
           <InsightsSidebar />
         </aside>
 
         {/* 오른쪽: 채팅 영역 */}
-        <div className="flex-1 flex flex-col overflow-hidden">
-          <div className="flex-1 overflow-hidden bg-slate-50 dark:bg-slate-950">
+        <div className="flex-1 min-h-0 flex flex-col overflow-hidden">
+          <div className="flex-1 min-h-0 overflow-hidden bg-slate-50 dark:bg-slate-950">
             <SharedTranscript />
           </div>
 
@@ -273,6 +317,14 @@ export default function MeetingPage() {
           phase={endingPhase}
           onRetry={executeEndMeeting}
         />
+      )}
+
+      {copyToast !== "idle" && (
+        <div className="pointer-events-none fixed bottom-20 left-1/2 z-[80] -translate-x-1/2 rounded-full bg-slate-900/90 px-3 py-1.5 text-xs font-medium text-white shadow-lg">
+          {copyToast === "success"
+            ? "링크가 복사되었습니다."
+            : "복사에 실패했습니다."}
+        </div>
       )}
     </main>
   );

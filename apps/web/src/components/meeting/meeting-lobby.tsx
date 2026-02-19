@@ -11,12 +11,24 @@ interface MeetingLobbyProps {
   onJoin: (displayName: string) => void;
 }
 
+const MAX_DISPLAY_NAME_LENGTH = 6;
+
 export function MeetingLobby({
   meetingTitle,
   participantCount = 0,
   onJoin,
 }: MeetingLobbyProps) {
   const [displayName, setDisplayName] = useState("");
+  const normalizeDisplayName = (value: string) =>
+    value.trim().slice(0, MAX_DISPLAY_NAME_LENGTH);
+
+  const canJoin = normalizeDisplayName(displayName).length > 0;
+
+  const handleJoin = () => {
+    const normalized = normalizeDisplayName(displayName);
+    if (!normalized) return;
+    onJoin(normalized);
+  };
 
   return (
     <main className="min-h-screen bg-background flex items-center justify-center">
@@ -47,8 +59,11 @@ export function MeetingLobby({
             <Input
               placeholder="회의에서 사용할 이름"
               value={displayName}
-              onChange={(e) => setDisplayName(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && displayName.trim() && onJoin(displayName)}
+              onChange={(e) =>
+                setDisplayName(e.target.value.slice(0, MAX_DISPLAY_NAME_LENGTH))
+              }
+              onKeyDown={(e) => e.key === "Enter" && handleJoin()}
+              maxLength={MAX_DISPLAY_NAME_LENGTH}
               autoFocus
             />
           </div>
@@ -61,8 +76,8 @@ export function MeetingLobby({
 
           {/* 참가 버튼 */}
           <Button
-            onClick={() => onJoin(displayName)}
-            disabled={!displayName.trim()}
+            onClick={handleJoin}
+            disabled={!canJoin}
             className="w-full h-12 text-base font-semibold bg-gradient-to-r from-[#0066ff] to-[#00d4ff] text-white"
           >
             참가하기

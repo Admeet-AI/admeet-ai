@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Sora, Noto_Sans_KR } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -17,9 +17,9 @@ const notoSansKR = Noto_Sans_KR({
 });
 
 export const metadata: Metadata = {
-  title: "Admeet — Admit experts to every meeting.",
+  title: "Admeet. Admit experts to every meeting.",
   description:
-    "AI 전문가를 회의에 입장시키세요. 마케터, 데이터 분석가, UX 리서처가 실시간으로 인사이트를 제공합니다.",
+    "AI가 실시간으로 회의 맥락을 읽고, 마케팅·PM·UX 역할별로 즉시 관찰, 분석, 제안을 동시에 보여줍니다.",
 };
 
 export default function RootLayout({

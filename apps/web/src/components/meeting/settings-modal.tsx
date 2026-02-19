@@ -23,9 +23,10 @@ const INTERVAL_OPTIONS = [
 
 interface SettingsModalProps {
   onIntervalChange: (seconds: number) => void;
+  onMobileInviteClick?: () => void;
 }
 
-export function SettingsModal({ onIntervalChange }: SettingsModalProps) {
+export function SettingsModal({ onIntervalChange, onMobileInviteClick }: SettingsModalProps) {
   const analysisInterval = useMeetingStore((s) => s.analysisInterval);
   const setAnalysisInterval = useMeetingStore((s) => s.setAnalysisInterval);
   const ttsEnabled = useMeetingStore((s) => s.ttsEnabled);
@@ -41,56 +42,70 @@ export function SettingsModal({ onIntervalChange }: SettingsModalProps) {
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="outline" size="sm">
-          설정
+          {"설정"}
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>회의 설정</DialogTitle>
+          <DialogTitle>{"회의 설정"}</DialogTitle>
         </DialogHeader>
 
         <div className="space-y-5">
-          {/* 분석 주기 */}
+          {onMobileInviteClick && (
+            <div className="sm:hidden">
+              <DialogClose asChild>
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  onClick={onMobileInviteClick}
+                  className="w-full"
+                >
+                  {"링크 초대"}
+                </Button>
+              </DialogClose>
+            </div>
+          )}
+
           <div>
-            <label className="text-sm font-medium mb-2 block">
-              AI 분석 주기
-            </label>
-            <p className="text-xs text-muted-foreground mb-3">
-              마케터가 회의 내용을 분석하는 간격을 설정합니다.
+            <label className="mb-2 block text-sm font-medium">{"AI 분석 주기"}</label>
+            <p className="mb-3 text-xs text-muted-foreground">
+              {"회의 내용을 분석하는 간격을 설정합니다."}
             </p>
             <div className="grid grid-cols-3 gap-2">
-              {INTERVAL_OPTIONS.map((opt) => (
+              {INTERVAL_OPTIONS.map((option) => (
                 <button
-                  key={opt.value}
-                  onClick={() => setSelected(opt.value)}
+                  key={option.value}
+                  type="button"
+                  onClick={() => setSelected(option.value)}
                   className={`rounded-md border px-3 py-2 text-sm transition-colors ${
-                    selected === opt.value
-                      ? "border-blue-500 bg-blue-50 text-blue-700 font-medium"
+                    selected === option.value
+                      ? "border-blue-500 bg-blue-50 font-medium text-blue-700"
                       : "border-slate-200 hover:border-slate-300"
                   }`}
                 >
-                  {opt.label}
+                  {option.label}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* TTS 토글 */}
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium">AI 음성 출력</p>
+              <p className="text-sm font-medium">{"AI 음성 출력"}</p>
               <p className="text-xs text-muted-foreground">
-                마케터의 인사이트를 음성으로 읽어줍니다.
+                {"회의에서 나온 인사이트를 음성으로 읽어줍니다."}
               </p>
             </div>
             <button
+              type="button"
               onClick={() => setTtsEnabled(!ttsEnabled)}
-              className={`relative w-11 h-6 rounded-full transition-colors ${
+              className={`relative h-6 w-11 rounded-full transition-colors ${
                 ttsEnabled ? "bg-blue-500" : "bg-slate-300"
               }`}
             >
               <span
-                className={`absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white transition-transform shadow-sm ${
+                className={`absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white shadow-sm transition-transform ${
                   ttsEnabled ? "translate-x-5" : "translate-x-0"
                 }`}
               />
@@ -98,12 +113,16 @@ export function SettingsModal({ onIntervalChange }: SettingsModalProps) {
           </div>
         </div>
 
-        <div className="flex justify-end gap-2 mt-6">
+        <div className="mt-6 flex justify-end gap-2">
           <DialogClose asChild>
-            <Button variant="outline" size="sm">취소</Button>
+            <Button variant="outline" size="sm">
+              {"취소"}
+            </Button>
           </DialogClose>
           <DialogClose asChild>
-            <Button size="sm" onClick={handleSave}>저장</Button>
+            <Button size="sm" onClick={handleSave}>
+              {"저장"}
+            </Button>
           </DialogClose>
         </div>
       </DialogContent>

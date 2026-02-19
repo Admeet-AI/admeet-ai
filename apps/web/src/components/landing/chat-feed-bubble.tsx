@@ -67,6 +67,11 @@ export function ChatFeedBubble({
             border: `1px solid ${bubbleBorder}`,
           }}
         >
+          {!isAI && !isRight ? (
+            <p className="mb-1.5 text-[11px] font-semibold leading-none text-slate-600 dark:text-slate-300">
+              {label}
+            </p>
+          ) : null}
 
           {isAI ? (
             <div className={cn("mb-1.5 flex items-center gap-2", isRight ? "justify-end" : "justify-start")}>

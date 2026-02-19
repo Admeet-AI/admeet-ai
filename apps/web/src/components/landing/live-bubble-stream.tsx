@@ -247,7 +247,7 @@ export function LiveBubbleStream() {
 
           <div
             ref={streamRef}
-            className="live-bubble-feed flex h-[330px] flex-col justify-end gap-3 overflow-y-auto pr-1"
+            className="live-bubble-feed flex h-[420px] flex-col justify-end gap-3 overflow-y-auto pr-1"
             style={{
               scrollbarWidth: "none",
               msOverflowStyle: "none",
@@ -298,8 +298,6 @@ export function LiveBubbleStream() {
           </form>
         </div>
 
-        <div className="pointer-events-none absolute -top-3 -right-3 hidden h-20 w-20 rounded-full border border-[#7c3aed]/10 sm:block animate-[spin_20s_linear_infinite]" />
-        <div className="pointer-events-none absolute -bottom-4 -left-4 hidden h-28 w-28 rounded-full border border-[#00d4ff]/10 sm:block animate-[spin_30s_linear_infinite_reverse]" />
         <style>{`
           .live-bubble-feed::-webkit-scrollbar {
             display: none;

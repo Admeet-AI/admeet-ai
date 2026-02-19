@@ -91,21 +91,18 @@ export default function Home() {
       <section className="relative z-10 mx-auto max-w-7xl px-6 pt-12 pb-16 md:px-12 md:pt-28 md:pb-36">
         <div className="flex flex-col gap-12 lg:flex-row lg:items-center lg:gap-20">
           <div className="flex-1 space-y-8 animate-[fadeInUp_0.8s_ease-out_both]">
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#00d4ff]/20 bg-[#00d4ff]/5 px-4 py-1.5 text-xs font-medium text-[#00d4ff] backdrop-blur-sm">
-              <Sparkles className="h-3 w-3" />
-              Admit experts to every meeting.
-            </div>
+
 
             <h1 className="font-extrabold leading-[1.1] tracking-tight" style={{ fontSize: "clamp(2.25rem, 1.5rem + 4vw, 4.5rem)" }}>
               <span className="bg-gradient-to-r from-[#0066ff] via-[#00d4ff] to-[#7c3aed] bg-clip-text text-transparent">
                 AI가 실시간으로 도와주는
               </span>
               <br />
-              회의 인사이트 페이지.
+              Admeet
             </h1>
 
             <p className="max-w-lg text-base leading-relaxed text-slate-500 dark:text-white/50 md:text-lg">
-              실제 회의 말풍선이 올라오면 즉시 신호를 감지하고,
+              실제 회의를 실시간으로 감지하고,
               <br className="hidden md:block" />
               AI가 관찰·분석·요약을 동시에 보여줍니다.
             </p>
@@ -117,7 +114,6 @@ export default function Home() {
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 </Button>
               </Link>
-              <span className="text-xs text-slate-400 dark:text-white/30">Admit · Meet · Insight</span>
             </div>
           </div>
 

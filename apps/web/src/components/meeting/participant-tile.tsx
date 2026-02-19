@@ -1,6 +1,5 @@
 "use client";
 
-import { BrainCircuit } from "lucide-react";
 import type { ParticipantInfo } from "../../../../../packages/shared/types";
 import { cn } from "@/lib/utils";
 
@@ -54,7 +53,7 @@ export function ParticipantTile({
         style={{ backgroundColor: `${color}20`, color }}
       >
         {participant.isAI ? (
-          <BrainCircuit className="h-7 w-7" />
+          <img src="/logo.png" alt="AI" className="h-7 w-7" />
         ) : participant.avatarUrl ? (
           <img
             src={participant.avatarUrl}

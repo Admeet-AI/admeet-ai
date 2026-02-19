@@ -1,7 +1,8 @@
 ﻿"use client";
 
 import { FormEvent, useEffect, useRef, useState } from "react";
-import { Cpu, Mic, MessageCircle, Send, UserRound } from "lucide-react";
+import { Cpu, Mic, MessageCircle, UserRound } from "lucide-react";
+import { SendButton } from "@/components/ui/send-button";
 import { gsap } from "gsap";
 import { ChatFeedBubble } from "@/components/landing/chat-feed-bubble";
 
@@ -45,12 +46,6 @@ const DEMO_STREAM: Omit<BubbleMessage, "id">[] = [
     color: "#94a3b8",
   },
   {
-    name: "PM",
-    role: "AI",
-    text: "우선순위는 1) 핵심 제안 한 줄 정리 2) 질문 유도형 CTA 3) 재방문 리마인드입니다.",
-    color: "#7c3aed",
-  },
-  {
     name: "마케터",
     role: "AI",
     text: "광고는 인스타 확장형 우선, 유튜브 쇼츠는 2주 실험으로 가볍게 노출을 보강하세요.",
@@ -74,25 +69,25 @@ const AI_STREAM: Omit<BubbleMessage, "id">[] = [
   {
     name: "마케터",
     role: "AI",
-    text: "그 이슈는 인식했습니다. 지금은 참여율을 높이려면 질문 템플릿 정규화가 우선입니다.",
+    text: "그 이슈, 저도 보고 있어요. 지금은 참여율을 높이려면 질문 형식을 통일하는 게 먼저예요.",
     color: "#00d4ff",
   },
   {
     name: "디자이너",
     role: "AI",
-    text: "1분 뒤 액션 3개: 온보딩 문구 축약, 2차 툴팁 배치, CTA 우선순위 재정렬입니다.",
+    text: "1분 뒤 액션 3개: 온보딩 문구 축약, 2차 툴팁 배치, CTA 순서 조정이에요.",
     color: "#f59e0b",
   },
   {
     name: "PM",
     role: "AI",
-    text: "리스크 알림: 나 2명이 계속 같은 흐름에서 벗어나고 있어요. 질문 전환 신호를 넣어보세요.",
+    text: "참고로, 2명이 계속 같은 흐름에서 벗어나고 있어요. 질문 전환 신호를 넣어보세요.",
     color: "#7c3aed",
   },
   {
     name: "마케터",
     role: "AI",
-    text: "현재 상태 점수는 72점입니다. 문장 길이 감소형 리라이팅으로 84점까지 개선 가능성이 큽니다.",
+    text: "현재 상태 점수는 72점이에요. 문장을 짧게 다듬으면 84점까지 올라갈 수 있어요.",
     color: "#00d4ff",
   },
 ];
@@ -128,11 +123,11 @@ export function LiveBubbleStream() {
 
       demoTimeoutRef.current = window.setTimeout(
         pushDemoBubble,
-        template.role === "Host" ? 2600 : 2200
+        template.role === "Host" ? 1800 : 1800
       );
     };
 
-    demoTimeoutRef.current = window.setTimeout(pushDemoBubble, 1700);
+    demoTimeoutRef.current = window.setTimeout(pushDemoBubble, 500);
 
     return () => {
       if (demoTimeoutRef.current) {
@@ -288,13 +283,7 @@ export function LiveBubbleStream() {
               className="flex-1 rounded-full border border-slate-200/70 bg-white/90 px-3 py-2 text-xs text-slate-700 placeholder:text-slate-400 dark:border-white/[0.1] dark:bg-slate-900/40 dark:text-white"
               placeholder="메시지를 입력하세요..."
             />
-            <button
-              type="submit"
-              disabled
-              className="inline-flex h-9 items-center justify-center rounded-full bg-[#0066ff] px-3 text-xs font-semibold text-white transition hover:bg-[#0052cc]"
-            >
-              <Send className="h-3.5 w-3.5" />
-            </button>
+            <SendButton disabled />
           </form>
         </div>
 

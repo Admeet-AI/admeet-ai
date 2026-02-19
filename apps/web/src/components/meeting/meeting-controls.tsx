@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Mic, MicOff, Send } from "lucide-react";
+import { Mic, MicOff } from "lucide-react";
+import { SendButton } from "@/components/ui/send-button";
 
 interface MeetingControlsProps {
   isListening: boolean;
@@ -46,13 +47,12 @@ export function MeetingControls({
             onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
             className="flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
           />
-          <button
+          <SendButton
+            size="sm"
+            type="button"
             onClick={handleSubmit}
             disabled={!textInput.trim()}
-            className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue-500 text-white transition-opacity disabled:opacity-30 hover:bg-blue-600"
-          >
-            <Send className="block h-3.5 w-3.5" />
-          </button>
+          />
         </div>
       </div>
     </div>

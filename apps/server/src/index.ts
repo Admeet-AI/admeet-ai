@@ -13,7 +13,10 @@ import { setupWebSocket } from "./ws/handler.js";
 const app = express();
 const port = process.env.PORT || 4000;
 
-app.use(cors({ origin: process.env.CORS_ORIGIN || "http://localhost:3000" }));
+const allowedOrigins = (process.env.CORS_ORIGIN || "http://localhost:3000")
+  .split(",")
+  .map((o) => o.trim());
+app.use(cors({ origin: allowedOrigins }));
 app.use(express.json({ limit: "1mb" }));
 
 // Health check

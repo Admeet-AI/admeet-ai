@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Mic, Users, BrainCircuit } from "lucide-react";
+import { Mic, Users } from "lucide-react";
 
 interface MeetingLobbyProps {
   meetingTitle: string;
@@ -37,9 +37,7 @@ export function MeetingLobby({
           {/* Header */}
           <div className="text-center space-y-2">
             <div className="flex justify-center">
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#0066ff]/20 to-[#00d4ff]/20">
-                <BrainCircuit className="h-7 w-7 text-[#00d4ff]" />
-              </div>
+              <img src="/logo.png" alt="AdMeet AI" className="h-14 w-14" />
             </div>
             <h1 className="text-xl font-bold text-foreground">회의 참가</h1>
             <p className="text-sm text-muted-foreground">{meetingTitle}</p>
@@ -78,7 +76,7 @@ export function MeetingLobby({
           <Button
             onClick={handleJoin}
             disabled={!canJoin}
-            className="w-full h-12 text-base font-semibold bg-gradient-to-r from-[#0066ff] to-[#00d4ff] text-white"
+            className="w-full h-12 text-base font-semibold bg-linear-to-r from-[#0066ff] to-[#00d4ff] text-white"
           >
             참가하기
           </Button>

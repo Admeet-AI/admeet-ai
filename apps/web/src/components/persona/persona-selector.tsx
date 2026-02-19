@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { PersonaCreator } from "./persona-creator";
-import { Plus, Check } from "lucide-react";
+import { Plus, Check, Pencil, Trash2 } from "lucide-react";
 import type { Persona } from "../../../../../packages/shared/types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
@@ -19,6 +19,7 @@ export function PersonaSelector({ onSelect, selectedIds }: PersonaSelectorProps)
   const [personas, setPersonas] = useState<Persona[]>([]);
   const [loading, setLoading] = useState(true);
   const [showCreator, setShowCreator] = useState(false);
+  const [editingPersona, setEditingPersona] = useState<Persona | null>(null);
 
   useEffect(() => {
     const fetchPersonas = async () => {
@@ -43,10 +44,42 @@ export function PersonaSelector({ onSelect, selectedIds }: PersonaSelectorProps)
     }
   };
 
-  const handleCreated = (persona: Persona) => {
-    setPersonas((prev) => [...prev, persona]);
-    onSelect([...selectedIds, persona.id]);
+  const handleSaved = (persona: Persona) => {
+    if (editingPersona) {
+      setPersonas((prev) =>
+        prev.map((p) => (p.id === persona.id ? persona : p))
+      );
+      setEditingPersona(null);
+    } else {
+      setPersonas((prev) => [...prev, persona]);
+      onSelect([...selectedIds, persona.id]);
+    }
     setShowCreator(false);
+  };
+
+  const handleEdit = (e: React.MouseEvent, persona: Persona) => {
+    e.stopPropagation();
+    setEditingPersona(persona);
+    setShowCreator(true);
+  };
+
+  const handleDelete = async (e: React.MouseEvent, persona: Persona) => {
+    e.stopPropagation();
+    if (!window.confirm(`"${persona.name}" 페르소나를 삭제하시겠습니까?`)) return;
+
+    try {
+      const res = await fetch(`${API_URL}/api/personas/${persona.id}`, {
+        method: "DELETE",
+      });
+      if (res.ok) {
+        setPersonas((prev) => prev.filter((p) => p.id !== persona.id));
+        if (selectedIds.includes(persona.id)) {
+          onSelect(selectedIds.filter((sid) => sid !== persona.id));
+        }
+      }
+    } catch (error) {
+      console.error("Failed to delete persona:", error);
+    }
   };
 
   if (loading) {
@@ -74,12 +107,32 @@ export function PersonaSelector({ onSelect, selectedIds }: PersonaSelectorProps)
               }`}
               onClick={() => togglePersona(persona.id)}
             >
-              {/* Selection indicator */}
-              {isSelected && (
-                <div className="absolute top-3 right-3 flex h-5 w-5 items-center justify-center rounded-full bg-[#00d4ff]/20">
-                  <Check className="h-3 w-3 text-[#00d4ff]" />
+              {/* Action buttons (hover) */}
+              <div className="absolute top-3 right-3 flex items-center gap-1">
+                {isSelected && (
+                  <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#00d4ff]/20">
+                    <Check className="h-3 w-3 text-[#00d4ff]" />
+                  </div>
+                )}
+                <div className="hidden group-hover:flex items-center gap-0.5">
+                  <button
+                    onClick={(e) => handleEdit(e, persona)}
+                    className="flex h-6 w-6 items-center justify-center rounded-md text-slate-400 dark:text-white/30 transition-colors hover:bg-slate-100 dark:hover:bg-white/[0.08] hover:text-slate-600 dark:hover:text-white/60"
+                    title="수정"
+                  >
+                    <Pencil className="h-3 w-3" />
+                  </button>
+                  {!persona.isPreset && (
+                    <button
+                      onClick={(e) => handleDelete(e, persona)}
+                      className="flex h-6 w-6 items-center justify-center rounded-md text-slate-400 dark:text-white/30 transition-colors hover:bg-red-50 dark:hover:bg-red-500/10 hover:text-red-500 dark:hover:text-red-400"
+                      title="삭제"
+                    >
+                      <Trash2 className="h-3 w-3" />
+                    </button>
+                  )}
                 </div>
-              )}
+              </div>
 
               <div className="flex items-start gap-3">
                 <div
@@ -144,8 +197,12 @@ export function PersonaSelector({ onSelect, selectedIds }: PersonaSelectorProps)
 
       {showCreator && (
         <PersonaCreator
-          onCreated={handleCreated}
-          onClose={() => setShowCreator(false)}
+          editPersona={editingPersona ?? undefined}
+          onSaved={handleSaved}
+          onClose={() => {
+            setShowCreator(false);
+            setEditingPersona(null);
+          }}
         />
       )}
     </div>

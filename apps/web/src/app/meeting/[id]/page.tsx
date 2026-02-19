@@ -19,6 +19,7 @@ import { EndMeetingOverlay } from "@/components/meeting/end-meeting-overlay";
 import type { EndingPhase } from "@/components/meeting/end-meeting-overlay";
 import type { Persona } from "../../../../../../packages/shared/types";
 import { X } from "lucide-react";
+import Link from "next/link";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
 
@@ -51,7 +52,7 @@ export default function MeetingPage() {
       if (useMeetingStore.getState().isAISpeaking) return;
 
       if (isFinal) {
-        store.addTranscript(text);
+        // 로컬 추가 없이 서버로만 전송 → 서버가 보정 후 transcript:shared / transcript:corrected 로 응답
         store.setInterimTranscript("");
         send({ type: "transcript", data: { text, isFinal: true } });
       } else {
@@ -119,7 +120,18 @@ export default function MeetingPage() {
     if (!inviteCode || typeof window === "undefined") return;
     const link = `${window.location.origin}/join/${inviteCode}`;
     try {
-      await navigator.clipboard.writeText(link);
+      if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+        await navigator.clipboard.writeText(link);
+      } else {
+        const textarea = document.createElement("textarea");
+        textarea.value = link;
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+      }
       setCopyToast("success");
     } catch (error) {
       console.error("Failed to copy invite link:", error);
@@ -135,10 +147,10 @@ export default function MeetingPage() {
 
   const handleSendText = useCallback(
     (text: string) => {
-      store.addTranscript(text);
+      // 로컬 추가 없이 서버로만 전송 → 서버가 보정 후 브로드캐스트
       send({ type: "transcript", data: { text, isFinal: true } });
     },
-    [send, store]
+    [send]
   );
 
   const executeEndMeeting = useCallback(async () => {
@@ -190,7 +202,10 @@ export default function MeetingPage() {
       {/* Header */}
       <header className="flex items-center justify-between px-3 sm:px-4 py-2 bg-card border-b border-border gap-2">
         <div className="flex items-center gap-2 min-w-0">
-          <h1 className="font-bold text-base sm:text-lg shrink-0">AdMeet</h1>
+          <Link href="/" className="flex items-center gap-1.5 shrink-0">
+            <img src="/logo.png" alt="AdMeet AI" className="h-7 w-7" />
+            <span className="font-bold text-base sm:text-lg">AdMeet</span>
+          </Link>
           <span className="text-muted-foreground hidden sm:inline">|</span>
           <span className="text-sm font-medium hidden sm:inline truncate">{meetingTitle}</span>
           <Badge variant={store.isConnected ? "default" : "destructive"} className="text-[10px] sm:text-xs shrink-0">

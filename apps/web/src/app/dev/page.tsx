@@ -8,9 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import {
-  BrainCircuit,
   ArrowRight,
-  ArrowLeft,
   Settings2,
   Loader2,
   Sparkles,
@@ -155,8 +153,8 @@ export default function DevPage() {
       {/* Navigation */}
       <nav className="relative z-10 flex items-center justify-between px-6 py-5 md:px-12 lg:px-20">
         <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-[#0066ff] to-[#00d4ff]">
-            <BrainCircuit className="h-4 w-4 text-white" />
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-[#0066ff] to-[#00d4ff]">
+            <img src="/logo.png" alt="AdMeet AI" className="h-4 w-4" />
           </div>
           <span className="text-lg font-bold tracking-tight">
             Admeet<span className="text-[#00d4ff]">.</span>
@@ -166,15 +164,6 @@ export default function DevPage() {
           <Badge className="rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 text-[10px] font-semibold px-2.5 py-0.5">
             DEV
           </Badge>
-          <Link href="/">
-            <Button
-              variant="outline"
-              className="rounded-full border-slate-200 dark:border-white/10 bg-white/60 dark:bg-white/5 text-sm text-slate-700 dark:text-white backdrop-blur-sm hover:border-[#00d4ff]/50 hover:bg-slate-100 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white"
-            >
-              <ArrowLeft className="mr-1 h-3.5 w-3.5" />
-              홈으로
-            </Button>
-          </Link>
         </div>
       </nav>
 
@@ -190,7 +179,7 @@ export default function DevPage() {
               className="font-extrabold tracking-tight font-[family-name:var(--font-noto-kr)]"
               style={{ fontSize: "clamp(1.75rem, 1.5rem + 2vw, 2.5rem)" }}
             >
-              <span className="bg-gradient-to-r from-[#0066ff] via-[#00d4ff] to-[#7c3aed] bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-[#0066ff] via-[#00d4ff] to-[#7c3aed] bg-clip-text text-transparent">
                 데모 모드
               </span>
               로 빠르게 시작
@@ -221,7 +210,7 @@ export default function DevPage() {
                   {preset.meetingTitle}
                 </div>
                 {selectedPreset === idx && (
-                  <div className="pointer-events-none absolute -bottom-px left-1/2 h-px w-3/4 -translate-x-1/2 bg-gradient-to-r from-transparent via-[#00d4ff]/40 to-transparent" />
+                  <div className="pointer-events-none absolute -bottom-px left-1/2 h-px w-3/4 -translate-x-1/2 bg-linear-to-r from-transparent via-[#00d4ff]/40 to-transparent" />
                 )}
               </button>
             ))}
@@ -272,7 +261,7 @@ export default function DevPage() {
               <Button
                 onClick={handleQuickStart}
                 disabled={loading || !projectName.trim() || !rawText.trim() || !meetingTitle.trim()}
-                className="group h-14 w-full rounded-xl bg-gradient-to-r from-[#0066ff] to-[#00d4ff] text-sm font-semibold text-white shadow-[0_0_30px_rgba(0,102,255,0.2)] transition-all hover:shadow-[0_0_50px_rgba(0,102,255,0.4)] hover:scale-[1.01] disabled:opacity-40 disabled:hover:scale-100"
+                className="group h-14 w-full rounded-xl bg-linear-to-r from-[#0066ff] to-[#00d4ff] text-sm font-semibold text-white shadow-[0_0_30px_rgba(0,102,255,0.2)] transition-all hover:shadow-[0_0_50px_rgba(0,102,255,0.4)] hover:scale-[1.01] disabled:opacity-40 disabled:hover:scale-100"
               >
                 {loading ? (
                   <>

@@ -11,7 +11,8 @@ import { SummaryDrawer } from "@/components/meeting/summary-drawer";
 import { ParticipantGrid } from "@/components/meeting/participant-grid";
 import { SettingsModal } from "@/components/meeting/settings-modal";
 import type { Persona } from "../../../../../packages/shared/types";
-import { RotateCcw, X } from "lucide-react";
+import { X } from "lucide-react";
+import Link from "next/link";
 
 // ─── Mock Data ─────────────────────────────────────────────
 
@@ -90,7 +91,7 @@ const MOCK_TRANSCRIPTS = [
   {
     speakerId: "user-1",
     speakerName: "김대표",
-    text: "재구매율이 45%니까 기존 고객 유지도 중요한데, 신규 유입이 너무 적어서 고민이에요.",
+    text: "마케터님 저희 재구매율이 45%니까 기존 고객 유지도 중요한데, 신규 유입이 너무 적어서 고민이에요.",
     isFinal: true,
     timestamp: Date.now() - 150000,
   },
@@ -230,24 +231,30 @@ export default function DemoPage() {
 
     store.setActivePersonas(MOCK_PERSONAS);
 
-    // 트랜스크립트는 즉시 로드
-    MOCK_TRANSCRIPTS.forEach((t) => store.addSharedTranscript(t));
-    MOCK_SUMMARIES.forEach((s) => store.addSummary(s));
-
-    // AI 생각 & 솔루션은 순차적으로 생성 시뮬레이션
+    // 모든 아이템을 타임라인 순서대로 하나씩 순차 표시
     const allItems = [
+      ...MOCK_TRANSCRIPTS.map((t) => ({ type: "transcript" as const, data: t })),
       ...MOCK_THOUGHTS.map((t) => ({ type: "thought" as const, data: t })),
       ...MOCK_SOLUTIONS.map((s) => ({ type: "solution" as const, data: s })),
+      ...MOCK_SUMMARIES.map((s, i) => ({
+        type: "summary" as const,
+        data: { text: s, timestamp: Date.now() - 130000 + i * 10000 },
+      })),
     ].sort((a, b) => a.data.timestamp - b.data.timestamp);
 
     allItems.forEach((item, i) => {
       const timer = setTimeout(() => {
-        if (item.type === "thought") {
-          store.addThought({ ...item.data, timestamp: Date.now() });
-        } else {
-          store.addSolution({ ...item.data, timestamp: Date.now() });
+        const now = Date.now();
+        if (item.type === "transcript") {
+          store.addSharedTranscript({ ...item.data, timestamp: now });
+        } else if (item.type === "thought") {
+          store.addThought({ ...item.data, timestamp: now });
+        } else if (item.type === "solution") {
+          store.addSolution({ ...item.data, timestamp: now });
+        } else if (item.type === "summary") {
+          store.addSummary(item.data.text);
         }
-      }, 800 + i * 1200);
+      }, 600 + i * 1500);
       timersRef.current.push(timer);
     });
 
@@ -276,31 +283,13 @@ export default function DemoPage() {
 
   return (
     <main className="h-[100dvh] overflow-hidden flex flex-col bg-background">
-      {/* 데모 배너 */}
-      <div className="flex items-center justify-between px-4 py-1.5 bg-amber-50 dark:bg-amber-950/30 border-b border-amber-200 dark:border-amber-800 text-xs">
-        <div className="flex items-center gap-2">
-          <Badge variant="secondary" className="bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 text-[10px]">
-            DEMO
-          </Badge>
-          <span className="text-amber-700 dark:text-amber-400">
-            서버 연결 없이 목 데이터로 렌더링됩니다. UI 수정 후 새로고침하면 반영됩니다.
-          </span>
-        </div>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="h-6 gap-1 text-amber-700 dark:text-amber-400 hover:text-amber-900"
-          onClick={hydrateMockData}
-        >
-          <RotateCcw className="h-3 w-3" />
-          리셋
-        </Button>
-      </div>
-
       {/* Header — /meeting/[id]와 동일 */}
       <header className="flex items-center justify-between px-3 sm:px-4 py-2 bg-card border-b border-border gap-2">
         <div className="flex items-center gap-2 min-w-0">
-          <h1 className="font-bold text-base sm:text-lg shrink-0">AdMeet</h1>
+          <Link href="/" className="flex items-center gap-1.5 shrink-0">
+            <img src="/logo.png" alt="AdMeet AI" className="h-7 w-7" />
+            <span className="font-bold text-base sm:text-lg">AdMeet</span>
+          </Link>
           <span className="text-muted-foreground hidden sm:inline">|</span>
           <span className="text-sm font-medium hidden sm:inline truncate">{meetingTitle}</span>
           <Badge variant={store.isConnected ? "default" : "destructive"} className="text-[10px] sm:text-xs shrink-0">

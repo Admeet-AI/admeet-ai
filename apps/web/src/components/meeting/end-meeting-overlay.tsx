@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { BrainCircuit, RefreshCw } from "lucide-react";
+import { RefreshCw } from "lucide-react";
 
 export type EndingPhase = "ending" | "generating" | "redirecting" | "error";
 
@@ -47,8 +47,8 @@ export function EndMeetingOverlay({ phase, onRetry }: EndMeetingOverlayProps) {
 
       <div className="relative z-10 flex flex-col items-center gap-6 text-center px-6">
         {/* Logo */}
-        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0066ff] to-[#00d4ff] shadow-[0_0_40px_rgba(0,212,255,0.3)]">
-          <BrainCircuit className="h-8 w-8 text-white" />
+        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-linear-to-br from-[#0066ff] to-[#00d4ff] shadow-[0_0_40px_rgba(0,212,255,0.3)]">
+          <img src="/logo.png" alt="AdMeet AI" className="h-8 w-8" />
         </div>
 
         {/* Spinner */}
@@ -102,7 +102,7 @@ export function EndMeetingOverlay({ phase, onRetry }: EndMeetingOverlayProps) {
         {phase === "error" && (
           <Button
             onClick={onRetry}
-            className="mt-2 rounded-full bg-gradient-to-r from-[#0066ff] to-[#00d4ff] px-6 text-sm font-semibold text-white shadow-[0_0_20px_rgba(0,102,255,0.3)] hover:shadow-[0_0_30px_rgba(0,102,255,0.5)] gap-2"
+            className="mt-2 rounded-full bg-linear-to-r from-[#0066ff] to-[#00d4ff] px-6 text-sm font-semibold text-white shadow-[0_0_20px_rgba(0,102,255,0.3)] hover:shadow-[0_0_30px_rgba(0,102,255,0.5)] gap-2"
           >
             <RefreshCw className="h-4 w-4" />
             다시 시도

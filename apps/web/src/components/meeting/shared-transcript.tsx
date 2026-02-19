@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 import { useMeetingStore } from "@/stores/meeting";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { BrainCircuit, Target, BarChart3, Users, ShieldCheck } from "lucide-react";
@@ -39,10 +40,42 @@ export function SharedTranscript() {
   const participants = useMeetingStore((s) => s.participants);
 
   const bottomRef = useRef<HTMLDivElement>(null);
+  const bubbleRefs = useRef(new Map<string, HTMLDivElement | null>());
+  const animatedKeysRef = useRef(new Set<string>());
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [allTranscripts.length, solutions.length]);
+
+  useEffect(() => {
+    bubbleRefs.current.forEach((node, key) => {
+      if (!node || animatedKeysRef.current.has(key)) return;
+      animatedKeysRef.current.add(key);
+
+      gsap.fromTo(
+        node,
+        { opacity: 0, y: 30, scale: 0.96 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.55,
+          ease: "back.out(1.45)",
+        }
+      );
+    });
+  }, [allTranscripts.length, solutions.length]);
+
+  useEffect(() => {
+    const refs = bubbleRefs.current;
+    return () => {
+      refs.forEach((node) => {
+        if (node) gsap.killTweensOf(node);
+      });
+      refs.clear();
+      animatedKeysRef.current.clear();
+    };
+  }, []);
 
   const humanTranscripts = allTranscripts.filter((t) => !t.isAI && !t.speakerId.startsWith("ai-"));
 
@@ -78,8 +111,9 @@ export function SharedTranscript() {
               item.data.context ? `\n\n${item.data.context}` : ""
             }`;
 
+            const solKey = `sol-${item.data.id}`;
             return (
-              <div className="flex w-full flex-col items-start" key={`sol-${item.data.id}`}>
+              <div className="flex w-full flex-col items-start" key={solKey}>
                 <ChatFeedBubble
                   align="left"
                   label={personaName}
@@ -87,6 +121,10 @@ export function SharedTranscript() {
                   color={color}
                   speakerType="ai"
                   className="max-w-[85%]"
+                  bubbleRef={(el) => {
+                    if (el) bubbleRefs.current.set(solKey, el);
+                    else bubbleRefs.current.delete(solKey);
+                  }}
                 />
                 <TimeStamp timestamp={item.data.timestamp} className="ml-1" />
               </div>
@@ -103,10 +141,11 @@ export function SharedTranscript() {
 
           const color = isAI ? getAIStyle(speakerLabel).color : "#94a3b8";
 
+          const tKey = `t-${transcript.timestamp}-${i}`;
           return (
             <div
               className={`flex w-full flex-col ${isMe ? "items-end" : "items-start"}`}
-              key={`t-${transcript.timestamp}-${i}`}
+              key={tKey}
             >
               <ChatFeedBubble
                 align={isMe ? "right" : "left"}
@@ -115,6 +154,10 @@ export function SharedTranscript() {
                 color={color}
                 speakerType={isAI ? "ai" : "user"}
                 className="max-w-[85%]"
+                bubbleRef={(el) => {
+                  if (el) bubbleRefs.current.set(tKey, el);
+                  else bubbleRefs.current.delete(tKey);
+                }}
               />
               <TimeStamp timestamp={transcript.timestamp} className={isMe ? "mr-1" : "ml-1"} />
             </div>
@@ -138,8 +181,8 @@ export function SharedTranscript() {
 
         {timeline.length === 0 && !interimTranscript && (
           <div className="flex flex-col items-center justify-center py-20 text-muted-foreground">
-            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0066ff]/10 to-[#00d4ff]/10">
-              <BrainCircuit className="h-7 w-7 text-[#00d4ff]/50" />
+            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-br from-[#0066ff]/10 to-[#00d4ff]/10">
+              <img src="/logo.png" alt="AdMeet AI" className="h-7 w-7 opacity-50" />
             </div>
             <p className="mb-1 text-sm font-medium">{EMPTY_STATE_TITLE}</p>
             <p className="text-sm text-muted-foreground/60">{EMPTY_STATE_BODY}</p>

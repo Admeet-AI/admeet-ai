@@ -96,7 +96,7 @@ export function PersonaPanel({ persona }: PersonaPanelProps) {
 
   const progress = ((analysisInterval - countdown) / analysisInterval) * 100;
   const displayName = persona?.name || "전체";
-  const signalHint = persona?.signalKeywords?.[0] || "호출";
+  const signalHint = persona?.signalKeywords?.[0] || "이름";
 
   return (
     <div className="flex flex-col h-full">

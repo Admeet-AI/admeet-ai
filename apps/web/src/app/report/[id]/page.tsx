@@ -3,14 +3,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
 import { MarkdownRenderer } from "@/components/report/markdown-renderer";
 import {
-  BrainCircuit,
   ArrowRight,
   Copy,
   Download,
-  Home,
   Check,
   FileBarChart,
 } from "lucide-react";
@@ -79,32 +78,17 @@ export default function ReportPage() {
 
       {/* Navigation */}
       <nav className="relative z-10 flex items-center justify-between px-6 py-5 md:px-12 lg:px-20">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-[#0066ff] to-[#00d4ff]">
-            <BrainCircuit className="h-4 w-4 text-white" />
-          </div>
-          <span className="text-lg font-bold tracking-tight">
-            Admeet<span className="text-[#00d4ff]">.</span>
-          </span>
+        <Link href="/" className="flex items-center gap-1.5">
+          <img src="/logo.png" alt="AdMeet AI" className="h-7 w-7" />
+          <span className="text-lg font-bold tracking-tight">AdMeet</span>
         </Link>
         <div className="flex items-center gap-2">
-          <Link href="/">
-            <Button
-              variant="outline"
-              size="sm"
-              className="rounded-full border-slate-200 dark:border-white/10 bg-white/60 dark:bg-white/5 text-sm text-slate-700 dark:text-white backdrop-blur-sm hover:border-[#00d4ff]/50 gap-1.5"
-            >
-              <Home className="h-3.5 w-3.5" />
-              <span className="hidden sm:inline">홈으로</span>
-            </Button>
-          </Link>
           <Link href="/init">
             <Button
               size="sm"
-              className="rounded-full bg-gradient-to-r from-[#0066ff] to-[#00d4ff] text-sm font-semibold text-white shadow-[0_0_20px_rgba(0,102,255,0.2)] hover:shadow-[0_0_30px_rgba(0,102,255,0.4)] gap-1.5"
+              className="rounded-full bg-linear-to-r from-[#0066ff] to-[#00d4ff] text-sm font-semibold text-white shadow-[0_0_20px_rgba(0,102,255,0.2)] hover:shadow-[0_0_30px_rgba(0,102,255,0.4)] gap-1.5"
             >
-              새 회의
-              <ArrowRight className="h-3.5 w-3.5" />
+              New AdMeet
             </Button>
           </Link>
         </div>
@@ -113,7 +97,7 @@ export default function ReportPage() {
       {/* Header */}
       <div className="relative z-10 mx-auto max-w-4xl px-6 pt-4 pb-8 md:px-12">
         <div className="flex items-center gap-3 mb-2">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#0066ff]/10 to-[#00d4ff]/10">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-linear-to-br from-[#0066ff]/10 to-[#00d4ff]/10">
             <FileBarChart className="h-5 w-5 text-[#00d4ff]" />
           </div>
           <div>
@@ -170,13 +154,7 @@ export default function ReportPage() {
         )}
       </div>
 
-      {/* Footer */}
-      <footer className="relative z-10 border-t border-slate-200/60 dark:border-white/[0.04] px-6 py-8 md:px-12">
-        <div className="mx-auto flex max-w-7xl items-center justify-between text-xs text-slate-400 dark:text-white/20">
-          <span>© 2025 Admeet</span>
-          <span>Admit. Meet. Insight.</span>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }

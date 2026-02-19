@@ -16,6 +16,7 @@ import { SettingsModal } from "@/components/meeting/settings-modal";
 import { SummaryDrawer } from "@/components/meeting/summary-drawer";
 import { InsightsSidebar } from "@/components/meeting/insights-sidebar";
 import { Loader2, X } from "lucide-react";
+import Link from "next/link";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
 
@@ -160,8 +161,8 @@ export default function JoinPage() {
           <p className="text-lg font-medium text-foreground">
             {error || "회의를 찾을 수 없습니다."}
           </p>
-          <Button variant="outline" size="sm" onClick={() => router.push("/")}>
-            {"홈으로 이동"}
+          <Button variant="outline" size="sm" onClick={() => router.push("/init")}>
+            {"새 회의 시작"}
           </Button>
         </div>
       </main>
@@ -179,7 +180,10 @@ export default function JoinPage() {
     <main className="h-[100dvh] overflow-hidden flex flex-col bg-background">
       <header className="flex items-center justify-between px-3 sm:px-4 py-2 bg-card border-b border-border gap-2">
         <div className="flex items-center gap-2 min-w-0">
-          <h1 className="font-bold text-base sm:text-lg shrink-0">AdMeet</h1>
+          <Link href="/" className="flex items-center gap-1.5 shrink-0">
+            <img src="/logo.png" alt="AdMeet AI" className="h-7 w-7" />
+            <span className="font-bold text-base sm:text-lg">AdMeet</span>
+          </Link>
           <span className="text-muted-foreground hidden sm:inline">|</span>
           <span className="text-sm font-medium hidden sm:inline truncate">{meeting.title}</span>
           <Badge variant={store.isConnected ? "default" : "destructive"} className="text-[10px] sm:text-xs shrink-0">

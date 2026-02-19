@@ -10,7 +10,7 @@ interface MarkdownRendererProps {
 
 const components: Components = {
   h1: ({ children }) => (
-    <h1 className="mb-6 mt-8 first:mt-0 text-3xl font-extrabold tracking-tight bg-gradient-to-r from-[#0066ff] via-[#00d4ff] to-[#7c3aed] bg-clip-text text-transparent">
+    <h1 className="mb-6 mt-8 first:mt-0 text-3xl font-extrabold tracking-tight bg-linear-to-r from-[#0066ff] via-[#00d4ff] to-[#7c3aed] bg-clip-text text-transparent">
       {children}
     </h1>
   ),

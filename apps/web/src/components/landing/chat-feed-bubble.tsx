@@ -90,7 +90,6 @@ export function ChatFeedBubble({
               <span
                 className="inline-flex whitespace-nowrap rounded-full py-0.5 text-[9px] font-semibold leading-none text-slate-500 dark:text-slate-300"
                 style={{
-                  backgroundColor: `${color}15`,
                   color,
                 }}
               >

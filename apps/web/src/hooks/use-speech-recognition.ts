@@ -53,6 +53,14 @@ export function useSpeechRecognition({
   const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
 
   const start = useCallback(() => {
+    // 기존 인스턴스가 있으면 먼저 정리
+    if (recognitionRef.current) {
+      recognitionRef.current.onend = null;
+      recognitionRef.current.onerror = null;
+      try { recognitionRef.current.stop(); } catch { /* ignore */ }
+      recognitionRef.current = null;
+    }
+
     const speechWindow = window as SpeechWindow;
     const SpeechRecognition =
       speechWindow.SpeechRecognition || speechWindow.webkitSpeechRecognition;
@@ -75,18 +83,17 @@ export function useSpeechRecognition({
     };
 
     recognition.onerror = (event) => {
-      if (event.error !== "no-speech") {
-        onError?.(event.error);
-      }
+      if (event.error === "no-speech" || event.error === "aborted") return;
+      onError?.(event.error);
     };
 
     // Auto-restart as a fallback for unstable continuous mode behavior.
     recognition.onend = () => {
-      if (recognitionRef.current) {
+      if (recognitionRef.current === recognition) {
         try {
-          recognitionRef.current.start();
+          recognition.start();
         } catch {
-          // already started
+          // already started or disposed
         }
       }
     };
